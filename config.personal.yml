@@ -1,0 +1,155 @@
+---
+configure_dotfiles: true
+configure_terminal: true
+configure_osx: true
+
+# Set to 'true' to configure the Dock via dockutil.
+configure_dock: true
+
+dockitems_remove:
+  # - Launchpad
+  # - Safari
+  - Messages
+  - Mail
+  - Maps
+  - Photos
+  - FaceTime
+  - Calendar
+  - Contacts
+  # - Reminders
+  - Notes
+  - Freeform
+  - TV
+  - Music
+  - Keynote
+  - Numbers
+  - Pages
+  - 'App Store'
+  - Podcasts
+
+dockitems_persist: []
+# - name: "Sublime Text"
+#   path: "/Applications/Sublime Text.app/"
+#   pos: 5
+
+configure_sudoers: false
+sudoers_custom_config: ""
+# Example:
+# sudoers_custom_config: |
+#   # Allow users in admin group to use sudo with no password.
+#   %admin ALL=(ALL) NOPASSWD: ALL
+
+# dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
+dotfiles_repo: https://github.com/carlosasj/.dotfiles
+dotfiles_repo_accept_hostkey: true
+dotfiles_repo_local_destination: ~/git/.dotfiles
+dotfiles_repo_version: master # Replace with your default branch
+dotfiles_files:
+  - .aliases
+  - .bashrc
+  - .gitconfig
+  - .gitignore_global
+  # - .inputrc
+  - .load_homebrew
+  - .load_nvm
+  - .load_pyenv
+  - .load_sdkman
+  - .load_tabby
+  - .osx
+  - .profile
+  - .vimrc
+  - .zshrc
+
+homebrew_installed_packages:
+  # - ansible # Installed via Pip.
+  # - autoconf
+  - bash-completion
+  - gettext
+  - git
+  - go
+  - gpg
+  # - nmap
+  # - node
+  # - nvm
+  - openssl
+  - wget
+  - zsh-history-substring-search
+homebrew_uninstalled_packages:
+  # - doxygen
+  # - gifsicle
+  # - gh
+  # - httpie
+  # - iperf
+  # # - libevent
+  # # - sqlite
+  # - php
+  # - pngpaste
+  # - ssh-copy-id
+  # # - readline
+  # - pv
+  # - wrk
+
+homebrew_taps: []
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - docker
+  - firefox
+  - google-chrome
+  - sequel-ace
+  - sublime-text
+homebrew_cask_uninstalled_apps:
+  # - chromedriver
+  # - dropbox
+  # - handbrake
+  # - licecap
+  # - slack
+  # - transmit
+
+# See `geerlingguy.mac.mas` role documentation for usage instructions.
+mas_installed_apps: []
+mas_email: ""
+mas_password: ""
+
+osx_script: "~/.osx"
+
+# Install packages from other package managers.
+# Note: You are responsible for making sure the required package managers are
+# installed, eg. through homebrew.
+composer_packages: []
+# - name: drush
+#   state: present # present/absent, default: present
+#   version: "^8.1" # default: N/A
+gem_packages: []
+# - name: bundler
+#   state: present # present/absent/latest, default: present
+#   version: "~> 1.15.1" # default: N/A
+npm_packages: []
+# - name: webpack
+#   state: present # present/absent/latest, default: present
+#   version: "^2.6" # default: N/A
+pip_packages: []
+# - name: mkdocs
+#   state: present # present/absent/latest, default: present
+#   version: "0.16.3" # default: N/A
+
+# Set to 'true' to configure Sublime Text.
+configure_sublime: false
+sublime_base_path: "~/Library/Application Support/Sublime Text"
+sublime_config_path: "Packages/User"
+sublime_package_control:
+  # - "DocBlockr"
+  # - "Dockerfile Syntax Highlighting"
+  # - "FileDiffs"
+  # - "GitHub Flavored Markdown Preview"
+  # - "Jinja2"
+  # - "Package Control"
+  # - "Pretty JSON"
+  # - "SublimeLinter"
+  # - "SublimeLinter-contrib-yamllint"
+  # - "Theme - Cobalt2"
+  - "TrailingSpaces"
+  - "WordingStatus"
+
+# Glob pattern to ansible task files to run after all other tasks are finished.
+post_provision_tasks: []
