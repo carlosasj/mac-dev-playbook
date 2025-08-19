@@ -1,8 +1,14 @@
 install:
-	./make_install.sh
+	sh make_install.sh
 
 refresh:
-	./make_refresh.sh
+	sh make_refresh.sh
 
 setup_ssh:
-	./make_setup_ssh.sh
+	sh make_setup_ssh.sh
+
+post_install:
+	sh make_post_install.sh
+
+osx:
+	sh make_osx.sh
