@@ -74,7 +74,7 @@ homebrew_installed_packages:
   - openssl
   - wget
   - zsh-history-substring-search
-homebrew_uninstalled_packages:
+# homebrew_uninstalled_packages:
   # - doxygen
   # - gifsicle
   # - gh
@@ -98,7 +98,7 @@ homebrew_cask_apps:
   - google-chrome
   - sequel-ace
   - sublime-text
-homebrew_cask_uninstalled_apps:
+# homebrew_cask_uninstalled_apps:
   # - chromedriver
   # - dropbox
   # - handbrake

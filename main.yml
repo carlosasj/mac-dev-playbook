@@ -14,18 +14,24 @@
 
   roles:
     - role: elliotweiser.osx-command-line-tools
+
     - role: geerlingguy.mac.homebrew
       tags: ['homebrew']
+
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
       tags: ['dotfiles']
+
     - role: gantsign.oh-my-zsh
       tags: ['dotfiles']
+      oh_my_zsh_write_zshrc: false
       users:
         - username: 'schneider'
+
     - role: geerlingguy.mac.mas
       when: mas_installed_apps or mas_installed_app_ids
       tags: ['mas']
+
     - role: geerlingguy.mac.dock
       when: configure_dock
       tags: ['dock']
