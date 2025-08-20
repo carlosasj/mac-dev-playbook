@@ -1,0 +1,16 @@
+Include config.d/use_id_current_by_default
+
+#Host desktop
+#    HostName d1.carlosasj.dev
+#    User schneider
+#    IdentityFile ~/.ssh/id_personal
+
+#Host cosmos
+#    HostName l1.carlosasj.dev
+#    User schneider
+#    IdentityFile ~/.ssh/id_personal
+
+#Host mac
+#    HostName m1.carlosasj.dev
+#    User schneider
+#    IdentityFile ~/.ssh/id_personal

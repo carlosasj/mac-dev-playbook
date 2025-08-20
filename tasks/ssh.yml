@@ -1,0 +1,19 @@
+---
+- name: Ensure ~/.ssh directory exists
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.ssh/config.d/"
+    state: directory
+    mode: '0755'
+
+- name: Create initial SSH Config file
+  copy:
+    src: "files/ssh/initial_config"
+    dest: "~/.ssh/config"
+    force: no
+
+- name: Use ~/.ssh/config.d/id_current key by default
+  copy:
+    src: "files/ssh/config.d/use_id_current_by_default"
+    dest: "~/.ssh/config.d/use_id_current_by_default"
+    force: no
+

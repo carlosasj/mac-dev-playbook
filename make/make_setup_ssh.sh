@@ -12,6 +12,9 @@ if [ -f "$KEY_FILE" ]; then
 else
   echo "🔑 Generating new SSH key for $EMAIL on $DATE..."
   ssh-keygen -t ed25519 -C "${EMAIL}_${DATE}" -f "$KEY_FILE" -N ""
+
+  ln -sf $KEY_FILE         "$HOME/.ssh/id_current"
+  ln -sf "${KEY_FILE}.pub" "$HOME/.ssh/id_current.pub"
 fi
 
 # === Start ssh-agent ===
