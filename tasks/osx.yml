@@ -1,5 +1,11 @@
 ---
-# TODO: Use sudo once .osx can be run via root with no user interaction.
-- name: Run .osx dotfiles.
-  command: "{{ osx_script }}"
-  changed_when: false
+- name: Remove weekday
+  community.general.osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: ShowDayOfWeek
+    type: int
+    value: 0
+
+# - name: Run .osx dotfiles.
+#   command: "{{ osx_script }}"
+#   changed_when: false
