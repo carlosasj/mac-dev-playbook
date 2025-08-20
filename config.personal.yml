@@ -198,4 +198,5 @@ sublime_config_path: "Packages/User"
 post_provision_tasks:
   - tasks/post-oh-my-zsh.yml
   - tasks/autostart.yml
+  - tasks/sudo.yml
   # - tasks/post-oh-my-zsh.yml
