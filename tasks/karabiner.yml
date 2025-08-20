@@ -1,0 +1,12 @@
+---
+- name: Ensure Karabiner config directory exists
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.config/karabiner"
+    state: directory
+    mode: '0755'
+
+- name: Overwrite Karabiner shortcuts
+  copy:
+    src: "files/karabiner/karabiner.json"
+    dest: "~/.config/karabiner/karabiner.json"
+

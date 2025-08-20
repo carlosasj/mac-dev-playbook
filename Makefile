@@ -1,14 +1,17 @@
 install:
-	sh make_install.sh
+	sh make/make_install.sh
 
 refresh:
-	sh make_refresh.sh
+	sh make/make_refresh.sh
 
 setup_ssh:
-	sh make_setup_ssh.sh
+	sh make/make_setup_ssh.sh
 
 post_install:
-	sh make_post_install.sh
+	sh make/make_post_install.sh
 
 osx:
-	sh make_osx.sh
+	sh make/make_osx.sh
+
+sync_back:
+	sh make/make_sync_back.sh

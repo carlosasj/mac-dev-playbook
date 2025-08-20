@@ -2,7 +2,7 @@
 
 ANSIBLE_LOCATION="$HOME/Library/Python/3.9/lib/python/site-packages/ansible"
 
-export PATH="$PATH:$HOME/Library/Python/3.9/bin:/opt/homebrew/bin"
+export PATH="$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH"
 
 git --version && pip3 --version
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="$PATH:$HOME/Library/Python/3.9/bin:/opt/homebrew/bin"
+export PATH="$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH"
 
 git --version && pip3 --version
 
@@ -11,4 +11,6 @@ if [[ !( -f config.yml ) ]]; then
 fi;
 
 echo -e "\n\nBECOME username: root"
-ansible-playbook main.yml --ask-become-pass --tags osx
+# echo -e   "BECOME password: "
+
+ansible-playbook main.yml --ask-become-pass

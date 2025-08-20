@@ -1,6 +1,7 @@
 ---
 configure_dotfiles: true
 configure_terminal: true
+configure_karabiner: true
 configure_osx: true
 
 # Set to 'true' to configure the Dock via dockutil.
@@ -8,7 +9,7 @@ configure_dock: true
 
 dockitems_remove:
   # - Launchpad
-  # - Safari
+  - Safari
   - Messages
   - Mail
   - Maps
@@ -27,10 +28,19 @@ dockitems_remove:
   - 'App Store'
   - Podcasts
 
-dockitems_persist: []
-# - name: "Sublime Text"
-#   path: "/Applications/Sublime Text.app/"
-#   pos: 5
+# Keep `pos` ordered.
+# Name is just a helper when the script is running
+dockitems_to_persist:
+  - name: Launchpad
+    path: "/Applications/Launchpad.app"
+    pos: 1
+  - name: Firefox
+    path: "/Applications/Firefox.app"
+    pos: 2
+  - name: VSCode
+    path: "/Applications/Visual Studio Code.app"
+    pos: 3
+
 
 configure_sudoers: false
 sudoers_custom_config: ""
@@ -93,25 +103,57 @@ homebrew_taps: []
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - docker
+  - middleclick
+  - maccy
+  - alt-tab
+  - tabby
+  - font-fira-code-nerd-font
+  - karabiner-elements
   - firefox
   - google-chrome
+  - visual-studio-code
+  - docker
   - sequel-ace
-  - sublime-text
-# homebrew_cask_uninstalled_apps:
+  - rustdesk
+  - vlc
+  - spotify
+  - logi-options-plus
+  - rectangle
+  - obsidian
+  - handbrake
+  - mos
+  - bruno
+  - keka
+  - whatsapp
+  - betterdisplay
+  # - sublime-text
+homebrew_cask_uninstalled_apps:
+  - bitwarden
+  - only-switch
   # - chromedriver
   # - dropbox
-  # - handbrake
   # - licecap
   # - slack
   # - transmit
+  # - audacity # ?
+  # - obs-studio # ?
 
 # See `geerlingguy.mac.mas` role documentation for usage instructions.
-mas_installed_apps: []
-mas_email: ""
-mas_password: ""
+mas_email: "apple@carlosasj.dev"
+# mas_password: ""
+# mas_signin_dialog: true
+mas_installed_apps:
+  - { id: 1352778147, name: "Bitwarden" } # This one supports fingerprint use on other browsers
+  - { id: 937984704, name: "Amphetamine: keep-awake utility" }
+  - { id: 1586435171, name: "Actions: Useful for Shortcuts" }
+  - { id: 1351639930, name: "Gifski: Convert videos to quality GIFs" }
+  - { id: 6450279539, name: "Second Clock: on the menu bar" }
+  - { id: 1604176982, name: "One Thing" }
+  - { id: 1444636541, name: "Photomator – Photo Editor" }
+  - { id: 1355679052, name: "Dropover: Easier Drag & Drop" }
 
-osx_script: "~/.osx"
+
+osx_script: "~/.osx --no-restart"
 
 # Install packages from other package managers.
 # Note: You are responsible for making sure the required package managers are
@@ -137,7 +179,7 @@ pip_packages: []
 configure_sublime: false
 sublime_base_path: "~/Library/Application Support/Sublime Text"
 sublime_config_path: "Packages/User"
-sublime_package_control:
+# sublime_package_control:
   # - "DocBlockr"
   # - "Dockerfile Syntax Highlighting"
   # - "FileDiffs"
@@ -148,8 +190,11 @@ sublime_package_control:
   # - "SublimeLinter"
   # - "SublimeLinter-contrib-yamllint"
   # - "Theme - Cobalt2"
-  - "TrailingSpaces"
-  - "WordingStatus"
+  # - "TrailingSpaces"
+  # - "WordingStatus"
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
-post_provision_tasks: []
+post_provision_tasks:
+  - tasks/post-oh-my-zsh.yml
+  - tasks/autostart.yml
+  # - tasks/post-oh-my-zsh.yml

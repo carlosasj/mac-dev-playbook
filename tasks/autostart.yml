@@ -1,0 +1,39 @@
+---
+# - name: Make sure middleclick is started
+#   community.general.launchd:
+#     name: art.ginzburg.MiddleClick
+#     state: started
+
+# osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Logi Options+.app", hidden:false}'
+
+# osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Maccy.app", hidden:false}'
+# osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/MiddleClick.app", hidden:false}'
+# osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Tabby.app", hidden:false}'
+# osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Bitwarden.app", hidden:false}'
+# osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/AltTab.app", hidden:false}'
+# osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Karabiner-Elements.app", hidden:false}'
+# osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Rectangle.app", hidden:false}'
+
+
+# pluginkit -e use    -i com.apple.CloudSharingUI.CopyLink;
+# pluginkit -e use    -i com.apple.share.AirDrop.send;
+# pluginkit -e use    -i com.sindresorhus.Gifski.ShareExtension;
+# pluginkit -e use    -i me.damir.dropover-mac.DropoverShareExtension;
+# pluginkit -e use    -i com.apple.shortcuts.Run-Workflow;
+# pluginkit -e ignore -i com.apple.share.Mail.compose;
+# pluginkit -e ignore -i com.apple.messages.ShareExtension;
+# pluginkit -e ignore -i com.pixelmatorteam.pixelmator.touch.x.photo.add-to-photomator;
+# pluginkit -e ignore -i com.apple.Notes.SharingExtension;
+# pluginkit -e ignore -i com.apple.messages.ReplyExtension;
+# pluginkit -e ignore -i com.apple.share.System.set-account-picture;
+# pluginkit -e ignore -i com.apple.reminders.sharingextension;
+# pluginkit -e ignore -i com.apple.share.Mail.compose-back-to-sender;
+# pluginkit -e ignore -i com.apple.CloudSharingUI.invite;
+# pluginkit -e ignore -i com.apple.freeform.sharingextension;
+# pluginkit -e ignore -i com.sindresorhus.One-Thing.Share-Extension;
+# pluginkit -e ignore -i com.apple.iBooksX.SharingExtension;
+# pluginkit -e ignore -i com.apple.share.Messages.window;
+# pluginkit -e ignore -i com.apple.share.System.add-to-safari-reading-list;
+# pluginkit -e ignore -i com.apple.share.System.set-desktop-image;
+# pluginkit -e ignore -i com.apple.share.System.add-to-iphoto;
+# pluginkit -e ignore -i com.apple.MailShareExtension;

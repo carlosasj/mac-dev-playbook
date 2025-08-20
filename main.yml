@@ -45,6 +45,10 @@
       when: configure_terminal
       tags: ['terminal']
 
+    - import_tasks: tasks/karabiner.yml
+      when: configure_karabiner
+      tags: ['karabiner']
+
     - import_tasks: tasks/osx.yml
       when: configure_osx
       tags: ['osx']
