@@ -1,0 +1,18 @@
+---
+- name: Get Gatekeeper status
+  ansible.builtin.shell: spctl --disable-status
+  register: assessments_status
+
+- name: Debug Gatekeeper status
+  ansible.builtin.debug:
+    var: assessments_status.stdout
+
+- name: Enable Apps from "Anywhere" on the system settings
+  ansible.builtin.command: sudo spctl --master-disable
+  when: "'is currently not available' in assessments_status.stdout"
+
+# This just includes the "Anywhere" option under **Settings > Privacy & Security > Allow apps downloaded from**.
+# It's up to you to enable it.
+#
+# You can revert this with
+# sudo spctl --master-enable

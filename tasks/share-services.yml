@@ -1,0 +1,29 @@
+---
+- name: Get list of apps from Settings > General > Login items & extensions > Sharing
+  ansible.builtin.shell: "pluginkit -m -A -D -p com.apple.share-services"
+  register: pluginkit_output
+
+- name: Debug share services
+  ansible.builtin.debug:
+    var: pluginkit_output.stdout
+
+- name: pluginkit disable
+  ansible.builtin.command: |
+    pluginkit -e ignore -i {{ item }}
+  loop: "{{ share_services_disabled }}"
+  when: "'-    ' + item not in pluginkit_output.stdout"
+
+- name: pluginkit enable
+  ansible.builtin.command: |
+    pluginkit -e use -i {{ item }}
+  loop: "{{ share_services_enabled }}"
+  when: "'+    ' + item not in pluginkit_output.stdout"
+
+# - name: Set firefox as default browser
+#   ansible.builtin.command: |
+#     open -a "Firefox" --new --args -silent -nosplash -setDefaultBrowser
+
+# To allow unsigned apps choose Anywhere under System Preferences: Security: Allow apps downloaded from. If you don't have the option to select Anywhere you'll have to loosen the Gate Keeper restrictions by running sudo spctl --master-disable in the Terminal
+# sudo spctl --master-disable
+# Then, go to System Preferences > Privacy & Security > (Scroll down to Security section) > Allow applications from: Anywhere
+# to undo: sudo spctl --master-enable

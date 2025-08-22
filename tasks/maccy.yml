@@ -1,0 +1,155 @@
+---
+- name: Set Maccy Open Shortcut Opt+V
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: KeyboardShortcuts_popup
+    type: string
+    value: '{"carbonModifiers":2048,"carbonKeyCode":9}' # Opt+V
+
+- name: Set Maccy Pin entry Shortcut Opt+P
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: KeyboardShortcuts_pin
+    type: string
+    value: '{"carbonModifiers":2048,"carbonKeyCode":35}' # Opt+P
+
+- name: Set Maccy Delete entry Shortcut Opt+Backspace
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: KeyboardShortcuts_delete
+    type: string
+    value: '{"carbonModifiers":2048,"carbonKeyCode":51}' # Opt+Backspace
+
+- name: Enable Auto update
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: SUEnableAutomaticChecks
+    type: int
+    value: 1
+
+- name: Open Popup at cursor position
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: popupPosition
+    type: string
+    value: cursor
+
+- name: Sorting
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: sortBy
+    type: string
+    value: firstCopiedAt
+
+- name: Search Mode
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: searchMode
+    type: string
+    value: fuzzy
+
+- name: Highlight search matches with color
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: highlightMatch
+    type: string
+    value: color
+
+- name: Highlight search matches with color
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: showSpecialSymbols
+    type: int
+    value: 1
+
+- name: Don't show Maccy logo at the top
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: showTitle
+    type: int
+    value: 0
+
+- name: Show footer with settings and other options
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: showFooter
+    type: int
+    value: 1
+
+- name: Show application icons
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: showApplicationIcons
+    type: int
+    value: 1
+
+- name: Increase history size
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: historySize
+    type: int
+    value: 1000
+
+- name: Paste by default
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: pasteByDefault
+    type: int
+    value: 1
+
+- name: Preview delay
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: previewDelay
+    type: int
+    value: 200
+
+- name: Don't remove formatting by default
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: removeFormattingByDefault
+    type: int
+    value: 0
+
+- name: Increase history size
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: imageMaxHeight
+    type: int
+    value: 14 # so each image item takes the same space as the text items
+
+- name: Set menu icon to Clipboard
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: menuIcon
+    type: string
+    value: clipboard
+
+- name: Don't show recent copy in menu bar
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: showRecentCopyInMenuBar
+    type: int
+    value: 0
+
+- name: Remove Maccy icon from top bar
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: NSStatusItem Visible Item-0
+    type: int
+    value: 0
+
+- name: Remove Maccy icon from top bar
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: showInStatusBar
+    type: int
+    value: 0
+
+- name: Set some ignored apps
+  community.general.osx_defaults:
+    domain: org.p0deje.Maccy
+    key: ignoredApps
+    type: array
+    value:
+      - "com.bitwarden.desktop"

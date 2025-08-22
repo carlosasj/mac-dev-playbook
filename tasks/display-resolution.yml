@@ -1,0 +1,14 @@
+---
+- name: Get display mode number (it's kind of a multiplicator)
+  ansible.builtin.shell: /Applications/BetterDisplay.app/Contents/MacOS/BetterDisplay get --displayWithMainStatus -displaymodenumber
+  register: display_mode_number
+
+- name: Debug display mode number
+  ansible.builtin.debug:
+    var: display_mode_number.stdout
+
+- name: Set display mode
+  ansible.builtin.command: /Applications/BetterDisplay.app/Contents/MacOS/BetterDisplay set --displayWithMainStatus -displaymodenumber={{ configure_better_display_mode_number }}
+  when: configure_better_display_mode_number > 0 and display_mode_number.stdout != "{{ configure_better_display_mode_number }}"
+
+# default: -displaymodenumber=54

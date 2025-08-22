@@ -2,7 +2,16 @@
 configure_dotfiles: true
 configure_terminal: true
 configure_karabiner: true
+configure_loosen_gatekeeper: true
 configure_osx: true
+
+# Uses BetterDisplay CLI to change the resolution on the main screen
+# Options:
+#   0 (disable)
+#   54 (default)
+#   66 (higher resolution, smaller text)
+configure_better_display_mode_number: 66
+configure_maccy: true
 
 # Set to 'true' to configure the Dock via dockutil.
 configure_dock: true
@@ -109,6 +118,7 @@ homebrew_cask_apps:
   - tabby
   - font-fira-code-nerd-font
   - karabiner-elements
+  - battery
   - firefox
   - google-chrome
   - visual-studio-code
@@ -121,7 +131,6 @@ homebrew_cask_apps:
   - rectangle
   - obsidian
   - handbrake
-  - mos
   - bruno
   - keka
   - whatsapp
@@ -162,6 +171,32 @@ configure_autostart:
   - /Applications/AltTab.app
   - /Applications/Karabiner-Elements.app
   - /Applications/Rectangle.app
+
+configure_share_services: true
+share_services_enabled:
+  - com.apple.CloudSharingUI.CopyLink
+  - com.apple.share.AirDrop.send
+  - com.sindresorhus.Gifski.ShareExtension
+  - me.damir.dropover-mac.DropoverShareExtension
+share_services_disabled:
+  - com.apple.CloudSharingUI.invite
+  - com.apple.freeform.sharingextension
+  - com.apple.iBooksX.SharingExtension
+  - com.apple.MailShareExtension
+  - com.apple.messages.ReplyExtension
+  - com.apple.messages.ShareExtension
+  - com.apple.Notes.SharingExtension
+  - com.apple.reminders.sharingextension
+  - com.apple.share.Mail.compose
+  - com.apple.share.Mail.compose-back-to-sender
+  - com.apple.share.Messages.window
+  - com.apple.share.System.add-to-iphoto
+  - com.apple.share.System.add-to-safari-reading-list
+  - com.apple.share.System.set-account-picture
+  - com.apple.share.System.set-desktop-image
+  - com.apple.shortcuts.Run-Workflow
+  - com.pixelmatorteam.pixelmator.touch.x.photo.add-to-photomator
+  - com.sindresorhus.One-Thing.Share-Extension
 
 osx_script: "files/osx/.osx --no-restart"
 
