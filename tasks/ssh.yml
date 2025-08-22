@@ -7,13 +7,12 @@
 
 - name: Create initial SSH Config file
   copy:
-    src: "files/ssh/initial_config"
-    dest: "~/.ssh/config"
+    src: 'files/ssh/initial_config'
+    dest: '~/.ssh/config'
     force: no
 
-- name: Use ~/.ssh/config.d/id_current key by default
+- name: Use ~/.ssh/id_current key by default
   copy:
-    src: "files/ssh/config.d/use_id_current_by_default"
-    dest: "~/.ssh/config.d/use_id_current_by_default"
+    src: 'files/ssh/config.d/use_id_current_by_default'
+    dest: '~/.ssh/config.d/use_id_current_by_default'
     force: no
-
