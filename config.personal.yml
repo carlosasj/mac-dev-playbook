@@ -3,6 +3,7 @@ configure_dotfiles: true
 configure_terminal: true
 configure_karabiner: true
 configure_loosen_gatekeeper: true
+configure_firefox_as_default: true
 configure_osx: true
 
 # Uses BetterDisplay CLI to change the resolution on the main screen

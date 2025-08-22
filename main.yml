@@ -73,6 +73,10 @@
       when: configure_maccy
       tags: ['maccy']
 
+    - import_tasks: tasks/default-browser-firefox.yml
+      when: configure_firefox_as_default
+      tags: ['default-browser']
+
     - import_tasks: tasks/extra-packages.yml
       tags: ['extra-packages']
 
