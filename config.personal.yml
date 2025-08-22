@@ -152,6 +152,16 @@ mas_installed_apps:
   - { id: 1444636541, name: "Photomator – Photo Editor" }
   - { id: 1355679052, name: "Dropover: Easier Drag & Drop" }
 
+configure_autostart:
+  - /Applications/Logi Options+.app # It will set its own autostart scripts
+  - /Applications/Maccy.app
+  - /Applications/MiddleClick.app
+  - /Applications/BetterDisplay.app
+  - /Applications/Tabby.app
+  - /Applications/Bitwarden.app
+  - /Applications/AltTab.app
+  - /Applications/Karabiner-Elements.app
+  - /Applications/Rectangle.app
 
 osx_script: "files/osx/.osx --no-restart"
 
@@ -196,7 +206,6 @@ sublime_config_path: "Packages/User"
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
   - tasks/post-oh-my-zsh.yml
-  - tasks/autostart.yml
   - tasks/sudo.yml
   - tasks/ssh.yml
   # - tasks/post-oh-my-zsh.yml

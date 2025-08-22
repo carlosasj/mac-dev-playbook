@@ -49,6 +49,10 @@
       when: configure_karabiner
       tags: ['karabiner']
 
+    - import_tasks: tasks/autostart.yml
+      when: configure_autostart
+      tags: ['autostart']
+
     - import_tasks: tasks/osx.yml
       when: configure_osx
       tags: ['osx']
