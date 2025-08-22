@@ -1,12 +1,7 @@
 ---
-- name: Ensure Karabiner config directory exists
+- name: Create Karabiner symbolic link
   ansible.builtin.file:
-    path: "{{ lookup('env', 'HOME') }}/.config/karabiner"
-    state: directory
+    src: "{{ playbook_dir }}/files/karabiner/"
+    dest: ~/.config/karabiner
+    state: link
     mode: '0755'
-
-- name: Overwrite Karabiner shortcuts
-  copy:
-    src: "files/karabiner/karabiner.json"
-    dest: "~/.config/karabiner/karabiner.json"
-
