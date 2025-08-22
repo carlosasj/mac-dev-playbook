@@ -136,6 +136,7 @@ homebrew_cask_apps:
   - keka
   - whatsapp
   - betterdisplay
+  - alfred
   # - sublime-text
 homebrew_cask_uninstalled_apps:
   - bitwarden
@@ -244,4 +245,3 @@ post_provision_tasks:
   - tasks/post-oh-my-zsh.yml
   - tasks/sudo.yml
   - tasks/ssh.yml
-  # - tasks/post-oh-my-zsh.yml
