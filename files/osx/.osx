@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# Mac OS X configuration
+#
+# This configuration applies to the latest version of macOS (currently 11.3),
+# and sets up preferences and configurations for all the built-in services and
+# apps. Third-party app config should be done elsewhere.
+#
+# Options:
+#   --restart: Restart some apps and services after running the script.
+#
+# If you want to figure out what default needs changing, do the following:
+#
+#   1. `cd /tmp`
+#   2. Store current defaults in file: `defaults read > before`
+#   3. Make a change to your system.
+#   4. Store new defaults in file: `defaults read > after`
+#   5. Diff the files: `diff before after`
+#
+# @see: http://secrets.blacktree.com/?showapp=com.apple.finder
+# @see: https://github.com/herrbischoff/awesome-macos-command-line
+#
+# @author Jeff Geerling
+#    +
+# ~/.macos — https://mths.be/macos
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+sudo sh ~/git/.dotfiles/.osx_light
+sudo sh ~/git/.dotfiles/.osx_hard
+
+echo "Done. Note that some of these changes require a logout/restart to take effect.\n"

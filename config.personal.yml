@@ -65,7 +65,6 @@ dotfiles_files:
   - .load_pyenv
   - .load_sdkman
   - .load_tabby
-  - .osx
   - .profile
   - .vimrc
   - .zshrc
@@ -154,7 +153,7 @@ mas_installed_apps:
   - { id: 1355679052, name: "Dropover: Easier Drag & Drop" }
 
 
-osx_script: "~/.osx --no-restart"
+osx_script: "files/osx/.osx --no-restart"
 
 # Install packages from other package managers.
 # Note: You are responsible for making sure the required package managers are

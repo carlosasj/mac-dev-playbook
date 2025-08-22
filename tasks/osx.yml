@@ -1,11 +1,4 @@
 ---
-- name: Remove weekday
-  community.general.osx_defaults:
-    domain: com.apple.menuextra.clock
-    key: ShowDayOfWeek
-    type: int
-    value: 0
-
-# - name: Run .osx dotfiles.
-#   command: "{{ osx_script }}"
-#   changed_when: false
+- name: Run .osx dotfiles.
+  command: "{{ osx_script }}"
+  changed_when: false
