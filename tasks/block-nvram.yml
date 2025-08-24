@@ -1,0 +1,13 @@
+---
+
+- block:
+    - name: "Check nvram value of {{ nvram_item.key }}"
+      ansible.builtin.command: nvram -p "{{ nvram_item.key }}"
+      register: nvram_check
+      changed_when: false
+      failed_when: nvram_check.rc >= 2
+
+    - name: "Update nvram value of {{ nvram_item.key }}"
+      ansible.builtin.command: nvram {{ nvram_item.key }}={{ nvram_item.value }}
+      when: "'not found' in nvram_check.stderr or not nvram_check.stdout.endswith(nvram_item.value)"
+      become: true

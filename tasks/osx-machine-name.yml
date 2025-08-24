@@ -1,0 +1,52 @@
+---
+
+- name: Get ComputerName
+  command: scutil --get ComputerName
+  register: computer_name
+  when: configure_machine_name
+  changed_when: false
+
+- name: Set ComputerName
+  command: sudo scutil --set ComputerName "{{ configure_machine_name }}"
+  when: configure_machine_name and configure_machine_name != computer_name.stdout
+
+- name: Get HostName
+  command: scutil --get HostName
+  register: host_name
+  when: configure_machine_name
+  changed_when: false
+
+- name: Set HostName
+  command: sudo scutil --set HostName "{{ configure_machine_name }}"
+  when: configure_machine_name and configure_machine_name != host_name.stdout
+
+- name: Get LocalHostName
+  command: scutil --get LocalHostName
+  register: local_host_name
+  when: configure_machine_name
+  changed_when: false
+
+- name: Set LocalHostName
+  command: sudo scutil --set LocalHostName "{{ configure_machine_name }}"
+  when: configure_machine_name and configure_machine_name != local_host_name.stdout
+
+- name: Get NetBIOSName
+  command: defaults read /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName
+  register: netbios_name
+  when: configure_machine_name
+  changed_when: false
+
+- name: Set Samba Server name
+  community.general.osx_defaults:
+    domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
+    key: NetBIOSName
+    type: string
+    value: "{{ configure_machine_name }}"
+  become: true
+  when: configure_machine_name and configure_machine_name != netbios_name.stdout
+
+- name: Flush dscacheutil if any name was changed
+  command: dscacheutil -flushcache
+  when:
+    - configure_machine_name
+    - (configure_machine_name != computer_name.stdout) or (configure_machine_name != host_name.stdout) or (configure_machine_name != local_host_name.stdout)

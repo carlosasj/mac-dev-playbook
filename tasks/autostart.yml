@@ -2,6 +2,7 @@
 - name: Get list of apps starting automatically with the system
   ansible.builtin.shell: "sudo sfltool dumpbtm | grep file://"
   register: sfltool_output
+  changed_when: false
 
 - name: Print apps starting automatically with the system
   ansible.builtin.debug:

@@ -8,8 +8,12 @@
     var: assessments_status.stdout
 
 - name: Enable Apps from "Anywhere" on the system settings
-  ansible.builtin.command: sudo spctl --master-disable
+  ansible.builtin.command: spctl --master-disable
   when: "'is currently not available' in assessments_status.stdout"
+  failed_when: "'needs to be confirmed in System Settings' not in assessments_status.stdout"
+  ignore_errors: true
+  become: true
+
 
 # This just includes the "Anywhere" option under **Settings > Privacy & Security > Allow apps downloaded from**.
 # It's up to you to enable it.

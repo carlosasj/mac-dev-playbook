@@ -1,4 +1,27 @@
 ---
-- name: Run .osx dotfiles.
-  command: "{{ osx_script }}"
+
+- name: Run "tasks/osx-*.yml" files.
+  include_tasks: "{{ item }}"
+  with_fileglob: "tasks/osx-*.yml"
+
+- name: Remove quarantine attributes from files
+  include_tasks: "tasks/block-remove-quarantine.yml"
+  loop: "{{ remove_quarantine }}"
+  when: remove_quarantine is defined
+
+- name: Set defaults
+  command: "bash files/osx/.osx_defaults"
   changed_when: false
+
+- name: Set defaults that require sudo
+  command: "bash files/osx/.osx_sudo_defaults"
+  changed_when: false
+  become: true
+
+# Ignore this by including the flag:
+# --skip-tags once-in-a-blue-moon
+- name: Run other commands
+  command: "bash files/osx/.osx_be_careful"
+  changed_when: false
+  become: true
+  tags: ['once-in-a-blue-moon']

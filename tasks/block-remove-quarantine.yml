@@ -1,0 +1,12 @@
+---
+
+- block:
+    - name: Check quarantine of {{ item }}
+      ansible.builtin.command: xattr -p com.apple.quarantine "{{ item }}"
+      register: quarantine_check
+      failed_when: quarantine_check.rc >= 2
+      changed_when: false
+
+    - name: Remove quarantine of {{ item }}
+      ansible.builtin.command: xattr -r -d com.apple.quarantine "{{ item }}"
+      when: quarantine_check.stdout != ''

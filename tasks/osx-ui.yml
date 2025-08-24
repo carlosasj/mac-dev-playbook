@@ -1,0 +1,38 @@
+---
+
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
+
+# Disable the sound effects on boot
+- name: Disable the sound effects on boot
+  include_tasks: "tasks/block-nvram.yml"
+  loop:
+    - { key: "StartupMute", value: "%01" }
+    # - { key: "SystemAudioVolume", value: "%80" }
+  loop_control:
+    loop_var: nvram_item
+
+###############################################################################
+# Messages                                                                    #
+###############################################################################
+
+- name: Get SOInputLineSettings
+  ansible.builtin.shell: defaults read com.apple.messageshelper.MessageController SOInputLineSettings
+  register: so_input_line_settings
+  changed_when: false
+
+- name: Disable automatic emoji substitution (i.e. use plain text smileys)
+  # This is a complex dict-add operation that might need special handling
+  command: defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
+  when: '"automaticEmojiSubstitutionEnablediMessage = 0" not in so_input_line_settings.stdout'
+
+- name: Disable smart quotes as it's annoying for messages that contain code
+  # This is a complex dict-add operation that might need special handling
+  command: defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
+  when: '"automaticQuoteSubstitutionEnabled = 0" not in so_input_line_settings.stdout'
+
+- name: Disable continuous spell checking
+  # This is a complex dict-add operation that might need special handling
+  command: defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
+  when: '"continuousSpellCheckingEnabled = 0" not in so_input_line_settings.stdout'

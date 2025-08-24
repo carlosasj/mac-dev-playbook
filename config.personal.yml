@@ -6,17 +6,9 @@ configure_loosen_gatekeeper: true
 configure_firefox_as_default: true
 configure_osx: true
 
-# Uses BetterDisplay CLI to change the resolution on the main screen
-# Options:
-#   0 (disable)
-#   54 (default)
-#   66 (higher resolution, smaller text)
-configure_better_display_mode_number: 66
-configure_maccy: true
+configure_machine_name: M1 # or false
 
-# Set to 'true' to configure the Dock via dockutil.
-configure_dock: true
-
+configure_dock: true # configure the Dock via dockutil.
 dockitems_remove:
   # - Launchpad
   - Safari
@@ -38,19 +30,13 @@ dockitems_remove:
   - 'App Store'
   - Podcasts
 
-# Keep `pos` ordered.
-# Name is just a helper when the script is running
 dockitems_to_persist:
-  - name: Launchpad
+  - pos: 1
     path: "/Applications/Launchpad.app"
-    pos: 1
-  - name: Firefox
+  - pos: 2
     path: "/Applications/Firefox.app"
-    pos: 2
-  - name: VSCode
+  - pos: 3
     path: "/Applications/Visual Studio Code.app"
-    pos: 3
-
 
 configure_sudoers: false
 sudoers_custom_config: ""
@@ -69,7 +55,6 @@ dotfiles_files:
   - .bashrc
   - .gitconfig
   - .gitignore_global
-  # - .inputrc
   - .load_homebrew
   - .load_nvm
   - .load_pyenv
@@ -109,8 +94,8 @@ homebrew_installed_packages:
   # - pv
   # - wrk
 
-homebrew_taps: []
-
+homebrew_taps:
+  - mhaeuser/mhaeuser
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - middleclick
@@ -119,7 +104,6 @@ homebrew_cask_apps:
   - tabby
   - font-fira-code-nerd-font
   - karabiner-elements
-  - battery
   - firefox
   - google-chrome
   - visual-studio-code
@@ -137,9 +121,10 @@ homebrew_cask_apps:
   - whatsapp
   - betterdisplay
   - alfred
+  - battery-toolkit
   # - sublime-text
 homebrew_cask_uninstalled_apps:
-  - bitwarden
+  - bitwarden # The one on App Store supports fingerprint use on other browsers
   # - only-switch
   # - chromedriver
   # - dropbox
@@ -152,9 +137,9 @@ homebrew_cask_uninstalled_apps:
 # See `geerlingguy.mac.mas` role documentation for usage instructions.
 mas_email: "apple@carlosasj.dev"
 # mas_password: ""
-# mas_signin_dialog: true
+mas_signin_dialog: true
 mas_installed_apps:
-  - { id: 1352778147, name: "Bitwarden" } # This one supports fingerprint use on other browsers
+  - { id: 1352778147, name: "Bitwarden" }
   - { id: 937984704, name: "Amphetamine: keep-awake utility" }
   - { id: 1586435171, name: "Actions: Useful for Shortcuts" }
   - { id: 1351639930, name: "Gifski: Convert videos to quality GIFs" }
@@ -163,8 +148,10 @@ mas_installed_apps:
   - { id: 1444636541, name: "Photomator – Photo Editor" }
   - { id: 1355679052, name: "Dropover: Easier Drag & Drop" }
 
+remove_quarantine:
+  - /Applications/Battery Toolkit.app
+
 configure_autostart:
-  - /Applications/Logi Options+.app # It will set its own autostart scripts
   - /Applications/Maccy.app
   - /Applications/MiddleClick.app
   - /Applications/BetterDisplay.app
@@ -173,6 +160,8 @@ configure_autostart:
   - /Applications/AltTab.app
   - /Applications/Karabiner-Elements.app
   - /Applications/Rectangle.app
+  - /Applications/Battery Toolkit.app
+  # - /Applications/Logi Options+.app # It will set its own autostart scripts
 
 configure_share_services: true
 share_services_enabled:
@@ -200,7 +189,13 @@ share_services_disabled:
   - com.pixelmatorteam.pixelmator.touch.x.photo.add-to-photomator
   - com.sindresorhus.One-Thing.Share-Extension
 
-osx_script: "files/osx/.osx --no-restart"
+# Uses BetterDisplay CLI to change the resolution on the main screen
+# Options:
+#   0 (disable)
+#   54 (default)
+#   66 (higher resolution, smaller text)
+configure_better_display_mode_number: 66
+configure_maccy: true
 
 # Install packages from other package managers.
 # Note: You are responsible for making sure the required package managers are

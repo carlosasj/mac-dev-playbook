@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+# Mac OS X configuration
+#
+# This configuration applies to the latest version of macOS (currently 11.3),
+# and sets up preferences and configurations for all the built-in services and
+# apps. Third-party app config should be done elsewhere.
+#
+# Options:
+#   --restart: Restart any apps or services after running the script.
+#
+# @see: http://secrets.blacktree.com/?showapp=com.apple.finder
+# @see: https://github.com/herrbischoff/awesome-macos-command-line
+#
+# @author Jeff Geerling
+#    +
+# ~/.macos — https://mths.be/macos
+
+# Put here `defaults` commands that:
+#   - DO require `sudo`
+#   - have a primitive value, like -bool, -int, -float, -string
+#   - can be run multiple times without changing the result every time
+
+# Warn that some commands will not be run if the script is not run as root.
+if [[ $EUID -ne 0 ]]; then
+  printf "Certain commands will not be run without sudo privileges. To skip this warning, run the same command prepended with 'sudo', for example: $ sudo $0\n\n" | fold -s -w 80
+fi
+
+# Ask for the administrator password upfront
+sudo -v
+
+echo "OK. Continuing..."
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+source ./idempotent_defaults.sh
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
+
+# Reveal IP address, hostname, OS version, etc. when clicking the clock
+# in the login window
+sudo_defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo -string HostName
+
+###############################################################################
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+###############################################################################
+
+# Show language menu in the top right corner of the boot screen
+sudo_defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
+
+###############################################################################
+# Screen                                                                      #
+###############################################################################
+
+# Enable HiDPI display modes (requires restart)
+sudo_defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+###############################################################################
+# GPGMail 2                                                                   #
+###############################################################################
+
+# Disable signing emails by default
+sudo_defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault -bool false
+
+###############################################################################
+# Address Book, Dashboard, iCal, TextEdit, and Disk Utility                   #
+###############################################################################
+
+# Enable the debug menu in Address Book
+sudo_defaults write com.apple.addressbook ABShowDebugMenu -bool true
+
+###############################################################################
+# Spotlight                                                                   #
+###############################################################################
+
+# Hide Spotlight tray-icon (and subsequent helper)
+#sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+# Disable Spotlight indexing for any volume that gets mounted and has not yet
+# been indexed before.
+# Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
+sudo_defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+
+echo -e "Done. Note that some of these changes require a logout/restart to take effect.\n"

@@ -1,0 +1,20 @@
+---
+
+###############################################################################
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+###############################################################################
+
+- name: Get AppleLanguages
+  command: defaults read NSGlobalDomain AppleLanguages
+  register: apple_languages
+  changed_when: false
+
+- name: Set language and text formats
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleLanguages
+    type: array
+    value:
+      - "en-GB"
+      - "pt-BR"
+  when: "'en-GB' not in apple_languages.stdout or 'pt-BR' not in apple_languages.stdout"

@@ -2,6 +2,7 @@
 - name: Get display mode number (it's kind of a multiplicator)
   ansible.builtin.shell: /Applications/BetterDisplay.app/Contents/MacOS/BetterDisplay get --displayWithMainStatus -displaymodenumber
   register: display_mode_number
+  changed_when: false
 
 - name: Debug display mode number
   ansible.builtin.debug:

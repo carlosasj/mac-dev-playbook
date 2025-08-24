@@ -46,7 +46,7 @@
     domain: org.p0deje.Maccy
     key: searchMode
     type: string
-    value: fuzzy
+    value: regexp
 
 - name: Highlight search matches with color
   community.general.osx_defaults:

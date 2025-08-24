@@ -1,0 +1,18 @@
+---
+
+###############################################################################
+# Terminal & iTerm 2                                                          #
+###############################################################################
+
+- name: Get StringEncodings
+  command: defaults read com.apple.terminal StringEncodings
+  register: string_encodings
+  changed_when: false
+
+- name: Only use UTF-8 in Terminal.app
+  community.general.osx_defaults:
+    domain: com.apple.terminal
+    key: StringEncodings
+    type: array
+    value: [4]
+  when: "' 4' not in string_encodings.stdout"

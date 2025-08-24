@@ -2,6 +2,6 @@
 - name: Create Karabiner symbolic link
   ansible.builtin.file:
     src: "{{ playbook_dir }}/files/karabiner/"
-    dest: ~/.config/karabiner
+    dest: "{{ ansible_env.HOME }}/.config/karabiner"
     state: link
     mode: '0755'
