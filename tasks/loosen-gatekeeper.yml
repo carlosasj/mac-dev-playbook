@@ -2,15 +2,17 @@
 - name: Get Gatekeeper status
   ansible.builtin.shell: spctl --disable-status
   register: assessments_status
+  changed_when: false
 
 - name: Debug Gatekeeper status
   ansible.builtin.debug:
     var: assessments_status.stdout
 
 - name: Enable Apps from "Anywhere" on the system settings
-  ansible.builtin.command: spctl --master-disable
   when: "'is currently not available' in assessments_status.stdout"
-  failed_when: "'needs to be confirmed in System Settings' not in assessments_status.stdout"
+  ansible.builtin.command: spctl --master-disable
+  register: disable_result
+  failed_when: "'needs to be confirmed in System Settings' not in disable_result.stderr"
   ignore_errors: true
   become: true
 

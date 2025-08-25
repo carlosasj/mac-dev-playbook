@@ -8,8 +8,14 @@
   ansible.builtin.debug:
     var: sfltool_output.stdout
 
+- name: Remove autostart applications
+  ansible.builtin.command: |
+    osascript -e 'tell application "System Events" to delete login item "{{ item }}"'
+  loop: "{{ configure_autostart_avoid }}"
+  when: configure_autostart_avoid is defined and item in sfltool_output.stdout
+
 - name: Set autostart applications
   ansible.builtin.command: |
     osascript -e 'tell application "System Events" to make login item at end with properties {path:"{{ item }}", hidden:false}'
   loop: "{{ configure_autostart }}"
-  when: item not in sfltool_output.stdout
+  when: configure_autostart is defined and item not in sfltool_output.stdout

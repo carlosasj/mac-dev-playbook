@@ -8,7 +8,9 @@
 - name: Disable the sound effects on boot
   include_tasks: "tasks/block-nvram.yml"
   loop:
-    - { key: "StartupMute", value: "%01" }
+    - { key: "StartupMute", value: "%01" } # Mute the boot sound; sudo nvram StartupMute=%01
+    - { key: "BootPreference", value: "%00" } # Disable auto startup when opening the lid. https://support.apple.com/en-gb/120622
+    - { key: "AutoBoot", value: "%00" } # Disable auto startup when opening the lid. AutoBoot=%03 to turn it back on
     # - { key: "SystemAudioVolume", value: "%80" }
   loop_control:
     loop_var: nvram_item

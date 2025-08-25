@@ -122,6 +122,7 @@ homebrew_cask_apps:
   - betterdisplay
   - alfred
   - battery-toolkit
+  - jordanbaird-ice
   # - sublime-text
 homebrew_cask_uninstalled_apps:
   - bitwarden # The one on App Store supports fingerprint use on other browsers
@@ -161,6 +162,7 @@ configure_autostart:
   - /Applications/Karabiner-Elements.app
   - /Applications/Rectangle.app
   - /Applications/Battery Toolkit.app
+  - /Applications/Ice.app
   # - /Applications/Logi Options+.app # It will set its own autostart scripts
 
 configure_share_services: true

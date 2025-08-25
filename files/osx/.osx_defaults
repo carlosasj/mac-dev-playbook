@@ -38,6 +38,16 @@ defaults write com.apple.universalaccess reduceTransparency -bool true
 # Remove weekday from menu bar clock
 defaults write com.apple.menuextra.clock ShowDayOfWeek -int 0
 
+# Show bluetooth icon
+defaults -currentHost write com.apple.controlcenter Bluetooth -int 18
+
+# Show volume icon
+defaults -currentHost write com.apple.controlcenter Sound -int 18
+
+# Disable Siri
+defaults write com.apple.Siri StatusMenuVisible -bool false
+defaults write com.apple.assistant.support "Assistant Enabled" -bool false
+
 # Set highlight color to green
 defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
 
@@ -141,7 +151,14 @@ defaults write NSGlobalDomain ContextMenuGesture -int 1
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
 
 # Increase sound quality for Bluetooth headphones/headsets
+defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool (editable)" -int 80
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Max (editable)" -int 80
+defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Max" -int 80
+defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool" -int 80
+
+defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool Min (editable)" -int 40
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Min" -int 40
 
 # Use Fn keys as F1, F1, F3... by default
 defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
@@ -198,6 +215,22 @@ defaults write com.apple.screencapture type -string "png"
 defaults write com.apple.screencapture disable-shadow -bool true
 
 ###############################################################################
+# LOGIN SCREEN                                                                #
+###############################################################################
+
+# Set the picture of your admin account · Rename ·yourAdminAccount· Picture by https://basicappleguy.com
+# curl -o "/Users/Shared/admin.png" "https://i.imgur.com/xuyelkU.png"
+# dscl . delete /Users/yourAdminAccount jpegphoto
+# dscl . delete /Users/yourAdminAccount Picture
+# dscl . create /Users/yourAdminAccount Picture "/Users/Shared/admin.png"
+
+# Set the picture of the current user · Picture by https://basicappleguy.com
+# curl -o "/Users/Shared/user.png" "https://i.imgur.com/crrUCrM.png"
+# dscl . delete /Users/"$CURRENT_USER" jpegphoto
+# dscl . delete /Users/"$CURRENT_USER" Picture
+# dscl . create /Users/"$CURRENT_USER" Picture "/Users/Shared/user.png"
+
+###############################################################################
 # Finder                                                                      #
 ###############################################################################
 
@@ -209,7 +242,7 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 
 # Set Desktop as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
-defaults write com.apple.finder NewWindowTarget -string "PfLo"
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
 # Show icons for hard drives, servers, and removable media on the desktop
@@ -271,6 +304,9 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+
+# Disable telemetry to Apple
+defaults write com.apple.assistant.support "Search Queries Data Sharing Status" -int 2
 
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
@@ -366,6 +402,13 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 # Bottom left screen corner →
 defaults write com.apple.dock wvous-bl-corner -int 11 # Launchpad
 defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# Stop macOS 15 Sequoia monthly screen recording prompts for Firefox, Chrome, Slack, Zoom, and Teams
+defaults write "~/Library/Group Containers/group.com.apple.replayd/ScreenCaptureApprovals.plist" "/Applications/Firefox.app/Contents/MacOS/Firefox" -date "2125-01-01 12:00:00 +0000"
+defaults write "~/Library/Group Containers/group.com.apple.replayd/ScreenCaptureApprovals.plist" "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" -date "2125-01-01 12:00:00 +0000"
+# defaults write "~/Library/Group Containers/group.com.apple.replayd/ScreenCaptureApprovals.plist" "/Applications/Slack.app/Contents/MacOS/Slack" -date "2125-01-01 12:00:00 +0000"
+# defaults write "~/Library/Group Containers/group.com.apple.replayd/ScreenCaptureApprovals.plist" "/Applications/zoom.us.app/Contents/MacOS/zoom.us" -date "2125-01-01 12:00:00 +0000"
+# defaults write "~/Library/Group Containers/group.com.apple.replayd/ScreenCaptureApprovals.plist" "/Applications/Microsoft Teams.app/Contents/MacOS/MSTeams" -date "2125-01-01 12:00:00 +0000"
 
 ###############################################################################
 # Safari & WebKit                                                             #
@@ -591,9 +634,10 @@ defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool 
 # defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
 ###############################################################################
-# Alt + Tab                                                                   #
+# App Settings                                                                #
 ###############################################################################
 
+# Alt + Tab
 defaults write com.lwouis.alt-tab-macos alignThumbnails -int 0
 defaults write com.lwouis.alt-tab-macos appearanceSize -int 1
 defaults write com.lwouis.alt-tab-macos hideAppBadges -bool false
@@ -613,6 +657,17 @@ defaults write com.lwouis.alt-tab-macos showTabsAsWindows -bool false
 defaults write com.lwouis.alt-tab-macos showTitles -int 0
 defaults write com.lwouis.alt-tab-macos titleTruncation -int 0
 defaults write com.lwouis.alt-tab-macos windowDisplayDelay -int 0
+
+# Ice Bar
+defaults write com.jordanbaird.Ice UseIceBar -int 1
+defaults write com.jordanbaird.Ice IceBarLocation -int 2
+defaults write com.jordanbaird.Ice ShowOnClick -int 1
+defaults write com.jordanbaird.Ice ShowOnScroll -int 1
+defaults write com.jordanbaird.Ice ShowOnHover -int 1
+defaults write com.jordanbaird.Ice ShowOnHoverDelay -float 0
+defaults write com.jordanbaird.Ice CanToggleAlwaysHiddenSection -int 1
+defaults write com.jordanbaird.Ice EnableAlwaysHiddenSection -int 1
+
 
 ###############################################################################
 # Opera & Opera Developer                                                     #
