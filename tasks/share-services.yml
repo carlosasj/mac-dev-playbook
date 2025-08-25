@@ -9,13 +9,11 @@
     var: pluginkit_output.stdout
 
 - name: pluginkit disable
-  ansible.builtin.command: |
-    pluginkit -e ignore -i {{ item }}
+  ansible.builtin.command: pluginkit -e ignore -i {{ item }}
   loop: "{{ share_services_disabled }}"
-  when: "'-    ' + item not in pluginkit_output.stdout"
+  when: "'+    ' + item in pluginkit_output.stdout" # when it exists as enabled
 
 - name: pluginkit enable
-  ansible.builtin.command: |
-    pluginkit -e use -i {{ item }}
+  ansible.builtin.command: pluginkit -e use -i {{ item }}
   loop: "{{ share_services_enabled }}"
-  when: "'+    ' + item not in pluginkit_output.stdout"
+  when: "'-    ' + item in pluginkit_output.stdout" # when it exists as disabled

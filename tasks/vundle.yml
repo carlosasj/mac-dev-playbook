@@ -1,0 +1,17 @@
+---
+- name: Git clone Vundle
+  git:
+    repo: "https://github.com/VundleVim/Vundle.vim.git"
+    dest: "{{ ansible_env.HOME }}/.vim/bundle/Vundle.vim"
+
+- name: Configure .vimrc
+  when: vim_vimrc_src is defined and vim_vimrc_dest is defined
+  template:
+    src: "{{ vim_vimrc_src }}"
+    dest: "{{ vim_vimrc_dest }}"
+
+- name: Run PluginInstall
+  ansible.builtin.command: vim +PluginInstall +qall
+
+- name: Run PluginClean
+  ansible.builtin.command: vim '+PluginClean!' +qall

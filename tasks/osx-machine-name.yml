@@ -44,6 +44,7 @@
     value: "{{ configure_machine_name }}"
   become: true
   when: configure_machine_name and configure_machine_name != netbios_name.stdout
+  tags: ['once-in-a-blue-moon']
 
 - name: Flush dscacheutil if any name was changed
   command: dscacheutil -flushcache
