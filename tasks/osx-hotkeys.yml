@@ -1,0 +1,28 @@
+---
+
+- name: Check current hotkey settings
+  ansible.builtin.shell: |
+    /usr/libexec/PlistBuddy -c "Print :AppleSymbolicHotKeys:{{ item }}:enabled" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || echo "not_found"
+  loop:
+    - 9   # Ctrl + F4 / Focus next window
+    - 27  # Cmd + ` / Focus next window
+    - 52  # Turn Dock hiding on/off
+    - 53  # F14 / Decrease Brightness
+    - 54  # F15 / Increase Brightness
+    - 60  # Ctrl + Space / Next Input Source
+    - 61  # Ctrl + Shift + Space / Previous Input Source
+    - 64  # Cmd + Space / Spotlight
+    - 65  # Cmd + Option + Space / Finder Search
+  register: hotkey_status
+  ignore_errors: true
+  changed_when: false
+
+- name: Disable macOS symbolic hotkeys
+  ansible.builtin.shell: |
+    {% if item.stdout == "not_found" %}
+    /usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:{{ item.item }}:enabled bool false" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+    {% else %}
+    /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:{{ item.item }}:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+    {% endif %}
+  loop: "{{ hotkey_status.results }}"
+  when: item.stdout != "false"

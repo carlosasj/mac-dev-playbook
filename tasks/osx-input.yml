@@ -10,6 +10,7 @@
   changed_when: false
 
 - name: Set language and text formats
+  when: "'en-GB' not in apple_languages.stdout or 'pt-BR' not in apple_languages.stdout"
   community.general.osx_defaults:
     domain: NSGlobalDomain
     key: AppleLanguages
@@ -17,4 +18,75 @@
     value:
       - "en-GB"
       - "pt-BR"
-  when: "'en-GB' not in apple_languages.stdout or 'pt-BR' not in apple_languages.stdout"
+
+- name: Get AppleEnabledInputSources
+  command: defaults read com.apple.HIToolbox AppleEnabledInputSources
+  register: apple_enabled_input_sources
+  changed_when: false
+
+- name: Add Brazilian keyboard layout to AppleEnabledInputSources
+  when: "' ID\" = 72;' not in apple_enabled_input_sources.stdout"
+  community.general.osx_defaults:
+    domain: com.apple.HIToolbox
+    key: AppleEnabledInputSources
+    type: array
+    array_add: true
+    value:
+      - >-
+        {
+          InputSourceKind = "Keyboard Layout";
+          "KeyboardLayout ID" = 72;
+          "KeyboardLayout Name" = "Brazilian - Pro";
+        }
+
+- name: Get AppleInputSourceHistory
+  command: defaults read com.apple.HIToolbox AppleInputSourceHistory
+  register: apple_input_source_history
+  changed_when: false
+
+- name: Add Brazilian keyboard layout to AppleInputSourceHistory
+  when: "' ID\" = 72;' not in apple_input_source_history.stdout"
+  community.general.osx_defaults:
+    domain: com.apple.HIToolbox
+    key: AppleInputSourceHistory
+    type: array
+    array_add: true
+    value:
+      - >-
+        {
+          InputSourceKind = "Keyboard Layout";
+          "KeyboardLayout ID" = 72;
+          "KeyboardLayout Name" = "Brazilian - Pro";
+        }
+
+- name: Get AppleSelectedInputSources
+  command: defaults read com.apple.HIToolbox AppleSelectedInputSources
+  register: apple_selected_input_sources
+  changed_when: false
+
+- name: Set Brazilian keyboard layout to AppleSelectedInputSources
+  when: "' ID\" = 72;' not in apple_selected_input_sources.stdout"
+  community.general.osx_defaults:
+    domain: com.apple.HIToolbox
+    key: AppleSelectedInputSources
+    type: array
+    value:
+      - >-
+        {
+          InputSourceKind = "Keyboard Layout";
+          "KeyboardLayout ID" = 72;
+          "KeyboardLayout Name" = "Brazilian - Pro";
+        }
+
+- name: Get AppleCurrentKeyboardLayoutInputSourceID
+  command: defaults read com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID
+  register: apple_current_keyboard_layout_input_source_id
+  changed_when: false
+
+- name: Set Brazilian keyboard layout to AppleCurrentKeyboardLayoutInputSourceID
+  when: "'Brazilian-Pro' not in apple_current_keyboard_layout_input_source_id.stdout"
+  community.general.osx_defaults:
+    domain: com.apple.HIToolbox
+    key: AppleCurrentKeyboardLayoutInputSourceID
+    type: string
+    value: "com.apple.keylayout.Brazilian-Pro"

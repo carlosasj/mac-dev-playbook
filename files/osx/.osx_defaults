@@ -106,6 +106,9 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# Disable extra space when pasting
+defaults write com.apple.TextEdit SmartCopyPaste -bool false
+
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
@@ -284,6 +287,9 @@ defaults write com.apple.dock mineffect -string "scale"
 
 # Minimize windows into their application’s icon
 defaults write com.apple.dock minimize-to-application -bool true
+
+# Disable tiled windows margins
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
 
 # Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
@@ -583,6 +589,30 @@ defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool 
 # Expand the print dialog by default
 # defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 # defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
+
+###############################################################################
+# Alt + Tab                                                                   #
+###############################################################################
+
+defaults write com.lwouis.alt-tab-macos alignThumbnails -int 0
+defaults write com.lwouis.alt-tab-macos appearanceSize -int 1
+defaults write com.lwouis.alt-tab-macos hideAppBadges -bool false
+defaults write com.lwouis.alt-tab-macos hideColoredCircles -bool false
+defaults write com.lwouis.alt-tab-macos hideSpaceNumberLabels -bool true
+defaults write com.lwouis.alt-tab-macos hideStatusIcons -bool true
+defaults write com.lwouis.alt-tab-macos holdShortcut -string "\\U2318"
+defaults write com.lwouis.alt-tab-macos nextWindowShortcut -string "\\U21e5"
+defaults write com.lwouis.alt-tab-macos holdShortcut2 -string "\\U2303"
+defaults write com.lwouis.alt-tab-macos nextWindowShortcut -string '`'
+defaults write com.lwouis.alt-tab-macos menubarIcon -int 0
+defaults write com.lwouis.alt-tab-macos previewFadeInAnimation -bool false
+defaults write com.lwouis.alt-tab-macos previewFocusedWindow -bool true
+defaults write com.lwouis.alt-tab-macos showHiddenWindows -int 2
+defaults write com.lwouis.alt-tab-macos showMinimizedWindows -int 2
+defaults write com.lwouis.alt-tab-macos showTabsAsWindows -bool false
+defaults write com.lwouis.alt-tab-macos showTitles -int 0
+defaults write com.lwouis.alt-tab-macos titleTruncation -int 0
+defaults write com.lwouis.alt-tab-macos windowDisplayDelay -int 0
 
 ###############################################################################
 # Opera & Opera Developer                                                     #
