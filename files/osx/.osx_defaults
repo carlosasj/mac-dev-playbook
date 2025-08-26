@@ -669,7 +669,7 @@ defaults write com.jordanbaird.Ice UseIceBar -int 1
 defaults write com.jordanbaird.Ice IceBarLocation -int 2
 defaults write com.jordanbaird.Ice ShowOnClick -int 1
 defaults write com.jordanbaird.Ice ShowOnScroll -int 1
-defaults write com.jordanbaird.Ice ShowOnHover -int 1
+defaults write com.jordanbaird.Ice ShowOnHover -int 0
 defaults write com.jordanbaird.Ice ShowOnHoverDelay -float 0
 defaults write com.jordanbaird.Ice CanToggleAlwaysHiddenSection -int 1
 defaults write com.jordanbaird.Ice EnableAlwaysHiddenSection -int 1
@@ -689,7 +689,7 @@ defaults write com.jordanbaird.Ice showFooter -int 1
 defaults write com.jordanbaird.Ice showApplicationIcons -int 1
 defaults write com.jordanbaird.Ice historySize -int 1000
 defaults write com.jordanbaird.Ice pasteByDefault -int 1
-defaults write com.jordanbaird.Ice previewDelay -int 200
+defaults write com.jordanbaird.Ice previewDelay -int 100
 defaults write com.jordanbaird.Ice removeFormattingByDefault -int 0
 defaults write com.jordanbaird.Ice imageMaxHeight -int 14 # so each image item has the same height as the text items
 defaults write com.jordanbaird.Ice menuIcon -string clipboard

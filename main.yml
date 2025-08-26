@@ -95,3 +95,7 @@
           loop_control:
             loop_var: outer_item
           with_fileglob: "{{ post_provision_tasks | default(omit) }}"
+
+    - import_tasks: tasks/ssh.yml
+      when: configure_ssh
+      tags: ['ssh']

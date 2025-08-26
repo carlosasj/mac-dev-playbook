@@ -5,6 +5,7 @@ configure_karabiner: true
 configure_loosen_gatekeeper: true
 configure_firefox_as_default: true
 configure_osx: true
+configure_ssh: true
 
 configure_machine_name: M1 # or false
 
@@ -245,4 +246,3 @@ sublime_config_path: "Packages/User"
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
   - tasks/sudo.yml
-  - tasks/ssh.yml

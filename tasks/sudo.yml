@@ -1,18 +1,7 @@
 ---
-- name: get file stat to be able to perform a check in the following step
-  local_action: stat path="/etc/pam.d/sudo_local"
-  register: sudo_local_file
-
-- name: Create copy of old sudo_local in case it existed before we use ansible
-  copy:
-    src: "/etc/pam.d/sudo_local"
-    dest: "/etc/pam.d/sudo_local.old"
-    force: no
-  when: sudo_local_file.stat.exists
-  become: true
-
 - name: Overwrite sudo_local
   copy:
     src: "files/sudo/sudo_local"
     dest: "/etc/pam.d/sudo_local"
+    backup: true
   become: true
