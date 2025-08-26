@@ -166,6 +166,7 @@ configure_autostart:
 
 configure_autostart_avoid:
   - /Applications/Battery Toolkit.app
+  - /Applications/Spotify.app
 
 configure_share_services: true
 share_services_enabled:
@@ -201,7 +202,7 @@ share_services_disabled:
 #   54 (default)
 #   66 (higher resolution, smaller text)
 configure_better_display_mode_number: 66
-configure_maccy: true
+# configure_maccy: true
 
 # Install packages from other package managers.
 # Note: You are responsible for making sure the required package managers are
@@ -243,6 +244,5 @@ sublime_config_path: "Packages/User"
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
-  - tasks/post-oh-my-zsh.yml
   - tasks/sudo.yml
   - tasks/ssh.yml

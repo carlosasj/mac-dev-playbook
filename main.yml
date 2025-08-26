@@ -23,7 +23,7 @@
       tags: ['dotfiles']
 
     - role: gantsign.oh-my-zsh
-      tags: ['dotfiles']
+      tags: ['dotfiles', 'once-in-a-blue-moon']
       oh_my_zsh_write_zshrc: false
       users:
         - username: 'schneider'
@@ -69,9 +69,9 @@
       when: configure_better_display_mode_number > 0
       tags: ['display-resolution']
 
-    - import_tasks: tasks/maccy.yml
-      when: configure_maccy
-      tags: ['maccy']
+    # - import_tasks: tasks/maccy.yml
+    #   when: configure_maccy
+    #   tags: ['maccy']
 
     - import_tasks: tasks/default-browser-firefox.yml
       when: configure_firefox_as_default
