@@ -21,7 +21,7 @@
 #   - have a primitive value, like -bool, -int, -float, -string
 #   - can be run multiple times without changing the result every time
 
-source ./idempotent_defaults.sh
+source "$(dirname "$0")/idempotent_defaults.sh"
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -147,7 +147,7 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCorner
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -int 1
 defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
 defaults write NSGlobalDomain ContextMenuGesture -int 1
 
@@ -195,6 +195,17 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 16
 defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
+
+# Accessibility zoom
+defaults write com.apple.AppleMultitouchTrackpad HIDScrollZoomModifierMask -int 524288
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad HIDScrollZoomModifierMask -int 524288
+defaults write com.apple.universalaccess closeViewDesiredZoomFactor -float 2.75
+defaults write com.apple.universalaccess closeViewTrackpadGestureZoomEnabled -int 0
+defaults write com.apple.universalaccess closeViewPanningMode -int 0
+defaults write com.apple.universalaccess closeViewRestoreZoomFactorOnStartup -int 1
+defaults write com.apple.universalaccess closeViewScrollWheelModifiersInt -int 524288
+defaults write com.apple.universalaccess closeViewScrollWheelMocloseViewSmoothImagesdifiersInt -int 1 # Set to 0 for pixelated zoom
+defaults write com.apple.universalaccess closeViewZoomScreenShareEnabledKey -int 1
 
 ###############################################################################
 # Screen                                                                      #
@@ -615,7 +626,7 @@ defaults write com.apple.appstore InAppReviewEnabled -int 0
 ###############################################################################
 
 # Prevent Photos from opening automatically when devices are plugged in
-defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -int 1
 
 ###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
@@ -651,7 +662,7 @@ defaults write com.lwouis.alt-tab-macos hideStatusIcons -bool true
 defaults write com.lwouis.alt-tab-macos holdShortcut -string "⌘"
 defaults write com.lwouis.alt-tab-macos nextWindowShortcut -string "⇥"
 defaults write com.lwouis.alt-tab-macos holdShortcut2 -string "⌃"
-defaults write com.lwouis.alt-tab-macos nextWindowShortcut -string '`'
+defaults write com.lwouis.alt-tab-macos nextWindowShortcut2 -string '`'
 defaults write com.lwouis.alt-tab-macos menubarIcon -int 1
 defaults write com.lwouis.alt-tab-macos previewFadeInAnimation -bool false
 defaults write com.lwouis.alt-tab-macos previewFocusedWindow -bool true
@@ -787,4 +798,4 @@ defaults write com.jordanbaird.Ice ignoredApps -array "com.bitwarden.desktop"
 
 
 
-echo -e "Done. Note that some of these changes require a logout/restart to take effect.\n"
+echo "Done. Note that some of these changes require a logout/restart to take effect.\n"

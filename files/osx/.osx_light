@@ -38,7 +38,7 @@ echo "OK. Continuing..."
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # osascript -e 'tell application "Finder"' -e 'set _b to bounds of window of desktop' -e 'end tell'
 
-source ./idempotent_defaults.sh
+source "$(dirname "$0")/idempotent_defaults.sh"
 
 ###############################################################################
 # General UI/UX                                                               #
