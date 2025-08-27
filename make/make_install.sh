@@ -4,6 +4,13 @@ ANSIBLE_LOCATION="$HOME/Library/Python/3.9/lib/python/site-packages/ansible"
 
 export PATH="$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH"
 
+# Ask for the administrator password upfront
+sudo -v
+echo "OK. Continuing..."
+
+# Keep-alive: update existing `sudo` time stamp until the script has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 git --version && pip3 --version
 
 if [[ !( -d $ANSIBLE_LOCATION ) ]]; then
@@ -13,16 +20,16 @@ if [[ !( -d $ANSIBLE_LOCATION ) ]]; then
 fi
 
 if [[ !( -f config.yml ) ]]; then
-	echo "!!! ❌ No remote config.yml found ❌ !!!" 
-	echo "!!! Aborting, so we don't install unwanted packages !!!" 
+	echo "!!! ❌ No remote config.yml found ❌ !!!"
+	echo "!!! Aborting, so we don't install unwanted packages !!!"
 	exit 1;
 fi;
 
-if [[ -d "$HOME/work" ]]; then
+if [[ -f "$HOME/.work.gitconfig" ]]; then
 	ansible-galaxy install -r requirements.work.yml
 else
 	ansible-galaxy install -r requirements.yml
 fi
 
 echo -e "\n\nBECOME username: root"
-ansible-playbook main.yml --ask-become-pass
+ansible-playbook main.yml --ask-become-pass -v
