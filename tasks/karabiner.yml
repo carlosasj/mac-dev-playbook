@@ -1,7 +1,14 @@
 ---
+- name: Check if Karabiner symlink exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.config/karabiner"
+  register: karabiner_symlink
+
+- debug: var=karabiner_symlink
+
 - name: Create Karabiner symbolic link
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/files/karabiner/"
+    src: "{{ playbook_dir }}/files/karabiner"
     dest: "{{ ansible_env.HOME }}/.config/karabiner"
     state: link
     mode: '0755'
