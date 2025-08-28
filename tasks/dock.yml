@@ -1,0 +1,37 @@
+---
+
+###############################################################################
+# Dock, Dashboard, and hot corners                                            #
+###############################################################################
+
+# - name: Wipe all (default) app icons from the Dock
+#   # This is only really useful when setting up a new Mac, or if you don't use
+#   # the Dock to launch apps.
+#   community.general.osx_defaults:
+#     domain: com.apple.dock
+#     key: persistent-apps
+#     type: array
+#     value: []
+
+- name: Process each dock item (apps, folders, and spacers)
+  ansible.builtin.include_tasks: block-add-and-position.yml
+  loop: "{{ dockitems_persist_apps }}"
+  loop_control:
+    extended: true
+    extended_allitems: false
+  vars:
+    section: apps
+
+- name: Process each dock item (apps, folders, and spacers)
+  ansible.builtin.include_tasks: block-add-and-position.yml
+  loop: "{{ dockitems_persist_others }}"
+  loop_control:
+    extended: true
+    extended_allitems: false
+  vars:
+    section: others
+
+# TODO: Migrate to a handler and only restart the Dock if changes were made
+- name: Restart Dock to apply all changes
+  ansible.builtin.command: killall Dock
+  changed_when: false

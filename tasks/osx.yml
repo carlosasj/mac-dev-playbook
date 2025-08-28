@@ -1,8 +1,10 @@
 ---
 
 - name: Run "tasks/osx-*.yml" files.
-  include_tasks: "{{ item }}"
+  include_tasks: "{{ task_to_include }}"
   with_fileglob: "tasks/osx-*.yml"
+  loop_control:
+    loop_var: task_to_include
 
 - name: Remove quarantine attributes from files
   include_tasks: "tasks/block-remove-quarantine.yml"

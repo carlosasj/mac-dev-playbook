@@ -1,0 +1,113 @@
+---
+- name: Set item properties
+  set_fact:
+    is_spacer: "{{ item.path == '' and item.style is defined }}"
+    item_name: "{{ item.name | default(omit) }}"
+    target_section: "{{ section | default('apps') }}"
+    target_position: "{{ ansible_loop.index }}"
+
+- name: Get current dock layout
+  ansible.builtin.command: "dockutil --list"
+  register: dock_list
+  changed_when: false
+
+- name: Check if spacer already exists at target position
+  ansible.builtin.shell: |
+    set -e
+    section_name="{{ 'persistentApps' if target_section == 'apps' else 'persistentOthers' }}"
+
+    # Filter lines for the target section and get the Nth line (target_position)
+    section_lines=$(dockutil --list | grep "$section_name" | head -n {{ target_position }} | tail -n 1)
+
+    # Check if the line is a spacer (empty name and path - first two fields)
+    name=$(echo "$section_lines" | cut -f1)
+    path=$(echo "$section_lines" | cut -f2)
+
+    if [[ -z "$name" && -z "$path" ]]; then
+      echo "spacer_found"
+    else
+      echo "no_spacer"
+    fi
+  register: spacer_check
+  changed_when: false
+  when: is_spacer
+
+- name: Set spacer existence flag
+  set_fact:
+    spacer_exists_at_position: "{{ spacer_check.stdout == 'spacer_found' }}"
+  when: is_spacer
+
+- name: "Check if item '{{ item_name }}' exists in dock"
+  ansible.builtin.command: "dockutil --find '{{ item_name }}'"
+  register: item_exists
+  failed_when: >
+    "No such file or directory" in item_exists.stdout
+    or "command not found" in item_exists.stdout
+  changed_when: false
+  when: not is_spacer
+
+- name: Parse existing item position and section
+  set_fact:
+    current_position: "{{ item_exists.stdout | regex_replace('^.*slot ([0-9]+).*$', '\\1') | int }}"
+    current_section: "{{ item_exists.stdout | regex_replace('^.*was found in ([^ ]+).*$', '\\1') }}"
+  when: not is_spacer and item_exists.rc == 0
+
+- name: "Add spacer at position {{ target_position }} in {{ target_section }} section"
+  ansible.builtin.command: >-
+    dockutil --add ''
+    --type {{ item.style | default('spacer') }}
+    --section {{ target_section }}
+    --position {{ target_position }}
+    --no-restart
+  when: is_spacer and not spacer_exists_at_position
+  register: spacer_result
+  changed_when: spacer_result.rc == 0
+
+- name: "Add new app '{{ item_name }}' at position {{ target_position }}"
+  ansible.builtin.command: >-
+    dockutil --add '{{ item.path }}'
+    --section {{ target_section }}
+    --position {{ target_position }}
+    {% if item.name is defined %}--label '{{ item.name }}'{% endif %}
+    {% if item.view is defined %}--view {{ item.view }}{% endif %}
+    {% if item.display is defined %}--display {{ item.display }}{% endif %}
+    {% if item.sort is defined %}--sort {{ item.sort }}{% endif %}
+    --no-restart
+  when: >
+    not is_spacer and
+    (item_exists.rc > 0 or
+      (item_exists.rc == 0 and current_section == 'recent-apps'))
+  register: add_result
+  changed_when: add_result.rc == 0
+
+- name: "Move existing app '{{ item_name }}' to correct position {{ target_position }}"
+  ansible.builtin.command: >-
+    dockutil --move '{{ item_name }}'
+    --position {{ target_position }}
+    --no-restart
+  when: >
+    not is_spacer and
+    item_exists.rc == 0 and
+    current_section != 'recent-apps' and
+    current_position != target_position
+  register: move_result
+  changed_when: move_result.rc == 0
+
+- name: "Debug: Item '{{ item_name }}' processing result"
+  debug:
+    msg: |
+      Item: {{ item_name }}
+      Type: {{ 'spacer' if is_spacer else 'app' }}
+      Target position: {{ target_position }}
+      Current position: {{ current_position | default('not found') if not is_spacer else 'N/A' }}
+      Spacer exists at position: {{ spacer_exists_at_position | default('N/A') if is_spacer else 'N/A' }}
+      Action taken: {% if is_spacer and spacer_result is changed %}Added spacer{% elif is_spacer and (spacer_exists_at_position | default(false)) %}Spacer already exists{% elif add_result is changed %}Added new app{% elif move_result is changed %}Moved existing app{% else %}No action needed{% endif %}
+  when: ansible_verbosity >= 1
+
+- name: Pause briefly after dock modification
+  ansible.builtin.pause:
+    seconds: 2
+  when: >
+    (is_spacer and spacer_result is changed) or
+    (add_result is changed) or
+    (move_result is changed)

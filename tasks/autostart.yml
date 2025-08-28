@@ -10,7 +10,7 @@
 
 - name: Remove autostart applications
   ansible.builtin.command: |
-    osascript -e 'tell application "System Events" to delete login item "{{ item }}"'
+    osascript -e 'tell application "System Events" to delete login items whose name contains "{{ item }}"'
   loop: "{{ configure_autostart_avoid }}"
   when: configure_autostart_avoid is defined and item in sfltool_output.stdout
 

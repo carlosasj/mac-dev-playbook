@@ -407,7 +407,7 @@ defaults write com.apple.dock show-recents -bool false
 # 12: Notification Center
 # 13: Lock Screen
 # Top right screen corner →
-defaults write com.apple.dock wvous-tr-corner -int 12 # Notification Center
+defaults write com.apple.dock wvous-tr-corner -int 0
 defaults write com.apple.dock wvous-tr-modifier -int 0
 # Top left screen corner →
 defaults write com.apple.dock wvous-tl-corner -int 0

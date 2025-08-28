@@ -18,15 +18,15 @@
     - role: geerlingguy.mac.homebrew
       tags: ['homebrew']
 
-    - role: geerlingguy.dotfiles
-      when: configure_dotfiles
-      tags: ['dotfiles']
-
     - role: gantsign.oh-my-zsh
       tags: ['dotfiles', 'once-in-a-blue-moon']
       oh_my_zsh_write_zshrc: false
       users:
         - username: 'schneider'
+
+    - role: geerlingguy.dotfiles
+      when: configure_dotfiles
+      tags: ['dotfiles']
 
     - role: geerlingguy.mac.mas
       when: mas_installed_apps or mas_installed_app_ids
@@ -37,6 +37,10 @@
       tags: ['dock']
 
   tasks:
+    - import_tasks: tasks/sudo-fingerprint.yml
+      when: configure_sudo_fingerprint
+      tags: ['sudo-fingerprint']
+
     - import_tasks: tasks/sudoers.yml
       when: configure_sudoers
       tags: ['sudoers']
@@ -57,6 +61,10 @@
       when: configure_osx
       tags: ['osx']
 
+    - import_tasks: tasks/dock.yml
+      when: configure_dock and (dockitems_persist_apps is defined or dockitems_persist_others is defined)
+      tags: ['dock']
+
     - import_tasks: tasks/autostart.yml
       when: configure_autostart
       tags: ['autostart']
@@ -68,10 +76,6 @@
     - import_tasks: tasks/display-resolution.yml
       when: configure_better_display_mode_number > 0
       tags: ['display-resolution']
-
-    # - import_tasks: tasks/maccy.yml
-    #   when: configure_maccy
-    #   tags: ['maccy']
 
     - import_tasks: tasks/default-browser-firefox.yml
       when: configure_firefox_as_default
@@ -96,6 +100,8 @@
             loop_var: outer_item
           with_fileglob: "{{ post_provision_tasks | default(omit) }}"
 
+    # Keep it at the end because it copies the public key to clipboard
+    # and prints some useful URLs on the terminal
     - import_tasks: tasks/ssh.yml
       when: configure_ssh
       tags: ['ssh']
