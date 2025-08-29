@@ -1,0 +1,16 @@
+---
+
+- name: Check if Tabby symlink exists
+  stat:
+    path: "{{ ansible_env.HOME }}/Library/Application Support/tabby/config.yaml"
+  register: tabby_symlink
+
+- debug: var=tabby_symlink
+
+- name: Create Tabby symbolic link
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/tabby/config.yaml"
+    dest: "{{ ansible_env.HOME }}/Library/Application Support/tabby/config.yaml"
+    state: link
+    mode: '0755'
+    force: yes

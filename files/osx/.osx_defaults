@@ -351,8 +351,10 @@ defaults write com.apple.dock springboard-rows -int 8
 defaults write com.apple.dock springboard-columns -int 9
 
 # Launchpad Show/Hide animation duration
-defaults write com.apple.dock springboard-show-duration -float 0.1
-defaults write com.apple.dock springboard-hide-duration -float 0.1
+defaults write com.apple.dock springboard-show-duration -float 0.0625
+defaults write com.apple.dock springboard-hide-duration -float 0.125
+
+defaults write com.apple.dock springboard-page-duration -float 0.2
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true

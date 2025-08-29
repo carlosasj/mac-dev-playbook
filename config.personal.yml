@@ -279,4 +279,5 @@ sublime_config_path: "Packages/User"
   # - "WordingStatus"
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
-post_provision_tasks: []
+post_provision_tasks:
+  - "{{ playbook_dir }}/tasks/setup-tabby.yml"
