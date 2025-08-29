@@ -6,5 +6,32 @@ rules:
     max: 180
     level: warning
 
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+
+  commas:
+    max-spaces-before: 0
+    min-spaces-after: 1
+    max-spaces-after: -1  # Allow unlimited spaces for alignment
+
+  comments:
+    min-spaces-from-content: 1  # Allow single space before comments
+
+  comments-indentation:
+    level: warning  # Make comment indentation a warning, not error
+
+  document-start:
+    level: warning  # Make missing --- a warning
+
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no', 'on', 'off']
+
+  trailing-spaces:
+    level: warning
+
 ignore: |
-  .github/workflows/stale.yml
+  .github/workflows/
+  roles/

@@ -13,8 +13,3 @@
   ansible.builtin.command: |
     open -a "Firefox" --new --args -silent -nosplash -setDefaultBrowser
   when: configure_firefox_as_default and 'firefox' not in default_browser.stdout
-
-# To allow unsigned apps choose Anywhere under System Preferences: Security: Allow apps downloaded from. If you don't have the option to select Anywhere you'll have to loosen the Gate Keeper restrictions by running sudo spctl --master-disable in the Terminal
-# sudo spctl --master-disable
-# Then, go to System Preferences > Privacy & Security > (Scroll down to Security section) > Allow applications from: Anywhere
-# to undo: sudo spctl --master-enable

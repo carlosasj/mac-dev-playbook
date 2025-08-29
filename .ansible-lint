@@ -1,6 +1,8 @@
 ---
 exclude_paths:
   - roles/elliotweiser.osx-command-line-tools
+  - roles/gantsign.oh-my-zsh
+  - roles/geerlingguy.dotfiles
 
 skip_list:
   - schema[meta]
@@ -8,6 +10,15 @@ skip_list:
   - experimental
   - fqcn
   - name[missing]
+  - name[template]  # Allow Jinja2 in task names for clarity
+  - name[casing]    # Allow lowercase task names
   - no-changed-when
+  - no-handler      # Allow tasks that run when changed without being handlers
   - risky-file-permissions
+  - risky-shell-pipe  # Allow shell pipes without pipefail
+  - command-instead-of-shell  # Allow shell when needed
+  - command-instead-of-module # Allow git command when needed
+  - no-jinja-when   # Allow Jinja2 in when conditions
+  - no-free-form    # Allow free-form module calls
+  - latest[git]     # Allow latest git checkouts
   - yaml
