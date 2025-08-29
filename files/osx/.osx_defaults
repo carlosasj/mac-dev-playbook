@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# set -eux
+set -o pipefail
 
 # Mac OS X configuration
 #
@@ -189,6 +190,18 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 16
 
+# Number of entries in Recent Items menus
+defaults write NSGlobalDomain NSRecentDocumentsLimit -int 0
+
+# Delay for text dragging in Cocoa applications
+defaults write NSGlobalDomain NSDragAndDropTextDelay -int 100
+
+# Delay before displaying help tags/tooltips
+defaults write NSGlobalDomain NSInitialToolTipDelay -int 250
+
+defaults write NSGlobalDomain NSStatusItemSelectionPadding -int 7
+defaults write NSGlobalDomain NSStatusItemSpacing -int 12
+
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
@@ -196,6 +209,12 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 16
 defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
+
+# Accessibility
+defaults write com.apple.Accessibility AccessibilityEnabled -int 1
+defaults write com.apple.Accessibility ApplicationAccessibilityEnabled -int 1
+defaults write com.apple.Accessibility GenericAccessibilityClientEnabled -int 1
+defaults write com.apple.Accessibility GenericAccessibilityClientEnabled -int 1
 
 # Accessibility zoom
 defaults write com.apple.AppleMultitouchTrackpad HIDScrollZoomModifierMask -int 524288
@@ -328,8 +347,19 @@ defaults write com.apple.assistant.support "Search Queries Data Sharing Status" 
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
+# Launchpad Layout
+defaults write com.apple.dock springboard-rows -int 8
+defaults write com.apple.dock springboard-columns -int 9
+
+# Launchpad Show/Hide animation duration
+defaults write com.apple.dock springboard-show-duration -float 0.1
+defaults write com.apple.dock springboard-hide-duration -float 0.1
+
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
+
+# Don't allow to resize the Dock manually
+defaults write com.apple.dock size-immutable -int 1
 
 # Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock tilesize -int 36
@@ -366,6 +396,10 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 # Don’t group windows by application in Mission Control
 # (i.e. use the old Exposé behavior instead)
 defaults write com.apple.dock expose-group-by-app -bool false
+
+# Disable Stage Manager, but mark it as used to avoid the splash screen
+defaults write com.apple.WindowManager GloballyEnabled -int 0
+defaults write com.apple.WindowManager GloballyEnabledEver -int 1
 
 # Disable Dashboard
 defaults write com.apple.dashboard mcx-disabled -bool true
@@ -472,6 +506,9 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+# Enable the Crash Reporter, when applications crash
+defaults write com.apple.CrashReporter DialogType -string developer
 
 # Enable continuous spellchecking
 defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
@@ -654,27 +691,29 @@ defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool 
 ###############################################################################
 
 # Alt + Tab
+defaults write com.lwouis.alt-tab-macos appearanceStyle -int 0
 defaults write com.lwouis.alt-tab-macos alignThumbnails -int 0
 defaults write com.lwouis.alt-tab-macos appearanceSize -int 1
-defaults write com.lwouis.alt-tab-macos hideAppBadges -bool false
-defaults write com.lwouis.alt-tab-macos hideColoredCircles -bool false
-defaults write com.lwouis.alt-tab-macos hideSpaceNumberLabels -bool true
-defaults write com.lwouis.alt-tab-macos hideStatusIcons -bool true
 defaults write com.lwouis.alt-tab-macos holdShortcut -string "⌘"
 defaults write com.lwouis.alt-tab-macos nextWindowShortcut -string "⇥"
 defaults write com.lwouis.alt-tab-macos holdShortcut2 -string "⌃"
 defaults write com.lwouis.alt-tab-macos nextWindowShortcut2 -string '`'
 defaults write com.lwouis.alt-tab-macos menubarIcon -int 1
 defaults write com.lwouis.alt-tab-macos previewFadeInAnimation -bool false
-defaults write com.lwouis.alt-tab-macos previewFocusedWindow -bool true
 defaults write com.lwouis.alt-tab-macos showHiddenWindows -int 2
 defaults write com.lwouis.alt-tab-macos showMinimizedWindows -int 2
 defaults write com.lwouis.alt-tab-macos showTabsAsWindows -bool false
 defaults write com.lwouis.alt-tab-macos showTitles -int 0
 defaults write com.lwouis.alt-tab-macos titleTruncation -int 0
-defaults write com.lwouis.alt-tab-macos windowDisplayDelay -int 0
+defaults write com.lwouis.alt-tab-macos windowDisplayDelay -int 200 # one quick Alt+Tab without blinking the entire screen
 defaults write com.lwouis.alt-tab-macos appearanceVisibility -int 2
-defaults write com.lwouis.alt-tab-macos hideSpaceNumberLabels -bool true
+
+# FIXME
+# defaults write com.lwouis.alt-tab-macos hideAppBadges -int 0
+# defaults write com.lwouis.alt-tab-macos hideColoredCircles -int 0
+# defaults write com.lwouis.alt-tab-macos hideSpaceNumberLabels -int 1
+# defaults write com.lwouis.alt-tab-macos hideStatusIcons -int 1
+# defaults write com.lwouis.alt-tab-macos previewFocusedWindow -int 1
 
 # Ice Bar
 defaults write com.jordanbaird.Ice UseIceBar -int 1
@@ -710,6 +749,7 @@ defaults write com.jordanbaird.Ice "NSStatusItem Visible Item-0" -int 0
 defaults write com.jordanbaird.Ice showInStatusBar -int 0
 defaults write com.jordanbaird.Ice ignoredApps -array "com.bitwarden.desktop"
 
+# Alfred
 
 ###############################################################################
 # Opera & Opera Developer                                                     #

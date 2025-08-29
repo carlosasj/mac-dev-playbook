@@ -134,6 +134,7 @@ mas_installed_apps:
   - { id: 1604176982, name: "One Thing" }
   - { id: 1444636541, name: "Photomator – Photo Editor" }
   - { id: 1355679052, name: "Dropover: Easier Drag & Drop" }
+  - { id: 1522267256, name: "Shareful" }
 
 remove_quarantine:
   - /Applications/Battery Toolkit.app
@@ -200,13 +201,17 @@ dockitems_persist_others:
 
 configure_share_services: true
 share_services_enabled:
-  - com.apple.CloudSharingUI.invite
-  - com.apple.CloudSharingUI.CopyLink
+  - com.sindresorhus.Shareful.Open-In
+  - com.sindresorhus.Shareful.Copy
   - com.apple.share.AirDrop.send
-  - com.sindresorhus.Gifski.ShareExtension
-  - me.damir.dropover-mac.DropoverShareExtension
-  - com.pixelmatorteam.pixelmator.touch.x.photo.add-to-photomator
   - com.sindresorhus.One-Thing.Share-Extension
+  - com.apple.CloudSharingUI.CopyLink
+  - com.sindresorhus.Shareful.Save-As
+  - com.sindresorhus.Shareful.Save-to-Downloads
+  - com.apple.CloudSharingUI.invite
+  - me.damir.dropover-mac.DropoverShareExtension
+  - com.sindresorhus.Gifski.ShareExtension
+  - com.pixelmatorteam.pixelmator.touch.x.photo.add-to-photomator
 share_services_disabled:
   - com.apple.freeform.sharingextension
   - com.apple.iBooksX.SharingExtension
@@ -223,8 +228,7 @@ share_services_disabled:
   - com.apple.share.System.set-account-picture
   - com.apple.share.System.set-desktop-image
   - com.apple.shortcuts.Run-Workflow
-  - com.pixelmatorteam.pixelmator.touch.x.photo.add-to-photomator
-  - com.sindresorhus.One-Thing.Share-Extension
+  # - com.pixelmatorteam.pixelmator.touch.x.photo.add-to-photomator
 
 # Uses BetterDisplay CLI to change the resolution on the main screen
 # Options:
