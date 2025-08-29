@@ -1,0 +1,11 @@
+---
+
+- name: "Ensure {{ item }} exists"
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - ~/Screenshots
+    - ~/Inbox # Received files via Quick Share, Localsend or Bluetooth
+    - ~/Outbox # Public files shared via Localsend

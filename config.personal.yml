@@ -105,6 +105,7 @@ homebrew_cask_apps:
   - nordvpn
   - vlc
   - sublime-text
+  - localsend
   # - gimp
   # - discord
   # - google-drive
@@ -195,6 +196,8 @@ dockitems_persist_apps:
   - { name: "Spotify",            path: "/Applications/Spotify.app" }
 
 dockitems_persist_others:
+  - { name: "Inbox",              path: "~/Inbox",       view: "grid", display: "stack", sort: "dateadded" }
+  - { style: 'small-spacer',      path: '' }
   - { name: "Screenshots",        path: "~/Screenshots", view: "grid", display: "stack", sort: "dateadded" }
   - { name: "Downloads",          path: "~/Downloads",   view: "grid", display: "stack", sort: "dateadded" }
   - { style: 'small-spacer',      path: '' }

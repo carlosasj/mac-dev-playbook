@@ -240,8 +240,7 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 5
 
 # Save screenshots to ~/Screenshots
-[[ -d "${HOME}/Screenshots" ]] || mkdir -p "${HOME}/Screenshots"
-defaults write com.apple.screencapture location -string "${HOME}/Screenshots"
+[[ -d "${HOME}/Screenshots" ]] && defaults write com.apple.screencapture location -string "${HOME}/Screenshots"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
@@ -691,63 +690,83 @@ defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool 
 ###############################################################################
 
 # Alt + Tab
-defaults write com.lwouis.alt-tab-macos appearanceStyle -int 0
-defaults write com.lwouis.alt-tab-macos alignThumbnails -int 0
-defaults write com.lwouis.alt-tab-macos appearanceSize -int 1
-defaults write com.lwouis.alt-tab-macos holdShortcut -string "⌘"
-defaults write com.lwouis.alt-tab-macos nextWindowShortcut -string "⇥"
-defaults write com.lwouis.alt-tab-macos holdShortcut2 -string "⌃"
-defaults write com.lwouis.alt-tab-macos nextWindowShortcut2 -string '`'
-defaults write com.lwouis.alt-tab-macos menubarIcon -int 1
-defaults write com.lwouis.alt-tab-macos previewFadeInAnimation -bool false
-defaults write com.lwouis.alt-tab-macos showHiddenWindows -int 2
-defaults write com.lwouis.alt-tab-macos showMinimizedWindows -int 2
-defaults write com.lwouis.alt-tab-macos showTabsAsWindows -bool false
-defaults write com.lwouis.alt-tab-macos showTitles -int 0
-defaults write com.lwouis.alt-tab-macos titleTruncation -int 0
-defaults write com.lwouis.alt-tab-macos windowDisplayDelay -int 200 # one quick Alt+Tab without blinking the entire screen
-defaults write com.lwouis.alt-tab-macos appearanceVisibility -int 2
+if [[ -f '/Applications/Alt Tab.app' ]]; then
+	defaults write com.lwouis.alt-tab-macos appearanceStyle -int 0
+	defaults write com.lwouis.alt-tab-macos alignThumbnails -int 0
+	defaults write com.lwouis.alt-tab-macos appearanceSize -int 1
+	defaults write com.lwouis.alt-tab-macos holdShortcut -string "⌘"
+	defaults write com.lwouis.alt-tab-macos nextWindowShortcut -string "⇥"
+  defaults write com.lwouis.alt-tab-macos holdShortcut2 -string "⌃"
+  defaults write com.lwouis.alt-tab-macos nextWindowShortcut2 -string '`'
+  defaults write com.lwouis.alt-tab-macos menubarIcon -int 1
+  defaults write com.lwouis.alt-tab-macos previewFadeInAnimation -bool false
+  defaults write com.lwouis.alt-tab-macos showHiddenWindows -int 2
+  defaults write com.lwouis.alt-tab-macos showMinimizedWindows -int 2
+  defaults write com.lwouis.alt-tab-macos showTabsAsWindows -bool false
+  defaults write com.lwouis.alt-tab-macos showTitles -int 0
+  defaults write com.lwouis.alt-tab-macos titleTruncation -int 0
+  defaults write com.lwouis.alt-tab-macos windowDisplayDelay -int 200 # one quick Alt+Tab without blinking the entire screen
+  defaults write com.lwouis.alt-tab-macos appearanceVisibility -int 2
 
-# FIXME
-# defaults write com.lwouis.alt-tab-macos hideAppBadges -int 0
-# defaults write com.lwouis.alt-tab-macos hideColoredCircles -int 0
-# defaults write com.lwouis.alt-tab-macos hideSpaceNumberLabels -int 1
-# defaults write com.lwouis.alt-tab-macos hideStatusIcons -int 1
-# defaults write com.lwouis.alt-tab-macos previewFocusedWindow -int 1
+  # FIXME
+  # defaults write com.lwouis.alt-tab-macos hideAppBadges -int 0
+  # defaults write com.lwouis.alt-tab-macos hideColoredCircles -int 0
+  # defaults write com.lwouis.alt-tab-macos hideSpaceNumberLabels -int 1
+  # defaults write com.lwouis.alt-tab-macos hideStatusIcons -int 1
+  # defaults write com.lwouis.alt-tab-macos previewFocusedWindow -int 1
+fi
 
 # Ice Bar
-defaults write com.jordanbaird.Ice UseIceBar -int 1
-defaults write com.jordanbaird.Ice IceBarLocation -int 2
-defaults write com.jordanbaird.Ice ShowOnClick -int 1
-defaults write com.jordanbaird.Ice ShowOnScroll -int 1
-defaults write com.jordanbaird.Ice ShowOnHover -int 0
-defaults write com.jordanbaird.Ice ShowOnHoverDelay -float 0
-defaults write com.jordanbaird.Ice CanToggleAlwaysHiddenSection -int 1
-defaults write com.jordanbaird.Ice EnableAlwaysHiddenSection -int 1
+if [[ -f '/Applications/Ice.app' ]]; then
+  defaults write com.jordanbaird.Ice UseIceBar -int 1
+  defaults write com.jordanbaird.Ice IceBarLocation -int 2
+  defaults write com.jordanbaird.Ice ShowOnClick -int 1
+  defaults write com.jordanbaird.Ice ShowOnScroll -int 1
+  defaults write com.jordanbaird.Ice ShowOnHover -int 0
+  defaults write com.jordanbaird.Ice ShowOnHoverDelay -float 0
+  defaults write com.jordanbaird.Ice CanToggleAlwaysHiddenSection -int 1
+  defaults write com.jordanbaird.Ice EnableAlwaysHiddenSection -int 1
+fi
 
 # Maccy
-defaults write com.jordanbaird.Ice KeyboardShortcuts_popup -string '{"carbonModifiers":2048,"carbonKeyCode":9}' # Opt+V
-defaults write com.jordanbaird.Ice KeyboardShortcuts_pin -string '{"carbonModifiers":2048,"carbonKeyCode":35}' # Opt+P
-defaults write com.jordanbaird.Ice KeyboardShortcuts_delete -string '{"carbonModifiers":2048,"carbonKeyCode":51}' # Opt+Backspace
-defaults write com.jordanbaird.Ice SUEnableAutomaticChecks -int 1
-defaults write com.jordanbaird.Ice popupPosition -string cursor
-defaults write com.jordanbaird.Ice sortBy -string firstCopiedAt
-defaults write com.jordanbaird.Ice searchMode -string regexp
-defaults write com.jordanbaird.Ice highlightMatch -string color
-defaults write com.jordanbaird.Ice showSpecialSymbols -int 1
-defaults write com.jordanbaird.Ice showTitle -int 0 # Don't show Maccy logo at the top
-defaults write com.jordanbaird.Ice showFooter -int 1
-defaults write com.jordanbaird.Ice showApplicationIcons -int 1
-defaults write com.jordanbaird.Ice historySize -int 1000
-defaults write com.jordanbaird.Ice pasteByDefault -int 1
-defaults write com.jordanbaird.Ice previewDelay -int 100
-defaults write com.jordanbaird.Ice removeFormattingByDefault -int 0
-defaults write com.jordanbaird.Ice imageMaxHeight -int 14 # so each image item has the same height as the text items
-defaults write com.jordanbaird.Ice menuIcon -string clipboard
-defaults write com.jordanbaird.Ice showRecentCopyInMenuBar -int 0
-defaults write com.jordanbaird.Ice "NSStatusItem Visible Item-0" -int 0
-defaults write com.jordanbaird.Ice showInStatusBar -int 0
-defaults write com.jordanbaird.Ice ignoredApps -array "com.bitwarden.desktop"
+if [[ -f '/Applications/Maccy.app' ]]; then
+  defaults write com.jordanbaird.Ice KeyboardShortcuts_popup -string '{"carbonModifiers":2048,"carbonKeyCode":9}' # Opt+V
+  defaults write com.jordanbaird.Ice KeyboardShortcuts_pin -string '{"carbonModifiers":2048,"carbonKeyCode":35}' # Opt+P
+  defaults write com.jordanbaird.Ice KeyboardShortcuts_delete -string '{"carbonModifiers":2048,"carbonKeyCode":51}' # Opt+Backspace
+  defaults write com.jordanbaird.Ice SUEnableAutomaticChecks -int 1
+  defaults write com.jordanbaird.Ice popupPosition -string cursor
+  defaults write com.jordanbaird.Ice sortBy -string firstCopiedAt
+  defaults write com.jordanbaird.Ice searchMode -string regexp
+  defaults write com.jordanbaird.Ice highlightMatch -string color
+  defaults write com.jordanbaird.Ice showSpecialSymbols -int 1
+  defaults write com.jordanbaird.Ice showTitle -int 0 # Don't show Maccy logo at the top
+  defaults write com.jordanbaird.Ice showFooter -int 1
+  defaults write com.jordanbaird.Ice showApplicationIcons -int 1
+  defaults write com.jordanbaird.Ice historySize -int 1000
+  defaults write com.jordanbaird.Ice pasteByDefault -int 1
+  defaults write com.jordanbaird.Ice previewDelay -int 100
+  defaults write com.jordanbaird.Ice removeFormattingByDefault -int 0
+  defaults write com.jordanbaird.Ice imageMaxHeight -int 14 # so each image item has the same height as the text items
+  defaults write com.jordanbaird.Ice menuIcon -string clipboard
+  defaults write com.jordanbaird.Ice showRecentCopyInMenuBar -int 0
+  defaults write com.jordanbaird.Ice "NSStatusItem Visible Item-0" -int 0
+  defaults write com.jordanbaird.Ice showInStatusBar -int 0
+  defaults write com.jordanbaird.Ice ignoredApps -array "com.bitwarden.desktop"
+fi
+
+# Localsend
+if [[ -f '/Applications/Localsend.app' ]]; then
+  defaults write org.localsend.localsendApp flutter.ls_alias -string "$(scutil --get ComputerName)"
+  defaults write org.localsend.localsendApp flutter.ls_color -string "oled"
+  defaults write org.localsend.localsendApp flutter.ls_minimize_to_tray -int 1
+  defaults write org.localsend.localsendApp flutter.ls_theme -string "dark"
+  defaults write org.localsend.localsendApp flutter.ls_auto_finish -int 1
+  defaults write org.localsend.localsendApp flutter.ls_enable_animations -int 1
+  defaults write org.localsend.localsendApp flutter.ls_quick_save_from_favorites -int 1
+
+  # Save received files on ~/Inbox (if it exists)
+  [[ -d "${HOME}/Inbox" ]] && defaults write org.localsend.localsendApp flutter.ls_destination -string "${HOME}/Inbox"
+fi
 
 # Alfred
 
