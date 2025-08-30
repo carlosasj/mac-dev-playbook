@@ -67,10 +67,8 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.
 #sudo rm -rf /System/Library/CoreServices/DefaultDesktop.jpg
 #sudo ln -s /path/to/your/image /System/Library/CoreServices/DefaultDesktop.jpg
 
-# Set background/wallpaper to black color
-if [ -f "$HOME/git/wallpaper-dl/output/f8ujeu.png" ]; then
-	osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Users/schneider/git/wallpaper-dl/output/f8ujeu.png"'
-else
+# Set background/wallpaper to black color if wallpaper-dl is not cloned
+if [ ! -d "$HOME/git/wallpaper-dl" ]; then
 	osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/System/Library/Desktop Pictures/Solid Colors/Black.png"'
 fi
 
