@@ -30,21 +30,21 @@
   command: sudo scutil --set LocalHostName "{{ configure_machine_name }}"
   when: configure_machine_name and configure_machine_name != local_host_name.stdout
 
-- name: Get NetBIOSName
-  command: defaults read /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName
-  register: netbios_name
-  when: configure_machine_name
-  changed_when: false
+# - name: Get NetBIOSName
+#   command: defaults read /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName
+#   register: netbios_name
+#   when: configure_machine_name
+#   changed_when: false
 
-- name: Set Samba Server name
-  community.general.osx_defaults:
-    domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
-    key: NetBIOSName
-    type: string
-    value: "{{ configure_machine_name }}"
-  become: true
-  when: configure_machine_name and configure_machine_name != netbios_name.stdout
-  tags: ['once-in-a-blue-moon']
+# - name: Set Samba Server name
+#   community.general.osx_defaults:
+#     domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
+#     key: NetBIOSName
+#     type: string
+#     value: "{{ configure_machine_name }}" # Doesn't work. It reverts to previous value on login. See: https://discussions.apple.com/thread/2457573?answerId=11777657022&sortBy=rank#11777657022
+#   become: true
+#   when: configure_machine_name and configure_machine_name != netbios_name.stdout
+#   tags: ['once-in-a-blue-moon']
 
 - name: Flush dscacheutil if any name was changed
   command: dscacheutil -flushcache

@@ -17,7 +17,14 @@ sudoers_custom_config: ""
 #   # Allow users in admin group to use sudo with no password.
 #   %admin ALL=(ALL) NOPASSWD: ALL
 
-# dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
+# Uses BetterDisplay CLI to change the resolution on the main screen. Remember to install it.
+configure_better_display_mode_number: 66 # Options: 0 (disable), 54 (default), 66 (higher resolution, smaller text)
+
+ensure_directories_exist:
+  - ~/Screenshots
+  - ~/Inbox # Received files via Quick Share, Localsend or Bluetooth
+  - ~/Outbox # Somewhat shared files (?)
+
 dotfiles_repo: https://github.com/carlosasj/.dotfiles
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/git/.dotfiles
@@ -112,7 +119,7 @@ homebrew_cask_apps:
   # - bisq # decentralized bitcoin exchange
 homebrew_cask_uninstalled_apps:
   - bitwarden # The one on App Store supports fingerprint use on other browsers
-  - battery
+  # - battery
   # - only-switch
   # - chromedriver
   # - dropbox
@@ -128,7 +135,7 @@ mas_email: "apple@carlosasj.dev"
 mas_signin_dialog: true
 mas_installed_apps:
   - { id: 1352778147, name: "Bitwarden" }
-  - { id: 937984704, name: "Amphetamine: keep-awake utility" }
+  - { id:  937984704, name: "Amphetamine: keep-awake utility" }
   - { id: 1586435171, name: "Actions: Useful for Shortcuts" }
   - { id: 1351639930, name: "Gifski: Convert videos to quality GIFs" }
   - { id: 6450279539, name: "Second Clock: on the menu bar" }
@@ -154,34 +161,30 @@ configure_autostart:
 configure_autostart_avoid:
   - Spotify
   - NordVPN
-  # - /Applications/Battery Toolkit.app
-  # - /Applications/Spotify.app
-  # - /Applications/Karabiner-Elements.app
-
 
 configure_dock: true # configure the Dock via dockutil.
-# dockitems_remove:
-#   # - Launchpad
-#   - Safari
-#   - Messages
-#   - Mail
-#   - Maps
-#   - Photos
-#   - FaceTime
-#   - Calendar
-#   - Contacts
-#   # - Reminders
-#   - Notes
-#   - Freeform
-#   - TV
-#   - Music
-#   - Keynote
-#   - Numbers
-#   - Pages
-#   - 'App Store'
-#   - Podcasts
+dockitems_remove:
+  # - Launchpad
+  - Safari
+  - Messages
+  - Mail
+  - Maps
+  - Photos
+  - FaceTime
+  - Calendar
+  - Contacts
+  # - Reminders
+  - Notes
+  - Freeform
+  - TV
+  - Music
+  - Keynote
+  - Numbers
+  - Pages
+  - 'App Store'
+  - Podcasts
 
-dockitems_persist: [] # deprecated
+dockitems_persist: [] # keep the empty array here to override the default.config.yml
 dockitems_persist_apps:
   - { name: "Launchpad",          path: "/System/Applications/Launchpad.app" }
   - { style: 'small-spacer',      path: '' }
@@ -190,6 +193,7 @@ dockitems_persist_apps:
   - { name: "Tabby",              path: "/Applications/Tabby.app" }
   - { name: "Sublime Text",       path: "/Applications/Sublime Text.app" }
   - { name: "System Settings",    path: "/System/Applications/System Settings.app" }
+  - { name: "Bitwarden",          path: "/Applications/Bitwarden.app" }
   - { name: "Reminders",          path: "/System/Applications/Reminders.app" }
   - { name: "Home Assistant",     path: "/Applications/Home Assistant.app" }
   - { style: 'small-spacer',      path: '' }
@@ -232,13 +236,6 @@ share_services_disabled:
   - com.apple.share.System.set-desktop-image
   - com.apple.shortcuts.Run-Workflow
   # - com.pixelmatorteam.pixelmator.touch.x.photo.add-to-photomator
-
-# Uses BetterDisplay CLI to change the resolution on the main screen
-# Options:
-#   0 (disable)
-#   54 (default)
-#   66 (higher resolution, smaller text)
-configure_better_display_mode_number: 66
 
 # Install packages from other package managers.
 # Note: You are responsible for making sure the required package managers are

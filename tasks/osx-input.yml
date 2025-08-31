@@ -9,15 +9,23 @@
   register: apple_languages
   changed_when: false
 
-- name: Set language and text formats
-  when: "'en-GB' not in apple_languages.stdout or 'pt-BR' not in apple_languages.stdout"
+- name: Ensure language and text formats "en-GB"
+  when: "'en-GB' not in apple_languages.stdout"
   community.general.osx_defaults:
     domain: NSGlobalDomain
     key: AppleLanguages
     type: array
-    value:
-      - "en-GB"
-      - "pt-BR"
+    array_add: true
+    value: "en-GB"
+
+- name: Ensure language and text formats "pt-BR"
+  when: "'pt-BR' not in apple_languages.stdout"
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleLanguages
+    type: array
+    array_add: true
+    value: "pt-BR"
 
 - name: Get AppleEnabledInputSources
   command: defaults read com.apple.HIToolbox AppleEnabledInputSources
