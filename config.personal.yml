@@ -25,11 +25,12 @@ ensure_directories_exist:
   - ~/Inbox # Received files via Quick Share, Localsend or Bluetooth
   - ~/Outbox # Somewhat shared files (?)
 
-folder_icons:
+folder_icons: # requires brew package `fileicon`
   - { path: "~/Downloads", icon: "files/icons/folder/Downloads.png" }
   - { path: "~/Screenshots", icon: "files/icons/folder/Screenshots.png" }
   - { path: "~/Inbox", icon: "files/icons/folder/Inbox.png" }
   - { path: "~/Outbox", icon: "files/icons/folder/Outbox.png" }
+  - { path: "~/git", icon: "files/icons/folder/git.png" }
 
 dotfiles_repo: https://github.com/carlosasj/.dotfiles
 dotfiles_repo_accept_hostkey: true
