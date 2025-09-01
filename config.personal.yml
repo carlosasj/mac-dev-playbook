@@ -134,15 +134,17 @@ mas_email: "apple@carlosasj.dev"
 # mas_password: ""
 mas_signin_dialog: true
 mas_installed_apps:
-  - { id: 1352778147, name: "Bitwarden" }
-  - { id:  937984704, name: "Amphetamine: keep-awake utility" }
-  - { id: 1586435171, name: "Actions: Useful for Shortcuts" }
-  - { id: 1351639930, name: "Gifski: Convert videos to quality GIFs" }
-  - { id: 6450279539, name: "Second Clock: on the menu bar" }
-  - { id: 1604176982, name: "One Thing" }
-  - { id: 1444636541, name: "Photomator – Photo Editor" }
-  - { id: 1355679052, name: "Dropover: Easier Drag & Drop" }
-  - { id: 1522267256, name: "Shareful" }
+  - { id:  497799835, name: "Xcode", purchase: true }
+  - { id: 1352778147, name: "Bitwarden", purchase: true }
+  - { id:  937984704, name: "Amphetamine: keep-awake utility", purchase: true }
+  - { id: 1586435171, name: "Actions: Useful for Shortcuts", purchase: true }
+  - { id: 1351639930, name: "Gifski: Convert videos to quality GIFs", purchase: true }
+  - { id: 6450279539, name: "Second Clock: on the menu bar", purchase: true }
+  - { id: 1604176982, name: "One Thing", purchase: true }
+  - { id: 1444636541, name: "Photomator - Photo Editor", purchase: true }
+  - { id: 1355679052, name: "Dropover: Easier Drag & Drop", purchase: true }
+  - { id: 1522267256, name: "Shareful", purchase: true }
+  - { id: 6475134617, name: "Unsqueeze", purchase: true }
 
 remove_quarantine:
   - /Applications/Battery Toolkit.app

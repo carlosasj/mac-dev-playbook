@@ -1,0 +1,10 @@
+---
+- name: List installed apps
+  command: "mas list"
+  register: mas_list
+  changed_when: false
+
+- name: Pre-purchase Mac Store Apps
+  command: "mas purchase {{ item.id }}"
+  when: "item.purchase is defined and item.purchase and '{{ item.id }} ' not in mas_list.stdout"
+  loop: "{{ mas_installed_apps | default([]) }}"
