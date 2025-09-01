@@ -1,0 +1,13 @@
+---
+
+- name: "Test if {{ item.path }} has icon"
+  command:
+    cmd: 'fileicon test "{{ item.path }}"'
+  register: test_has_icon
+  changed_when: false
+  failed_when: false
+
+- name: "Set icon for {{ item.path }}"
+  command:
+    cmd: 'fileicon set "{{ item.path }}" "{{ item.icon }}"'
+  when: "'Has NO custom icon' in test_has_icon.stdout"

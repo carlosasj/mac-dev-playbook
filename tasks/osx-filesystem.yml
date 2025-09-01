@@ -6,3 +6,8 @@
     state: directory
     mode: '0755'
   loop: "{{ ensure_directories_exist }}"
+
+- name: Set icons to folders
+  include_tasks: "tasks/block-folder-icons.yml"
+  when: folder_icons is defined
+  loop: "{{ folder_icons }}"

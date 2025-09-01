@@ -25,6 +25,12 @@ ensure_directories_exist:
   - ~/Inbox # Received files via Quick Share, Localsend or Bluetooth
   - ~/Outbox # Somewhat shared files (?)
 
+folder_icons:
+  - { path: "~/Downloads", icon: "files/icons/folder/Downloads.png" }
+  - { path: "~/Screenshots", icon: "files/icons/folder/Screenshots.png" }
+  - { path: "~/Inbox", icon: "files/icons/folder/Inbox.png" }
+  - { path: "~/Outbox", icon: "files/icons/folder/Outbox.png" }
+
 dotfiles_repo: https://github.com/carlosasj/.dotfiles
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/git/.dotfiles
@@ -59,6 +65,7 @@ homebrew_installed_packages:
   - wget
   - zsh-history-substring-search
   - git-interactive-rebase-tool
+  - fileicon
   # - sevenzip # 7-Zip
 # homebrew_uninstalled_packages:
   # - doxygen
@@ -113,6 +120,7 @@ homebrew_cask_apps:
   - vlc
   - sublime-text
   - localsend
+  # - upscayl
   # - gimp
   # - discord
   # - google-drive
@@ -202,10 +210,10 @@ dockitems_persist_apps:
   - { name: "Spotify",            path: "/Applications/Spotify.app" }
 
 dockitems_persist_others:
-  - { name: "Inbox",              path: "~/Inbox",       view: "grid", display: "stack", sort: "dateadded" }
+  - { name: "Inbox",              path: "~/Inbox",       view: "fan",  display: "folder", sort: "dateadded" }
   - { style: 'small-spacer',      path: '' }
-  - { name: "Screenshots",        path: "~/Screenshots", view: "grid", display: "stack", sort: "dateadded" }
-  - { name: "Downloads",          path: "~/Downloads",   view: "grid", display: "stack", sort: "dateadded" }
+  - { name: "Screenshots",        path: "~/Screenshots", view: "grid", display: "folder", sort: "dateadded" }
+  - { name: "Downloads",          path: "~/Downloads",   view: "grid", display: "folder", sort: "dateadded" }
   - { style: 'small-spacer',      path: '' }
 
 configure_share_services: true
