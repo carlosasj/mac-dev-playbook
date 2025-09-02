@@ -32,6 +32,26 @@ folder_icons: # requires brew package `fileicon`
   - { path: "~/Outbox", icon: "files/icons/folder/Outbox.png" }
   - { path: "~/git", icon: "files/icons/folder/git.png" }
 
+sidebar_items_activated:
+  - "AirDrop"
+  - "Applications"
+  - "Desktop"
+  - "Documents"
+  - "Downloads"
+  - "schneider"
+  - "M1"
+
+sidebar_items_deactivated:
+  - "Recents"
+  - "Movies"
+  - "Music"
+  - "Pictures"
+
+sidebar_items_extra:
+  - "{{ ansible_env.HOME }}/Inbox"
+  - "{{ ansible_env.HOME }}/Outbox"
+  - "{{ ansible_env.HOME }}/Screenshots"
+
 dotfiles_repo: https://github.com/carlosasj/.dotfiles
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/git/.dotfiles

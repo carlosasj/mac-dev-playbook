@@ -12,18 +12,20 @@
   ansible.builtin.shell: defaults read com.apple.mail DraftsViewerAttributes
   register: drafts_viewer_attributes
   changed_when: false
+  failed_when: false
+  ignore_errors: true
 
 - name: Display emails in threaded mode, sorted by date (oldest at the top)
   # This is a complex dict-add operation that might need special handling
   command: defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreadedMode" -string "yes"
-  when: '"DisplayInThreadedMode = yes" not in drafts_viewer_attributes.stdout'
+  when: drafts_viewer_attributes.rc == 0 and '"DisplayInThreadedMode = yes" not in drafts_viewer_attributes.stdout'
 
 - name: Display emails in threaded mode, sorted by date (oldest at the top)
   # This is a complex dict-add operation that might need special handling
   command: defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortedDescending" -string "yes"
-  when: '"SortedDescending = yes" not in drafts_viewer_attributes.stdout'
+  when: drafts_viewer_attributes.rc == 0 and '"SortedDescending = yes" not in drafts_viewer_attributes.stdout'
 
 - name: Display emails in threaded mode, sorted by date (oldest at the top)
   # This is a complex dict-add operation that might need special handling
   command: defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -string "received-date"
-  when: '"SortOrder = \"received-date\"" not in drafts_viewer_attributes.stdout'
+  when: drafts_viewer_attributes.rc == 0 and '"SortOrder = \"received-date\"" not in drafts_viewer_attributes.stdout'

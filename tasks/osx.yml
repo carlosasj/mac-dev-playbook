@@ -22,6 +22,12 @@
 
 # Ignore this by including the flag:
 # --skip-tags once-in-a-blue-moon
+- name: Sidebar configuration
+  include_tasks: "tasks/finder-sidebar.yml"
+  tags: ['once-in-a-blue-moon']
+
+# Ignore this by including the flag:
+# --skip-tags once-in-a-blue-moon
 - name: Run other commands
   command: "bash files/osx/.osx_delicate"
   changed_when: false

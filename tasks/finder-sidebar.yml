@@ -1,0 +1,20 @@
+---
+# Finder Sidebar configuration
+
+- name: Activate/Deactivate Finder Sidebar Items
+  command: osascript files/osx/finder_sidebar_system.applescript
+  register: finder_sidebar
+  changed_when: false
+  environment:
+    FINDER_SIDEBAR_ITEMS_DEACTIVATE: "{{ sidebar_items_deactivated | default([]) | join('|') }}"
+    FINDER_SIDEBAR_ITEMS_ACTIVATE: "{{ sidebar_items_activated | default([]) | join('|') }}"
+  when: >-
+    (sidebar_items_deactivated is defined and sidebar_items_deactivated | length > 0)
+      or (sidebar_items_activated is defined and sidebar_items_activated | length > 0)
+
+- name: Set extra Finder Sidebar Items
+  command:
+    argv: "{{ ['osascript', 'files/osx/finder_sidebar_user.applescript'] + sidebar_items_extra }}"
+  register: finder_sidebar
+  changed_when: false
+  when: (sidebar_items_extra is defined and sidebar_items_extra | length > 0)
