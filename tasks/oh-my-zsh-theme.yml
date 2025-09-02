@@ -1,0 +1,5 @@
+---
+- name: Clone theme Headline
+  git:
+    repo: "https://github.com/moarram/headline.git"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/headline"

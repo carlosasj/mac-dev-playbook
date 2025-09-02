@@ -53,6 +53,10 @@
       when: configure_terminal
       tags: ['terminal']
 
+    - import_tasks: tasks/oh-my-zsh-theme.yml
+      when: configure_terminal
+      tags: ['terminal']
+
     - import_tasks: tasks/karabiner.yml
       when: configure_karabiner
       tags: ['karabiner']

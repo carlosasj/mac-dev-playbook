@@ -181,39 +181,66 @@ hotkeys:
 terminal:
   searchOptions: {}
   colorScheme:
-    name: Tabby Default
-    foreground: '#cacaca'
-    background: '#171717'
-    cursor: '#bbbbbb'
+    name: Casalberto
+    foreground: '#f2f2f2'
+    background: '#050A11'
+    cursor: '#4d4d4d'
     colors:
-      - '#000000'
-      - '#ff615a'
-      - '#b1e969'
-      - '#ebd99c'
-      - '#5da9f6'
-      - '#e86aff'
-      - '#82fff7'
-      - '#dedacf'
-      - '#313131'
-      - '#f58c80'
-      - '#ddf88f'
-      - '#eee5b2'
-      - '#a5c7ff'
-      - '#ddaaff'
-      - '#b7fff9'
+      - '#2a2a2a'
+      - '#ff0000'
+      - '#79ff0f'
+      - '#e7bf00'
+      - '#396bd7'
+      - '#b449be'
+      - '#66ccff'
+      - '#bbbbbb'
+      - '#666666'
+      - '#ff0080'
+      - '#66ff66'
+      - '#f3d64e'
+      - '#709aed'
+      - '#db67e6'
+      - '#7adff2'
       - '#ffffff'
   copyOnSelect: true
   copyAsHTML: false
   showTabProfileIcon: true
-  customColorSchemes: []
+  customColorSchemes:
+    - name: Casalberto
+      foreground: '#f2f2f2'
+      background: '#050A11'
+      cursor: '#4d4d4d'
+      colors:
+        - '#2a2a2a'
+        - '#ff0000'
+        - '#79ff0f'
+        - '#e7bf00'
+        - '#396bd7'
+        - '#b449be'
+        - '#66ccff'
+        - '#bbbbbb'
+        - '#666666'
+        - '#ff0080'
+        - '#66ff66'
+        - '#f3d64e'
+        - '#709aed'
+        - '#db67e6'
+        - '#7adff2'
+        - '#ffffff'
+  cursor: beam
+  font: FiraCode Nerd Font
+  warnOnMultilinePaste: false
 ssh: {}
 clickableLinks: {}
-accessibility: {}
+accessibility:
+  animations: false
 appearance:
   tabsLocation: left
   dock: bottom
   tabsInFullscreen: true
   dockAlwaysOnTop: false
+  dockHideOnBlur: true
+  dockSpace: 0.93
 hacks: {}
 providerBlacklist: []
 commandBlacklist: []

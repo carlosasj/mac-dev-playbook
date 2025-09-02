@@ -42,6 +42,7 @@ dotfiles_files:
   - .gitconfig
   - .gitignore_global
   - .load_homebrew
+  - .load_oh_my_zsh_theme
   - .load_nvm
   - .load_pyenv
   - .load_sdkman
