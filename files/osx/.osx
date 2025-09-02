@@ -28,7 +28,8 @@
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
 
-sudo sh ~/git/.dotfiles/.osx_light
-sudo sh ~/git/.dotfiles/.osx_hard
+sh ~/git/.dotfiles/.osx_defaults
+sudo sh ~/git/.dotfiles/.osx_sudo_defaults
+sudo sh ~/git/.dotfiles/.osx_be_careful
 
 echo "Done. Note that some of these changes require a logout/restart to take effect.\n"

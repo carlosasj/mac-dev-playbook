@@ -13,9 +13,11 @@ sync_back:
 defaults:
   sh files/osx/.osx_defaults
 
-sudo_defaults:
-  sh files/osx/.osx_sudo_defaults
+defaults_sudo:
+  sh files/osx/.osx_defaults_sudo
 
-be_careful:
-  sh files/osx/.osx_be_careful
+delicate:
+  sh files/osx/.osx_delicate
 
+destructive!:
+  sh files/osx/.osx_destructive

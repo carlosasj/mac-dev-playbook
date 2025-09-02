@@ -274,6 +274,12 @@ defaults write com.apple.screencapture disable-shadow -bool true
 # Finder: disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true
 
+# Finder: show folder icons in the title bar. `true` show always, `false` (default) show on hover
+# defaults write com.apple.universalaccess "showWindowTitlebarIcons" -bool false
+
+# Animation delay for showing folder icon (only used when showWindowTitlebarIcons is false). https://macos-defaults.com/finder/nstoolbartitleviewrolloverdelay.html
+defaults write NSGlobalDomain "NSToolbarTitleViewRolloverDelay" -float 0
+
 # Set Desktop as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
 defaults write com.apple.finder NewWindowTarget -string "PfHm"

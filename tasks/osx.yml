@@ -16,14 +16,22 @@
   changed_when: false
 
 - name: Set defaults that require sudo
-  command: "bash files/osx/.osx_sudo_defaults"
+  command: "bash files/osx/.osx_defaults_sudo"
   changed_when: false
   become: true
 
 # Ignore this by including the flag:
 # --skip-tags once-in-a-blue-moon
 - name: Run other commands
-  command: "bash files/osx/.osx_be_careful"
+  command: "bash files/osx/.osx_delicate"
+  changed_when: false
+  become: true
+  tags: ['once-in-a-blue-moon']
+
+# Ignore this by including the flag:
+# --skip-tags once-in-a-blue-moon
+- name: Run destructive commands
+  command: "bash files/osx/.osx_destructive"
   changed_when: false
   become: true
   tags: ['once-in-a-blue-moon']
