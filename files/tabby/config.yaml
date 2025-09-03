@@ -182,54 +182,56 @@ terminal:
   searchOptions: {}
   colorScheme:
     name: Casalberto
-    foreground: '#f2f2f2'
-    background: '#050A11'
-    cursor: '#4d4d4d'
+    foreground: '#f8f8f8'
+    background: ''
+    cursor: '#888888'
     colors:
       - '#2a2a2a'
       - '#ff0000'
-      - '#79ff0f'
-      - '#e7bf00'
-      - '#396bd7'
-      - '#b449be'
-      - '#66ccff'
-      - '#bbbbbb'
-      - '#666666'
+      - '#43a047'
+      - '#ffc107'
+      - '#1e88e5'
+      - '#9c27b0'
+      - '#00acc1'
+      - '#777777'
+      - '#555555'
       - '#ff0080'
-      - '#66ff66'
-      - '#f3d64e'
-      - '#709aed'
-      - '#db67e6'
-      - '#7adff2'
+      - '#81c784'
+      - '#fff176'
+      - '#2196f3'
+      - '#ce93d8'
+      - '#80deea'
       - '#ffffff'
   copyOnSelect: true
   copyAsHTML: false
   showTabProfileIcon: true
   customColorSchemes:
     - name: Casalberto
-      foreground: '#f2f2f2'
-      background: '#050A11'
-      cursor: '#4d4d4d'
+      foreground: '#f8f8f8'
+      background: ''
+      cursor: '#888888'
       colors:
         - '#2a2a2a'
         - '#ff0000'
-        - '#79ff0f'
-        - '#e7bf00'
-        - '#396bd7'
-        - '#b449be'
-        - '#66ccff'
-        - '#bbbbbb'
-        - '#666666'
+        - '#43a047'
+        - '#ffc107'
+        - '#1e88e5'
+        - '#9c27b0'
+        - '#00acc1'
+        - '#777777'
+        - '#555555'
         - '#ff0080'
-        - '#66ff66'
-        - '#f3d64e'
-        - '#709aed'
-        - '#db67e6'
-        - '#7adff2'
+        - '#81c784'
+        - '#fff176'
+        - '#2196f3'
+        - '#ce93d8'
+        - '#80deea'
         - '#ffffff'
   cursor: beam
   font: FiraCode Nerd Font
   warnOnMultilinePaste: false
+  minimumContrastRatio: 10
+  ligatures: true
 ssh: {}
 clickableLinks: {}
 accessibility:

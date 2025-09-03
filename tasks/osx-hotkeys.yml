@@ -6,6 +6,7 @@
   loop:
     - 9   # Ctrl + F4 / Focus next window
     - 27  # Cmd + ` / Focus next window
+    - 33  # Ctrl + _ + _ /
     - 52  # Turn Dock hiding on/off
     - 53  # F14 / Decrease Brightness
     - 54  # F15 / Increase Brightness
@@ -13,6 +14,9 @@
     - 61  # Ctrl + Shift + Space / Previous Input Source
     - 64  # Cmd + Space / Spotlight
     - 65  # Cmd + Option + Space / Finder Search
+    - 119 # Ctrl + _ + _ /
+    - 120 # Ctrl + _ + _ /
+    - 190 #
   register: hotkey_status
   ignore_errors: true
   changed_when: false

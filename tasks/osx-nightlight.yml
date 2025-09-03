@@ -1,0 +1,21 @@
+---
+
+- name: Get Nightlight temperature status
+  command: nightlight temp
+  register: nightlight_temp
+  changed_when: false
+  failed_when: false
+
+- name: Get Nightlight schedule status
+  command: nightlight temp 60
+  when: "nightlight_temp.stdout != '60'"
+
+- name: Get Nightlight schedule status
+  command: nightlight status
+  register: nightlight_status
+  changed_when: false
+  failed_when: false
+
+- name: Schedule Nightlight
+  command: nightlight schedule 21:40 6:40
+  when: "'until' not in nightlight_status.stdout"

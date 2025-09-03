@@ -88,6 +88,7 @@ homebrew_installed_packages:
   - zsh-history-substring-search
   - git-interactive-rebase-tool
   - fileicon
+  - smudge/smudge/nightlight
   # - sevenzip # 7-Zip
 # homebrew_uninstalled_packages:
   # - doxygen
@@ -164,17 +165,17 @@ mas_email: "apple@carlosasj.dev"
 # mas_password: ""
 mas_signin_dialog: true
 mas_installed_apps:
-  - { id:  497799835, name: "Xcode", purchase: true }
-  - { id: 1352778147, name: "Bitwarden", purchase: true }
-  - { id:  937984704, name: "Amphetamine: keep-awake utility", purchase: true }
-  - { id: 1586435171, name: "Actions: Useful for Shortcuts", purchase: true }
-  - { id: 1351639930, name: "Gifski: Convert videos to quality GIFs", purchase: true }
-  - { id: 6450279539, name: "Second Clock: on the menu bar", purchase: true }
-  - { id: 1604176982, name: "One Thing", purchase: true }
-  - { id: 1444636541, name: "Photomator - Photo Editor", purchase: true }
-  - { id: 1355679052, name: "Dropover: Easier Drag & Drop", purchase: true }
-  - { id: 1522267256, name: "Shareful", purchase: true }
-  - { id: 6475134617, name: "Unsqueeze", purchase: true }
+  - { purchase: true, id:  497799835, name: "Xcode" }
+  - { purchase: true, id: 1352778147, name: "Bitwarden" }
+  - { purchase: true, id:  937984704, name: "Amphetamine: keep-awake utility" }
+  - { purchase: true, id: 1586435171, name: "Actions: Useful for Shortcuts" }
+  - { purchase: true, id: 1351639930, name: "Gifski: Convert videos to quality GIFs" }
+  - { purchase: true, id: 6450279539, name: "Second Clock: on the menu bar" }
+  - { purchase: true, id: 1604176982, name: "One Thing" }
+  - { purchase: true, id: 1444636541, name: "Photomator - Photo Editor" }
+  - { purchase: true, id: 1355679052, name: "Dropover: Easier Drag & Drop" }
+  - { purchase: true, id: 1522267256, name: "Shareful" }
+  - { purchase: true, id: 6475134617, name: "Unsqueeze" }
 
 remove_quarantine:
   - /Applications/Battery Toolkit.app
@@ -233,9 +234,9 @@ dockitems_persist_apps:
 
 dockitems_persist_others:
   - { name: "Inbox",              path: "~/Inbox",       view: "fan",  display: "folder", sort: "dateadded" }
+  - { name: "Downloads",          path: "~/Downloads",   view: "grid", display: "folder", sort: "dateadded" }
   - { style: 'small-spacer',      path: '' }
   - { name: "Screenshots",        path: "~/Screenshots", view: "grid", display: "folder", sort: "dateadded" }
-  - { name: "Downloads",          path: "~/Downloads",   view: "grid", display: "folder", sort: "dateadded" }
   - { style: 'small-spacer',      path: '' }
 
 configure_share_services: true

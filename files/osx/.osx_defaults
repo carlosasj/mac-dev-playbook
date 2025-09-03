@@ -121,6 +121,10 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Disable extra space when pasting
 defaults write com.apple.TextEdit SmartCopyPaste -bool false
 
+# Set menu bar font size to large
+defaults write NSGlobalDomain AppleMenuBarFontSize -string large
+defaults write com.apple.Displays-Settings.extension showListByDefault -int 1
+
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
@@ -214,7 +218,12 @@ defaults write NSGlobalDomain AppleMetricUnits -bool true
 defaults write com.apple.Accessibility AccessibilityEnabled -int 1
 defaults write com.apple.Accessibility ApplicationAccessibilityEnabled -int 1
 defaults write com.apple.Accessibility GenericAccessibilityClientEnabled -int 1
-defaults write com.apple.Accessibility GenericAccessibilityClientEnabled -int 1
+
+defaults write com.apple.Accessibility differentiateWithoutColor -int 1
+defaults write com.apple.universalaccess differentiateWithoutColor -int 1
+
+defaults write com.apple.universalaccess showToolbarButtonShapes -int 1
+defaults write com.apple.universalaccess mouseDriverCursorSize -float 1.2
 
 # Accessibility zoom
 defaults write com.apple.AppleMultitouchTrackpad HIDScrollZoomModifierMask -int 524288
