@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# set -eux
+set -eu
+# set -x
 set -o pipefail
 
 # Mac OS X configuration
@@ -86,6 +87,6 @@ sudo_defaults write com.apple.addressbook ABShowDebugMenu -bool true
 # Disable Spotlight indexing for any volume that gets mounted and has not yet
 # been indexed before.
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo_defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+# sudo_defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 
 echo -e "Done. Note that some of these changes require a logout/restart to take effect.\n"

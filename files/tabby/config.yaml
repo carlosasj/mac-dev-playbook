@@ -231,7 +231,6 @@ terminal:
   font: FiraCode Nerd Font
   warnOnMultilinePaste: false
   minimumContrastRatio: 10
-  ligatures: true
 ssh: {}
 clickableLinks: {}
 accessibility:

@@ -11,13 +11,13 @@ sync_back:
 	sh make/make_sync_back.sh
 
 defaults:
-  sh files/osx/.osx_defaults
+	./files/osx/.osx_defaults
 
 defaults_sudo:
-  sh files/osx/.osx_defaults_sudo
+	./files/osx/.osx_defaults_sudo
 
 delicate:
-  sh files/osx/.osx_delicate
+	./files/osx/.osx_delicate
 
-destructive!:
-  sh files/osx/.osx_destructive
+destructive:
+	./files/osx/.osx_destructive

@@ -74,11 +74,13 @@ dotfiles_files:
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
   # - autoconf
+  - asdf # package manager
   - bash-completion
   - gettext
   - git
   - go
   - gpg
+  - gawk # nodejs dependency
   - jq
   # - nmap
   # - node
@@ -91,19 +93,19 @@ homebrew_installed_packages:
   - smudge/smudge/nightlight
   # - sevenzip # 7-Zip
 # homebrew_uninstalled_packages:
-  # - doxygen
-  # - gifsicle
-  # - gh
-  # - httpie
-  # - iperf
-  # # - libevent
-  # # - sqlite
-  # - php
-  # - pngpaste
-  # - ssh-copy-id
-  # # - readline
-  # - pv
-  # - wrk
+#   - doxygen
+#   - gifsicle
+#   - gh
+#   - httpie
+#   - iperf
+#   - libevent
+#   - sqlite
+#   - php
+#   - pngpaste
+#   - ssh-copy-id
+#   - readline
+#   - pv
+#   - wrk
 
 homebrew_taps:
   - mhaeuser/mhaeuser

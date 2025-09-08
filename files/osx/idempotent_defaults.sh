@@ -34,9 +34,9 @@ defaults() {
 	# Read current value
 	local current
 	if [[ -n "$currentHost" ]]; then
-		current=$(command defaults -currentHost read "$domain" "$key" 2>/dev/null)
+		current=$(command defaults -currentHost read "$domain" "$key" 2>/dev/null || echo "[undefined]")
 	else
-		current=$(command defaults read "$domain" "$key" 2>/dev/null)
+		current=$(command defaults read "$domain" "$key" 2>/dev/null || echo "[undefined]")
 	fi
 
 	# Normalize types for comparison
@@ -76,5 +76,5 @@ defaults() {
 
 sudo_defaults() {
 	# Run the current script's defaults function as root
-	sudo bash -c "source ./idempotent_defaults.sh; defaults $*"
+	sudo bash -c "source '$(dirname "$0")/idempotent_defaults.sh'; defaults $*"
 }

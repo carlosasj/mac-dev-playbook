@@ -24,7 +24,7 @@
 # --skip-tags once-in-a-blue-moon
 - name: Sidebar configuration
   include_tasks: "tasks/finder-sidebar.yml"
-  tags: ['once-in-a-blue-moon']
+  tags: ['once-in-a-blue-moon', 'finder-sidebar']
 
 # Ignore this by including the flag:
 # --skip-tags once-in-a-blue-moon
