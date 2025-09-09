@@ -1470,7 +1470,7 @@
                                 "from": {
                                     "key_code": "left_arrow",
                                     "modifiers": {
-                                        "mandatory": ["control"],
+                                        "mandatory": ["option"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -1501,7 +1501,7 @@
                                 "from": {
                                     "key_code": "right_arrow",
                                     "modifiers": {
-                                        "mandatory": ["control"],
+                                        "mandatory": ["option"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -2252,7 +2252,7 @@
                                 ],
                                 "from": {
                                     "key_code": "period",
-                                    "modifiers": { "mandatory": ["option"] }
+                                    "modifiers": { "mandatory": ["control"] }
                                 },
                                 "to": [
                                     {
