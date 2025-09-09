@@ -38,7 +38,6 @@ sidebar_items_activated:
   - "Desktop"
   - "Documents"
   - "Downloads"
-  - "schneider"
   - "M1"
 
 sidebar_items_deactivated:
@@ -48,6 +47,8 @@ sidebar_items_deactivated:
   - "Pictures"
 
 sidebar_items_extra:
+  - "{{ ansible_env.HOME }}"
+  - "{{ ansible_env.HOME }}/git"
   - "{{ ansible_env.HOME }}/Inbox"
   - "{{ ansible_env.HOME }}/Outbox"
   - "{{ ansible_env.HOME }}/Screenshots"
@@ -59,6 +60,8 @@ dotfiles_repo_version: master # Replace with your default branch
 dotfiles_files:
   - .aliases
   - .bashrc
+  - .config/mise/config.toml
+  - .functions
   - .gitconfig
   - .gitignore_global
   - .load_homebrew
@@ -69,19 +72,19 @@ dotfiles_files:
   - .load_tabby
   - .profile
   - .vimrc
+  - .zprofile
   - .zshrc
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
   # - autoconf
-  - asdf # package manager
   - bash-completion
   - gettext
   - git
   - go
   - gpg
-  - gawk # nodejs dependency
   - jq
+  - mise
   # - nmap
   # - node
   # - nvm
