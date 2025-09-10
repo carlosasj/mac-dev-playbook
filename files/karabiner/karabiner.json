@@ -1601,10 +1601,7 @@
                             {
                                 "from": {
                                     "key_code": "spacebar",
-                                    "modifiers": {
-                                        "mandatory": ["left_command"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["left_command"] }
                                 },
                                 "to": [
                                     {
@@ -1617,10 +1614,7 @@
                             {
                                 "from": {
                                     "key_code": "spacebar",
-                                    "modifiers": {
-                                        "mandatory": ["left_control"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["left_control"] }
                                 },
                                 "to": [
                                     {
@@ -1725,6 +1719,7 @@
                     },
                     {
                         "description": "PC-Style switch desktops",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -1857,10 +1852,7 @@
                                 ],
                                 "from": {
                                     "key_code": "left_arrow",
-                                    "modifiers": {
-                                        "mandatory": ["command"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["command"] }
                                 },
                                 "to": [
                                     {
@@ -1917,10 +1909,7 @@
                                 ],
                                 "from": {
                                     "key_code": "right_arrow",
-                                    "modifiers": {
-                                        "mandatory": ["command"],
-                                        "optional": ["any"]
-                                    }
+                                    "modifiers": { "mandatory": ["command"] }
                                 },
                                 "to": [
                                     {
@@ -2216,6 +2205,7 @@
                     },
                     {
                         "description": "PC-Style Emoji Picker (Opt+.)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
