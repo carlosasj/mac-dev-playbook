@@ -20,4 +20,4 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 echo -e "\n\nBECOME username: root"
 # echo -e   "BECOME password: "
 
-ansible-playbook main.yml --ask-become-pass
+ansible-playbook main.yml --ask-become-pass -v "$@"

@@ -32,4 +32,4 @@ else
 fi
 
 echo -e "\n\nBECOME username: root"
-ansible-playbook main.yml --ask-become-pass -v
+ansible-playbook main.yml --ask-become-pass -v "$@"
