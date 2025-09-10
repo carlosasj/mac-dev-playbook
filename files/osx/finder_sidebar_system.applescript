@@ -9,6 +9,7 @@ tell application "System Events"
 		click menu item "Settings…" of menu 1 of menu bar item "Finder" of menu bar 1
 		repeat until exists window "Finder Settings"
 		end repeat
+		set frontmost to true
 
 		click button "Sidebar" of toolbar 1 of window "Finder Settings"
 

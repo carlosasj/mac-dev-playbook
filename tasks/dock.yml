@@ -14,7 +14,7 @@
 #     value: []
 
 - name: Process each dock item (apps, folders, and spacers)
-  ansible.builtin.include_tasks: block-add-and-position.yml
+  ansible.builtin.include_tasks: tasks/osx/block-add-and-position.yml
   loop: "{{ dockitems_persist_apps }}"
   loop_control:
     extended: true
@@ -23,7 +23,7 @@
     section: apps
 
 - name: Process each dock item (apps, folders, and spacers)
-  ansible.builtin.include_tasks: block-add-and-position.yml
+  ansible.builtin.include_tasks: tasks/osx/block-add-and-position.yml
   loop: "{{ dockitems_persist_others }}"
   loop_control:
     extended: true

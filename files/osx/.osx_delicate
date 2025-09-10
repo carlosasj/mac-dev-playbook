@@ -62,8 +62,8 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
-# Stop iTunes from responding to the keyboard media keys
-launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+# Stop iTunes (and the rest of the system too) from responding to the keyboard media keys
+# launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
 ###############################################################################
 # Energy saving                                                               #

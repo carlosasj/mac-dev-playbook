@@ -3,11 +3,12 @@ on run argv
 		if window 1 exists then
 			-- skip
 		else
-			open "/Users" as POSIX file
+			open first item of argv as POSIX file
 			delay 0.5
 		end if
 		activate
-		set target of front window to (POSIX file "/Users")
+		tell application "System Events" to set frontmost of process "Finder" to true
+		set target of front window to (POSIX file (first item of argv)) as alias
 	end tell
 
 	delay 0.25
