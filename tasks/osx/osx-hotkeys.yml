@@ -5,6 +5,14 @@
     /usr/libexec/PlistBuddy -c "Print :AppleSymbolicHotKeys:{{ item }}:enabled" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || echo "not_found"
   loop:
     - 9   # Ctrl + F4 / Focus next window
+    - 16  #
+    - 18  #
+    - 20  #
+    - 21  #
+    - 22  #
+    - 24  #
+    - 25  #
+    - 26  #
     - 27  # Cmd + ` / Focus next window
     - 33  # Ctrl + _ + _ /
     - 52  # Turn Dock hiding on/off
@@ -14,9 +22,19 @@
     - 61  # Ctrl + Shift + Space / Previous Input Source
     - 64  # Cmd + Space / Spotlight
     - 65  # Cmd + Option + Space / Finder Search
+    - 79 #
+    - 81 #
+    - 118 #
     - 119 # Ctrl + _ + _ /
     - 120 # Ctrl + _ + _ /
-    - 190 #
+    - 160 #
+    - 164 #
+    - 190 # Fn +
+    - 233 #
+    - 235 #
+    - 237 #
+    - 238 #
+    - 239 #
   register: hotkey_status
   ignore_errors: true
   changed_when: false
@@ -30,3 +48,31 @@
     {% endif %}
   loop: "{{ hotkey_status.results }}"
   when: item.stdout != "false"
+
+- name: Get NSUserKeyEquivalents
+  ansible.builtin.shell: |
+    /usr/libexec/PlistBuddy -c "Print :NSUserKeyEquivalents:'{{ item[1] }}'" {{ item[0] }} 2>/dev/null || echo "not_found"
+  loop:
+    - ["~/Library/Preferences/.GlobalPreferences.plist", "Emoji & Symbols", "^."] # Meta + .
+    - ["~/Library/Preferences/com.apple.Safari.plist", "Show All History", "@h"] # Cmd + H
+    - ["~/Library/Preferences/org.mozilla.firefox.plist", "Show All History", "@h"] # Cmd + H
+    # - ["~/Library/Preferences/org.mozilla.nightly.plist", "Show All History", "@h"] # Cmd + H
+    # - ["~/Library/Preferences/com.brave.Browser.plist", "Show Full History", "@h"] # Cmd + H
+    # - ["~/Library/Preferences/com.google.chrome.plist", "Show Full History", "@h"] # Cmd + H
+    - ["~/Library/Preferences/com.google.Chrome.plist", "Show Full History", "@h"] # Cmd + H
+    - ["~/Library/Preferences/com.apple.finder.plist", "Rename", ""] # F2
+    - ["~/Library/Preferences/com.apple.finder.plist", "Back", "~←"] # Alt + Left Arrow
+    - ["~/Library/Preferences/com.apple.finder.plist", "Forward", "~→"] # Alt + Right Arrow
+  register: custom_hotkey_status
+  ignore_errors: true
+  changed_when: false
+
+- name: Set macOS custom hotkeys
+  ansible.builtin.shell: |
+    {% if item.stdout == "not_found" %}
+    /usr/libexec/PlistBuddy -c "Add :NSUserKeyEquivalents:'{{ item.item[1] }}' string \"{{ item.item[2] }}\"" {{ item.item[0] }}
+    {% else %}
+    /usr/libexec/PlistBuddy -c "Set :NSUserKeyEquivalents:'{{ item.item[1] }}' \"{{ item.item[2] }}\"" {{ item.item[0] }}
+    {% endif %}
+  loop: "{{ custom_hotkey_status.results }}"
+  when: item.stdout != item.item[2]
