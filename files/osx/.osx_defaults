@@ -116,6 +116,10 @@ defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 # Disable smart quotes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
+# Set regular quotes for double and single quotes
+defaults write NSGlobalDomain KB_SingleQuoteOption -string "'abc'"
+defaults write NSGlobalDomain KB_DoubleQuoteOption -string "\"abc\""
+
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
@@ -192,8 +196,8 @@ defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 16
+defaults write NSGlobalDomain KeyRepeat -float 1.75
+defaults write NSGlobalDomain InitialKeyRepeat -int 24
 
 # Number of entries in Recent Items menus
 defaults write NSGlobalDomain NSRecentDocumentsLimit -int 0
@@ -753,40 +757,49 @@ fi
 
 # Ice Bar
 if [[ -f '/Applications/Ice.app' ]]; then
-  defaults write com.jordanbaird.Ice UseIceBar -int 1
+  defaults write com.jordanbaird.Ice UseIceBar -bool false # false = inline, true = separate bar
   defaults write com.jordanbaird.Ice IceBarLocation -int 2
+  defaults write com.jordanbaird.Ice ItemSpacingOffset -float -8.0
+  defaults write com.jordanbaird.Ice EnableAlwaysHiddenSection -int 1
+  defaults write com.jordanbaird.Ice CanToggleAlwaysHiddenSection -int 1
   defaults write com.jordanbaird.Ice ShowOnClick -int 1
   defaults write com.jordanbaird.Ice ShowOnScroll -int 1
   defaults write com.jordanbaird.Ice ShowOnHover -int 0
   defaults write com.jordanbaird.Ice ShowOnHoverDelay -float 0
-  defaults write com.jordanbaird.Ice CanToggleAlwaysHiddenSection -int 1
-  defaults write com.jordanbaird.Ice EnableAlwaysHiddenSection -int 1
+  defaults write com.jordanbaird.Ice TempShowInterval -float 15.0
+  defaults write com.jordanbaird.Ice ShowSectionDividers -bool false
+  defaults write com.jordanbaird.Ice AutoRehide -bool true
+  defaults write com.jordanbaird.Ice RehideStrategy -int 0
+  defaults write com.jordanbaird.Ice RehideInterval -float 15.0
+  defaults write com.jordanbaird.Ice SUAutomaticallyUpdate -bool true
+  defaults write com.jordanbaird.Ice SUSendProfileInfo -bool false
+  defaults write com.jordanbaird.Ice ShowAllSectionsOnUserDrag -bool true
 fi
 
 # Maccy
 if [[ -f '/Applications/Maccy.app' ]]; then
-  defaults write com.jordanbaird.Ice KeyboardShortcuts_popup -string '{"carbonModifiers":2048,"carbonKeyCode":9}' # Opt+V
-  defaults write com.jordanbaird.Ice KeyboardShortcuts_pin -string '{"carbonModifiers":2048,"carbonKeyCode":35}' # Opt+P
-  defaults write com.jordanbaird.Ice KeyboardShortcuts_delete -string '{"carbonModifiers":2048,"carbonKeyCode":51}' # Opt+Backspace
-  defaults write com.jordanbaird.Ice SUEnableAutomaticChecks -int 1
-  defaults write com.jordanbaird.Ice popupPosition -string cursor
-  defaults write com.jordanbaird.Ice sortBy -string firstCopiedAt
-  defaults write com.jordanbaird.Ice searchMode -string regexp
-  defaults write com.jordanbaird.Ice highlightMatch -string color
-  defaults write com.jordanbaird.Ice showSpecialSymbols -int 1
-  defaults write com.jordanbaird.Ice showTitle -int 0 # Don't show Maccy logo at the top
-  defaults write com.jordanbaird.Ice showFooter -int 1
-  defaults write com.jordanbaird.Ice showApplicationIcons -int 1
-  defaults write com.jordanbaird.Ice historySize -int 1000
-  defaults write com.jordanbaird.Ice pasteByDefault -int 1
-  defaults write com.jordanbaird.Ice previewDelay -int 100
-  defaults write com.jordanbaird.Ice removeFormattingByDefault -int 0
-  defaults write com.jordanbaird.Ice imageMaxHeight -int 14 # so each image item has the same height as the text items
-  defaults write com.jordanbaird.Ice menuIcon -string clipboard
-  defaults write com.jordanbaird.Ice showRecentCopyInMenuBar -int 0
-  defaults write com.jordanbaird.Ice "NSStatusItem Visible Item-0" -int 0
-  defaults write com.jordanbaird.Ice showInStatusBar -int 0
-  defaults write com.jordanbaird.Ice ignoredApps -array "com.bitwarden.desktop"
+  defaults write org.p0deje.Maccy KeyboardShortcuts_popup -string '{"carbonModifiers":2048,"carbonKeyCode":9}' # Opt+V
+  defaults write org.p0deje.Maccy KeyboardShortcuts_pin -string '{"carbonModifiers":2048,"carbonKeyCode":35}' # Opt+P
+  defaults write org.p0deje.Maccy KeyboardShortcuts_delete -string '{"carbonModifiers":2048,"carbonKeyCode":51}' # Opt+Backspace
+  defaults write org.p0deje.Maccy SUEnableAutomaticChecks -int 1
+  defaults write org.p0deje.Maccy popupPosition -string cursor
+  defaults write org.p0deje.Maccy sortBy -string firstCopiedAt
+  defaults write org.p0deje.Maccy searchMode -string regexp
+  defaults write org.p0deje.Maccy highlightMatch -string color
+  defaults write org.p0deje.Maccy showSpecialSymbols -int 1
+  defaults write org.p0deje.Maccy showTitle -int 0 # Don't show Maccy logo at the top
+  defaults write org.p0deje.Maccy showFooter -int 1
+  defaults write org.p0deje.Maccy showApplicationIcons -int 1
+  defaults write org.p0deje.Maccy historySize -int 999
+  defaults write org.p0deje.Maccy pasteByDefault -int 1
+  defaults write org.p0deje.Maccy previewDelay -int 100
+  defaults write org.p0deje.Maccy removeFormattingByDefault -int 0
+  defaults write org.p0deje.Maccy imageMaxHeight -int 14 # so each image item has the same height as the text items
+  defaults write org.p0deje.Maccy menuIcon -string clipboard
+  defaults write org.p0deje.Maccy showRecentCopyInMenuBar -int 0
+  defaults write org.p0deje.Maccy "NSStatusItem Visible Item-0" -int 0
+  defaults write org.p0deje.Maccy showInStatusBar -int 0
+  defaults write org.p0deje.Maccy ignoredApps -array "com.bitwarden.desktop"
 fi
 
 # Localsend
