@@ -1420,6 +1420,103 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "CapsLock (Tap: Tabby; hold: open app)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": { "mandatory": ["caps_lock"] }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'tell application \"Visual Studio Code\" to activate'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": { "mandatory": ["caps_lock"] }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'tell application \"Firefox\" to activate'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["caps_lock"] }
+                                },
+                                "to": [{ "shell_command": "open '/Applications/Home Assistant.app'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": { "mandatory": ["caps_lock"] }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'tell application \"Reminders\" to activate'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": { "mandatory": ["caps_lock"] }
+                                },
+                                "to": [{ "shell_command": "open '/Applications/WhatsApp.app'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": { "mandatory": ["caps_lock"] }
+                                },
+                                "to": [{ "shell_command": "open '/Applications/Bitwarden.app'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["caps_lock"] }
+                                },
+                                "to": [{ "shell_command": "osascript -e 'tell application \"System Settings\" to activate'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["caps_lock"] }
+                                },
+                                "to": [{ "shell_command": "open '/Applications/Karabiner-Elements.app'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "caps_lock",
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    { "key_code": "caps_lock" },
+                                    { "key_code": "f20" }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Open Launchpad when Meta is tapped",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "left_control" },
+                                "to": [{ "key_code": "left_control" }],
+                                "to_if_alone": [{ "key_code": "launchpad" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Shift+Delete => Cmd+opt+backspace (Delete permanently) (Only in Finder)",
                         "manipulators": [
                             {
@@ -2825,10 +2922,6 @@
             "name": "Windows Profile (Shift keys)",
             "selected": true,
             "simple_modifications": [
-                {
-                    "from": { "key_code": "caps_lock" },
-                    "to": [{ "key_code": "f20" }]
-                },
                 {
                     "from": { "key_code": "right_command" },
                     "to": [{ "key_code": "left_command" }]
