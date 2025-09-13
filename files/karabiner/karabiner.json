@@ -1423,84 +1423,114 @@
                         "description": "CapsLock (Tap: Tabby; hold: open app)",
                         "manipulators": [
                             {
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": { "mandatory": ["caps_lock"] }
-                                },
+                                "from": { "key_code": "caps_lock" },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "key_up_value": false,
+                                            "name": "cl_pressed",
+                                            "value": true
+                                        }
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "f20" }],
+                                "to_if_held_down": [{ "key_code": "caps_lock" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cl_pressed",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "c" },
                                 "to": [{ "shell_command": "osascript -e 'tell application \"Visual Studio Code\" to activate'" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "f",
-                                    "modifiers": { "mandatory": ["caps_lock"] }
-                                },
+                                "conditions": [
+                                    {
+                                        "name": "cl_pressed",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "f" },
                                 "to": [{ "shell_command": "osascript -e 'tell application \"Firefox\" to activate'" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["caps_lock"] }
-                                },
-                                "to": [{ "shell_command": "open '/Applications/Home Assistant.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "r",
-                                    "modifiers": { "mandatory": ["caps_lock"] }
-                                },
-                                "to": [{ "shell_command": "osascript -e 'tell application \"Reminders\" to activate'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": { "mandatory": ["caps_lock"] }
-                                },
-                                "to": [{ "shell_command": "open '/Applications/WhatsApp.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "v",
-                                    "modifiers": { "mandatory": ["caps_lock"] }
-                                },
-                                "to": [{ "shell_command": "open '/Applications/Bitwarden.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": { "mandatory": ["caps_lock"] }
-                                },
-                                "to": [{ "shell_command": "osascript -e 'tell application \"System Settings\" to activate'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "k",
-                                    "modifiers": { "mandatory": ["caps_lock"] }
-                                },
-                                "to": [{ "shell_command": "open '/Applications/Karabiner-Elements.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
+                                "conditions": [
                                     {
-                                        "key_code": "caps_lock",
-                                        "lazy": true
+                                        "name": "cl_pressed",
+                                        "type": "variable_if",
+                                        "value": true
                                     }
                                 ],
-                                "to_if_alone": [
-                                    { "key_code": "caps_lock" },
-                                    { "key_code": "f20" }
+                                "from": { "key_code": "h" },
+                                "to": [{ "shell_command": "osascript ~/git/mac-dev-playbook/files/osx/toggle_hide_singlewindow_app.applescript 'Home Assistant'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cl_pressed",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
                                 ],
+                                "from": { "key_code": "r" },
+                                "to": [{ "shell_command": "osascript ~/git/mac-dev-playbook/files/osx/toggle_hide_singlewindow_app.applescript Reminders" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cl_pressed",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "w" },
+                                "to": [{ "shell_command": "osascript ~/git/mac-dev-playbook/files/osx/toggle_hide_singlewindow_app.applescript WhatsApp'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cl_pressed",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "v" },
+                                "to": [{ "shell_command": "osascript ~/git/mac-dev-playbook/files/osx/toggle_hide_singlewindow_app.applescript Bitwarden" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cl_pressed",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "s" },
+                                "to": [{ "shell_command": "osascript ~/git/mac-dev-playbook/files/osx/toggle_hide_singlewindow_app.applescript 'System Settings'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "cl_pressed",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": { "key_code": "k" },
+                                "to": [{ "shell_command": "osascript ~/git/mac-dev-playbook/files/osx/toggle_hide_singlewindow_app.applescript Karabiner-Elements" }],
                                 "type": "basic"
                             }
                         ]
