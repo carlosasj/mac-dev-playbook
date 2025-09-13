@@ -181,7 +181,6 @@ mas_installed_apps:
   - { purchase: true, id: 1351639930, name: "Gifski: Convert videos to quality GIFs" }
   - { purchase: true, id: 6450279539, name: "Second Clock: on the menu bar" }
   - { purchase: true, id: 1604176982, name: "One Thing" }
-  - { purchase: true, id: 1444636541, name: "Photomator - Photo Editor" }
   - { purchase: true, id: 1355679052, name: "Dropover: Easier Drag & Drop" }
   - { purchase: true, id: 1522267256, name: "Shareful" }
   - { purchase: true, id: 6475134617, name: "Unsqueeze" }
