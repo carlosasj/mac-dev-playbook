@@ -802,6 +802,70 @@ if [[ -f '/Applications/Maccy.app' ]]; then
   defaults write org.p0deje.Maccy ignoredApps -array "com.bitwarden.desktop"
 fi
 
+# Rectangle
+if [[ -f '/Applications/Rectangle.app' ]]; then
+  # Halves
+  defaults write com.knollsoft.Rectangle leftHalf -dict # empty
+  defaults write com.knollsoft.Rectangle rightHalf -dict # empty
+  defaults write com.knollsoft.Rectangle topHalf -dict # empty
+  defaults write com.knollsoft.Rectangle bottomHalf -dict # empty
+
+  # Quarters
+  defaults write com.knollsoft.Rectangle topLeft -dict # empty
+  defaults write com.knollsoft.Rectangle bottomLeft -dict # empty
+  defaults write com.knollsoft.Rectangle topRight -dict # empty
+  defaults write com.knollsoft.Rectangle bottomRight -dict # empty
+
+  # Thirds
+  defaults write com.knollsoft.Rectangle firstThird -dict # empty
+  defaults write com.knollsoft.Rectangle centerThird -dict # empty
+  defaults write com.knollsoft.Rectangle lastThird -dict # empty
+  defaults write com.knollsoft.Rectangle firstTwoThirds -dict # empty
+  defaults write com.knollsoft.Rectangle centerTwoThirds -dict # empty
+  defaults write com.knollsoft.Rectangle lastTwoThirds -dict # empty
+
+  # Size/position Manipulation
+  defaults write com.knollsoft.Rectangle center -dict # empty
+  defaults write com.knollsoft.Rectangle larger -dict # empty
+  defaults write com.knollsoft.Rectangle smaller -dict # empty
+  defaults write com.knollsoft.Rectangle maximize -dict # empty
+  defaults write com.knollsoft.Rectangle maximizeHeight -dict # empty
+  defaults write com.knollsoft.Rectangle restore -dict # empty
+  defaults write com.knollsoft.Rectangle nextDisplay -dict # empty
+  defaults write com.knollsoft.Rectangle previousDisplay -dict # empty
+
+  defaults write com.knollsoft.Rectangle doubleClickTitleBar -int 3 # 3 = true
+  defaults write com.knollsoft.Rectangle internalTilingNotified -bool true
+  # defaults write com.knollsoft.Rectangle allowAnyShortcut -bool false
+  defaults write com.knollsoft.Rectangle SUEnableAutomaticChecks -bool false
+  defaults write com.knollsoft.Rectangle unsnapRestore -int 3 # 2 = false, 3 = true
+  defaults write com.knollsoft.Rectangle hapticFeedbackOnSnap -int 2 # 2 = false
+  defaults write com.knollsoft.Rectangle todo -int 2 # 2 = false
+fi
+
+# Input Source Pro
+if [[ -f '/Applications/Input Source Pro.app' ]]; then
+  defaults write com.runjuu.Input-Source-Pro isEnableAlwaysOnIndicator -bool false
+  defaults write com.runjuu.Input-Source-Pro isAutoAppearanceMode -bool true
+  defaults write com.runjuu.Input-Source-Pro isActiveWhenSwitchInputSource -bool true
+  defaults write com.runjuu.Input-Source-Pro isDetectSpotlightLikeApp -bool true
+  defaults write com.runjuu.Input-Source-Pro isActiveWhenFocusedElementChanges -bool false
+  defaults write com.runjuu.Input-Source-Pro isActiveWhenSwitchApp -bool false
+  defaults write com.runjuu.Input-Source-Pro isEnableURLSwitchForFirefox -bool true
+
+  defaults write com.runjuu.Input-Source-Pro appearanceMode -string "Dark"
+  defaults write com.runjuu.Input-Source-Pro systemWideDefaultKeyboardId -string "com.apple.keylayout.Brazilian-Pro"
+  defaults write com.runjuu.Input-Source-Pro browserAddressDefaultKeyboardId -string "com.apple.keylayout.Brazilian-Pro"
+
+  defaults write com.runjuu.Input-Source-Pro indicatorPositionSpacing -string '{"base":1}'
+  defaults write com.runjuu.Input-Source-Pro indicatorPosition -string '{"base":"windowCorner"}'
+  defaults write com.runjuu.Input-Source-Pro indicatorInfo -string '{"base":"iconOnly"}'
+  defaults write com.runjuu.Input-Source-Pro indicatorSize -string '{"base":2}'
+  defaults write com.runjuu.Input-Source-Pro indicatorForgeground -string '{"dark":"0000007f","light":"000000ff"}'
+  defaults write com.runjuu.Input-Source-Pro indicatorBackground -string '{"dark":"f4f7ff7f","light":"fffffff2"}'
+  defaults write com.runjuu.Input-Source-Pro indicatorPositionAlignment -string '{"base":1}'
+fi
+
 # Localsend
 if [[ -f '/Applications/Localsend.app' ]]; then
   defaults write org.localsend.localsendApp flutter.ls_alias -string "$(scutil --get ComputerName)"
