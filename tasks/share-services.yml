@@ -17,3 +17,55 @@
   ansible.builtin.command: pluginkit -e use -i {{ item }}
   loop: "{{ share_services_enabled }}"
   when: "'-    ' + item in pluginkit_output.stdout" # when it exists as disabled
+
+- name: Get disabled services status
+  command: /usr/libexec/PlistBuddy -c 'Print :NSServicesStatus:"{{ item }}":enabled_services_menu' ~/Library/Preferences/pbs.plist
+  register: disabled_services_status
+  changed_when: false
+  failed_when: false
+  loop:
+    - "com.apple.ChineseTextConverterService - Convert Text from Simplified to Traditional Chinese - convertTextToTraditionalChinese"
+    - "com.apple.ChineseTextConverterService - Convert Text from Traditional to Simplified Chinese - convertTextToSimplifiedChinese"
+    - "com.apple.Stickies - Make Sticky - makeStickyFromTextService"
+    - "com.apple.mail - Mail/New Email To Address - mailTo"
+    - "com.apple.mail - Mail/New Email With Selection - mailSelection"
+    - "com.apple.services.setDesktopPicture - Set Desktop Picture - runWorkflowAsService"
+
+- name: Disable Services
+  loop: "{{ disabled_services_status.results }}"
+  when: item.stdout != "false" and item.stdout != "0"
+  command:
+    cmd: >-
+      defaults write pbs NSServicesStatus -dict-add '{{ item.item }}' '{
+            "enabled_context_menu" = 0;
+            "enabled_services_menu" = 0;
+            "presentation_modes" =             {
+                ContextMenu = 0;
+                ServicesMenu = 0;
+            };
+        }'
+
+- name: Get enabled services status
+  command: /usr/libexec/PlistBuddy -c 'Print :NSServicesStatus:"{{ item }}":enabled_services_menu' ~/Library/Preferences/pbs.plist
+  register: enabled_services_status
+  changed_when: false
+  failed_when: false
+  loop:
+    - "com.apple.BluetoothFileExchange - Send File To Bluetooth Device - sendFileUsingBluetoothOBEXService"
+    - "com.apple.FileMerge - FileMerge/Compare Files - diffFilesService"
+    - "com.apple.SummaryService - Summarize - doSummarization"
+    - "org.localsend.localsendApp - Send to LocalSend - handleTextDropEvent"
+
+- name: Enable Services
+  loop: "{{ enabled_services_status.results }}"
+  when: item.stdout != "true" and item.stdout != "1"
+  command:
+    cmd: >-
+      defaults write pbs NSServicesStatus -dict-add '{{ item.item }}' '{
+            "enabled_context_menu" = 1;
+            "enabled_services_menu" = 1;
+            "presentation_modes" =             {
+                ContextMenu = 1;
+                ServicesMenu = 1;
+            };
+        }'
