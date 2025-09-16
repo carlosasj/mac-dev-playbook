@@ -803,9 +803,13 @@ fi
 
 # Maccy
 if [[ -f '/Applications/Maccy.app' || -d '/Applications/Maccy.app' ]]; then
-  defaults write org.p0deje.Maccy KeyboardShortcuts_popup -string '{"carbonModifiers":2048,"carbonKeyCode":9}' # Opt+V
-  defaults write org.p0deje.Maccy KeyboardShortcuts_pin -string '{"carbonModifiers":2048,"carbonKeyCode":35}' # Opt+P
-  defaults write org.p0deje.Maccy KeyboardShortcuts_delete -string '{"carbonModifiers":2048,"carbonKeyCode":51}' # Opt+Backspace
+  # Carbon Modifiers:
+  # 2048 = Option
+  # 4096 = Control
+
+  defaults write org.p0deje.Maccy KeyboardShortcuts_popup -string '{"carbonModifiers":4096,"carbonKeyCode":9}' # Opt+V
+  defaults write org.p0deje.Maccy KeyboardShortcuts_pin -string '{"carbonModifiers":4096,"carbonKeyCode":35}' # Opt+P
+  defaults write org.p0deje.Maccy KeyboardShortcuts_delete -string '{"carbonModifiers":4096,"carbonKeyCode":51}' # Opt+Backspace
   defaults write org.p0deje.Maccy SUEnableAutomaticChecks -int 1
   defaults write org.p0deje.Maccy popupPosition -string cursor
   defaults write org.p0deje.Maccy sortBy -string firstCopiedAt

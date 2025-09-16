@@ -12,7 +12,7 @@
         - "{{ playbook_dir }}/config.yml"
       tags: ['always']
 
-    #  TODO: Put this after installing `mas` but before install any app 
+    #  TODO: Put this after installing `mas` but before install any app
     #- name: Pre-purchase Mac Store Apps
     #  import_tasks: tasks/pre-purchase-apps.yml
     #  tags: ['mas']
