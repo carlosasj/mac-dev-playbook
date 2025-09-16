@@ -38,6 +38,7 @@ sidebar_items_activated:
   - "Desktop"
   - "Documents"
   - "Downloads"
+  - "schneider"
   - "M1"
 
 sidebar_items_deactivated:
@@ -48,7 +49,6 @@ sidebar_items_deactivated:
   - "Pictures"
 
 sidebar_items_extra:
-  - "{{ ansible_env.HOME }}"
   - "{{ ansible_env.HOME }}/git"
   - "{{ ansible_env.HOME }}/Inbox"
   - "{{ ansible_env.HOME }}/Outbox"
@@ -147,7 +147,6 @@ homebrew_cask_apps:
   - stremio
   - thunderbird
   - nordvpn
-  - vlc
   - sublime-text
   - localsend
   - amethyst

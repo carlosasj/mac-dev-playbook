@@ -20,7 +20,7 @@ defaults() {
 	local domain="${args[1]}"
 	local key="${args[2]}"
 	local type="${args[3]}"
-	local new_value="${args[4]}"
+	local new_value="${args[4]:-}"
 
 	# we can't handle -array, -array-add, -dict and -dict-add; pass everything else through
 	if [[ "${type}" == "-array" || "${type}" == "-array-add" || "${type}" == "-dict" || "${type}" == "-dict-add" ]]; then

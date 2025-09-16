@@ -14,6 +14,7 @@
     - 25  #
     - 26  #
     - 27  # Cmd + ` / Focus next window
+    - 32  #
     - 33  # Ctrl + _ + _ /
     - 52  # Turn Dock hiding on/off
     - 53  # F14 / Decrease Brightness
@@ -35,6 +36,7 @@
     - 237 #
     - 238 #
     - 239 #
+    - 260 #
   register: hotkey_status
   ignore_errors: true
   changed_when: false
@@ -78,3 +80,23 @@
   when: item.stdout != item.item[2]
   register: set_custom_hotkey
   failed_when: set_custom_hotkey.rc >= 2
+
+- name: Get com.apple.custommenu.apps
+  command: defaults read com.apple.universalaccess com.apple.custommenu.apps
+  register: custommenu_apps
+  changed_when: false
+
+- name: Ensure {{ item }} is marked as having custom hotkeys
+  when: "'{{ item }}' not in apple_languages.stdout"
+  community.general.osx_defaults:
+    domain: com.apple.universalaccess
+    key: com.apple.custommenu.apps
+    type: array
+    array_add: true
+    value: ["{{ item }}"]
+  loop:
+    - NSGlobalDomain
+    - com.apple.Safari
+    - org.mozilla.firefox
+    - com.google.Chrome
+    - com.apple.finder
