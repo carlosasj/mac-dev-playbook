@@ -231,8 +231,10 @@ terminal:
   font: FiraCode Nerd Font
   warnOnMultilinePaste: false
   minimumContrastRatio: 10
+  ligatures: true
 ssh: {}
-clickableLinks: {}
+clickableLinks:
+  modifier: altKey
 accessibility:
   animations: false
 appearance:
@@ -240,7 +242,6 @@ appearance:
   dock: bottom
   tabsInFullscreen: true
   dockAlwaysOnTop: false
-  dockHideOnBlur: true
   dockSpace: 0.93
 hacks: {}
 providerBlacklist: []
@@ -250,5 +251,6 @@ pluginBlacklist: []
 profileDefaults:
   ssh:
     disableDynamicTitle: true
+    type: ssh
 profileBlacklist: []
 enableAnalytics: false

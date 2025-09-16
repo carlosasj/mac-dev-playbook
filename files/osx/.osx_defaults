@@ -128,6 +128,8 @@ defaults write com.apple.TextEdit SmartCopyPaste -bool false
 
 # Set menu bar font size to large
 defaults write NSGlobalDomain AppleMenuBarFontSize -string large
+
+# Show display resolution as a list by default
 defaults write com.apple.Displays-Settings.extension showListByDefault -int 1
 
 ###############################################################################
@@ -384,8 +386,10 @@ defaults write com.apple.assistant.support "Search Queries Data Sharing Status" 
 ###############################################################################
 
 # Launchpad Layout
-defaults write com.apple.dock springboard-rows -int 8
-defaults write com.apple.dock springboard-columns -int 9
+if [ -f "/Applications/Launchpad.app" ]; then
+  defaults write com.apple.dock springboard-rows -int 8
+  defaults write com.apple.dock springboard-columns -int 9
+fi
 
 # Launchpad Show/Hide animation duration
 defaults write com.apple.dock springboard-show-duration -float 0.0625
