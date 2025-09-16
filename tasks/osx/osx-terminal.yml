@@ -8,6 +8,7 @@
   command: defaults read com.apple.terminal StringEncodings
   register: string_encodings
   changed_when: false
+  failed_when: false
 
 - name: Only use UTF-8 in Terminal.app
   community.general.osx_defaults:

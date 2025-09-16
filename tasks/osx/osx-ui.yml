@@ -23,6 +23,7 @@
   ansible.builtin.shell: defaults read com.apple.messageshelper.MessageController SOInputLineSettings
   register: so_input_line_settings
   changed_when: false
+  failed_when: false
 
 - name: Disable automatic emoji substitution (i.e. use plain text smileys)
   # This is a complex dict-add operation that might need special handling

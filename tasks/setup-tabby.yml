@@ -7,6 +7,11 @@
 
 - debug: var=tabby_symlink
 
+- name: Ensure ~/Library/Application Support/tabby directory exists
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/Library/Application Support/tabby"
+    state: directory
+
 - name: Create Tabby symbolic link
   ansible.builtin.file:
     src: "{{ playbook_dir }}/files/tabby/config.yaml"

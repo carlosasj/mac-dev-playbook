@@ -16,7 +16,7 @@
     key: AppleLanguages
     type: array
     array_add: true
-    value: "en-GB"
+    value: ["en-GB"]
 
 - name: Ensure language and text formats "pt-BR"
   when: "'pt-BR' not in apple_languages.stdout"
@@ -25,7 +25,7 @@
     key: AppleLanguages
     type: array
     array_add: true
-    value: "pt-BR"
+    value: ["pt-BR"]
 
 - name: Get AppleEnabledInputSources
   command: defaults read com.apple.HIToolbox AppleEnabledInputSources
@@ -51,6 +51,7 @@
   command: defaults read com.apple.HIToolbox AppleInputSourceHistory
   register: apple_input_source_history
   changed_when: false
+  failed_when: false
 
 - name: Add Brazilian keyboard layout to AppleInputSourceHistory
   when: "' ID\" = 72;' not in apple_input_source_history.stdout"
@@ -71,6 +72,7 @@
   command: defaults read com.apple.HIToolbox AppleSelectedInputSources
   register: apple_selected_input_sources
   changed_when: false
+  failed_when: false
 
 - name: Set Brazilian keyboard layout to AppleSelectedInputSources
   when: "' ID\" = 72;' not in apple_selected_input_sources.stdout"
@@ -90,6 +92,7 @@
   command: defaults read com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID
   register: apple_current_keyboard_layout_input_source_id
   changed_when: false
+  failed_when: false
 
 - name: Set Brazilian keyboard layout to AppleCurrentKeyboardLayoutInputSourceID
   when: "'Brazilian-Pro' not in apple_current_keyboard_layout_input_source_id.stdout"

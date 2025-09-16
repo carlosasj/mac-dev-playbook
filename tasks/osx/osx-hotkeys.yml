@@ -76,3 +76,5 @@
     {% endif %}
   loop: "{{ custom_hotkey_status.results }}"
   when: item.stdout != item.item[2]
+  register: set_custom_hotkey
+  failed_when: set_custom_hotkey.rc >= 2

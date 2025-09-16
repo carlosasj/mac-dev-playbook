@@ -5,6 +5,7 @@
   register: computer_name
   when: configure_machine_name
   changed_when: false
+  failed_when: false
 
 - name: Set ComputerName
   command: sudo scutil --set ComputerName "{{ configure_machine_name }}"
@@ -15,6 +16,7 @@
   register: host_name
   when: configure_machine_name
   changed_when: false
+  failed_when: false
 
 - name: Set HostName
   command: sudo scutil --set HostName "{{ configure_machine_name }}"
@@ -25,6 +27,7 @@
   register: local_host_name
   when: configure_machine_name
   changed_when: false
+  failed_when: false
 
 - name: Set LocalHostName
   command: sudo scutil --set LocalHostName "{{ configure_machine_name }}"
@@ -35,6 +38,7 @@
 #   register: netbios_name
 #   when: configure_machine_name
 #   changed_when: false
+#   failed_when: false
 
 # - name: Set Samba Server name
 #   community.general.osx_defaults:
@@ -51,3 +55,4 @@
   when:
     - configure_machine_name
     - (configure_machine_name != computer_name.stdout) or (configure_machine_name != host_name.stdout) or (configure_machine_name != local_host_name.stdout)
+  failed_when: false

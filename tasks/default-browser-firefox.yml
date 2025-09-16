@@ -4,6 +4,7 @@
     defaults read ~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure | awk -F'"' '/http;/{print window[(NR)-1]}{window[NR]=$2}'
   register: default_browser
   changed_when: false
+  failed_when: false
 
 - name: Debug default browser
   ansible.builtin.debug:

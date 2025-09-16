@@ -1,4 +1,22 @@
 ---
+- name: Check BetterDisplay is open
+  command:
+    cmd: ps -ax | grep -v grep | grep BetterDisplay
+  register: betterdisplay_is_open
+  changed_when: false
+  failed_when: false
+  
+- name: Ensure BetterDisplay is open
+  command:
+    cmd: open /Applications/BetterDisplay.app
+  register: display_mode_number
+  changed_when: false
+  when: betterdisplay_is_open.rc != 0
+
+- when: betterdisplay_is_open.rc != 0
+  pause:
+    seconds: 2
+
 - name: Get display mode number (it's kind of a multiplicator)
   command: betterdisplaycli get -name="Built-in Display" -displaymodenumber
   register: display_mode_number

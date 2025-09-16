@@ -8,16 +8,11 @@
   command: defaults read com.apple.finder FXInfoPanesExpanded
   register: info
   changed_when: false
+  failed_when: false
 
 - name: Expand the following File Info panes - "General", "Open with", and "Sharing & Permissions"
-  community.general.osx_defaults:
-    domain: com.apple.finder
-    key: FXInfoPanesExpanded
-    type: dict
-    value:
-      General: true
-      OpenWith: true
-      Privileges: true
+  command:
+    cmd: defaults write com.apple.finder FXInfoPanesExpanded '{ General = 1; OpenWith = 1; Privileges = 1; }'
   when: >-
     ('General = 1' not in info.stdout) or
     ('OpenWith = 1' not in info.stdout) or
