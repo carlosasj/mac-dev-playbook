@@ -87,7 +87,7 @@
   changed_when: false
 
 - name: Ensure {{ item }} is marked as having custom hotkeys
-  when: "'{{ item }}' not in apple_languages.stdout"
+  when: item not in apple_languages.stdout
   community.general.osx_defaults:
     domain: com.apple.universalaccess
     key: com.apple.custommenu.apps

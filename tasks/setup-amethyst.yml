@@ -1,0 +1,16 @@
+---
+
+- name: Check if Amethyst symlink exists
+  stat:
+    path: "{{ ansible_env.HOME }}/Library/Application Support/Amethyst"
+  register: amethyst_symlink
+
+- debug: var=amethyst_symlink
+
+- name: Create Amethyst symbolic link
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/Amethyst"
+    dest: "{{ ansible_env.HOME }}/Library/Application Support/Amethyst"
+    state: link
+    mode: '0755'
+    force: yes

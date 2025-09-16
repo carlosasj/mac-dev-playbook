@@ -65,7 +65,6 @@ dotfiles_files:
   - .functions
   - .gitconfig
   - .gitignore_global
-  - Library/Application Support/Amethyst
   - .load_homebrew
   - .load_oh_my_zsh_theme
   - .load_nvm
@@ -331,3 +330,4 @@ sublime_config_path: "Packages/User"
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
   - "{{ playbook_dir }}/tasks/setup-tabby.yml"
+  - "{{ playbook_dir }}/tasks/setup-amethyst.yml"
