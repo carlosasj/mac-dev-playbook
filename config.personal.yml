@@ -5,10 +5,10 @@ configure_dotfiles: true
 configure_terminal: true
 configure_karabiner: true
 configure_sudo_fingerprint: true
-configure_loosen_gatekeeper: true
+configure_loosen_gatekeeper: false
 configure_firefox_as_default: true
 configure_osx: true
-configure_ssh: true
+configure_ssh: false
 
 configure_sudoers: false
 sudoers_custom_config: ""
@@ -82,17 +82,12 @@ homebrew_installed_packages:
   - bash-completion
   - gettext
   - git
-  - go
   - gpg
   - jq
-  - mise
   # - nmap
   # - node
   # - nvm
-  - openssl
   - wget
-  - zsh-history-substring-search
-  - git-interactive-rebase-tool
   - fileicon
   - smudge/smudge/nightlight
   # - sevenzip # 7-Zip
@@ -122,34 +117,17 @@ homebrew_cask_apps:
   - font-fira-code-nerd-font
   - karabiner-elements
   - firefox
-  - google-chrome
   - visual-studio-code
-  - docker
-  - sequel-ace
   - rustdesk
-  - vlc
-  - spotify
   - logi-options-plus
   - rectangle
-  - obsidian
-  - handbrake
-  - bruno
   - keka
-  - whatsapp
-  - telegram
   - betterdisplay
-  - alfred
   - battery-toolkit
   - jordanbaird-ice
-  - orcaslicer
-  - autodesk-fusion
-  - stremio
-  - thunderbird
-  - nordvpn
   - sublime-text
   - localsend
   - amethyst
-  - applite
   - stats
   - TheBoredTeam/boring-notch/boring-notch
   - input-source-pro
@@ -177,15 +155,7 @@ mas_signin_dialog: true
 mas_installed_apps:
   - { purchase: true, id:  497799835, name: "Xcode" }
   - { purchase: true, id: 1352778147, name: "Bitwarden" }
-  - { purchase: true, id:  937984704, name: "Amphetamine: keep-awake utility" }
-  - { purchase: true, id: 1586435171, name: "Actions: Useful for Shortcuts" }
-  - { purchase: true, id: 1351639930, name: "Gifski: Convert videos to quality GIFs" }
-  - { purchase: true, id: 6450279539, name: "Second Clock: on the menu bar" }
-  - { purchase: true, id: 1604176982, name: "One Thing" }
-  - { purchase: true, id: 1355679052, name: "Dropover: Easier Drag & Drop" }
   - { purchase: true, id: 1522267256, name: "Shareful" }
-  - { purchase: true, id: 6475134617, name: "Unsqueeze" }
-  - { purchase: true, id: 1099568401, name: "Home Assistant" }
 
 remove_quarantine:
   - /Applications/Maccy.app
@@ -255,9 +225,6 @@ dockitems_persist_apps:
   - { name: "System Settings",    path: "/System/Applications/System Settings.app" }
   - { name: "Bitwarden",          path: "/Applications/Bitwarden.app" }
   - { name: "Reminders",          path: "/System/Applications/Reminders.app" }
-  - { name: "Home Assistant",     path: "/Applications/Home Assistant.app" }
-  - { style: 'small-spacer',      path: '' }
-  - { name: "Spotify",            path: "/Applications/Spotify.app" }
 
 dockitems_persist_others:
   - { name: "Inbox",              path: "~/Inbox",       view: "fan",  display: "folder", sort: "dateadded" }
