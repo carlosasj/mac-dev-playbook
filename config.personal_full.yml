@@ -1,0 +1,341 @@
+---
+configure_machine_name: M1 # or false
+
+configure_dotfiles: true
+configure_terminal: true
+configure_karabiner: true
+configure_sudo_fingerprint: true
+configure_loosen_gatekeeper: true
+configure_firefox_as_default: true
+configure_osx: true
+configure_ssh: true
+
+configure_sudoers: false
+sudoers_custom_config: ""
+# Example:
+# sudoers_custom_config: |
+#   # Allow users in admin group to use sudo with no password.
+#   %admin ALL=(ALL) NOPASSWD: ALL
+
+# Uses BetterDisplay CLI to change the resolution on the main screen. Remember to install it.
+configure_better_display_mode_number: 66 # Options: 0 (disable), 54 (default), 66 (higher resolution, smaller text)
+
+ensure_directories_exist:
+  - ~/Screenshots
+  - ~/Inbox # Received files via Quick Share, Localsend or Bluetooth
+  - ~/Outbox # Somewhat shared files (?)
+
+folder_icons: # requires brew package `fileicon`
+  - { path: "~/Downloads", icon: "files/icons/folder/Downloads.png" }
+  - { path: "~/git", icon: "files/icons/folder/git.png" }
+  - { path: "~/Inbox", icon: "files/icons/folder/Inbox.png" }
+  - { path: "~/Outbox", icon: "files/icons/folder/Outbox.png" }
+  - { path: "~/Screenshots", icon: "files/icons/folder/Screenshots.png" }
+
+sidebar_items_activated:
+  - "AirDrop"
+  - "Applications"
+  - "Desktop"
+  - "Documents"
+  - "Downloads"
+  - "schneider"
+  - "M1"
+
+sidebar_items_deactivated:
+  - "Recents"
+  - "Shared"
+  - "Movies"
+  - "Music"
+  - "Pictures"
+
+sidebar_items_extra:
+  - "{{ ansible_env.HOME }}/git"
+  - "{{ ansible_env.HOME }}/Inbox"
+  - "{{ ansible_env.HOME }}/Outbox"
+  - "{{ ansible_env.HOME }}/Screenshots"
+
+dotfiles_repo: https://github.com/carlosasj/.dotfiles
+dotfiles_repo_accept_hostkey: true
+dotfiles_repo_local_destination: ~/git/.dotfiles
+dotfiles_repo_version: master # Replace with your default branch
+dotfiles_files:
+  - .aliases
+  - .bashrc
+  - .config/mise/config.toml
+  - .functions
+  - .gitconfig
+  - .gitignore_global
+  - .load_homebrew
+  - .load_oh_my_zsh_theme
+  - .load_nvm
+  - .load_pyenv
+  - .load_sdkman
+  - .load_tabby
+  - .profile
+  - .vimrc
+  - .zprofile
+  - .zshrc
+
+homebrew_installed_packages:
+  # - ansible # Installed via Pip.
+  # - autoconf
+  - bash-completion
+  - gettext
+  - git
+  - go
+  - gpg
+  - jq
+  - mise
+  # - nmap
+  # - node
+  # - nvm
+  - openssl
+  - wget
+  - zsh-history-substring-search
+  - git-interactive-rebase-tool
+  - fileicon
+  - smudge/smudge/nightlight
+  # - sevenzip # 7-Zip
+# homebrew_uninstalled_packages:
+#   - doxygen
+#   - gifsicle
+#   - gh
+#   - httpie
+#   - iperf
+#   - libevent
+#   - sqlite
+#   - php
+#   - pngpaste
+#   - ssh-copy-id
+#   - readline
+#   - pv
+#   - wrk
+
+homebrew_taps:
+  - mhaeuser/mhaeuser
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - middleclick
+  - maccy
+  - alt-tab
+  - tabby
+  - font-fira-code-nerd-font
+  - karabiner-elements
+  - firefox
+  - google-chrome
+  - visual-studio-code
+  - docker
+  - sequel-ace
+  - rustdesk
+  - vlc
+  - spotify
+  - logi-options-plus
+  - rectangle
+  - obsidian
+  - handbrake
+  - bruno
+  - keka
+  - whatsapp
+  - telegram
+  - betterdisplay
+  - alfred
+  - battery-toolkit
+  - jordanbaird-ice
+  - orcaslicer
+  - autodesk-fusion
+  - stremio
+  - thunderbird
+  - nordvpn
+  - sublime-text
+  - localsend
+  - amethyst
+  - applite
+  - stats
+  - TheBoredTeam/boring-notch/boring-notch
+  - input-source-pro
+  # - upscayl
+  # - gimp
+  # - discord
+  # - google-drive
+  # - bisq # decentralized bitcoin exchange
+homebrew_cask_uninstalled_apps:
+  - bitwarden # The one on App Store supports fingerprint use on other browsers
+  # - battery
+  # - only-switch
+  # - chromedriver
+  # - dropbox
+  # - licecap
+  # - slack
+  # - transmit
+  # - audacity # ?
+  # - obs-studio # ?
+
+# See `geerlingguy.mac.mas` role documentation for usage instructions.
+mas_email: "apple@carlosasj.dev"
+# mas_password: ""
+mas_signin_dialog: true
+mas_installed_apps:
+  - { purchase: true, id:  497799835, name: "Xcode" }
+  - { purchase: true, id: 1352778147, name: "Bitwarden" }
+  - { purchase: true, id:  937984704, name: "Amphetamine: keep-awake utility" }
+  - { purchase: true, id: 1586435171, name: "Actions: Useful for Shortcuts" }
+  - { purchase: true, id: 1351639930, name: "Gifski: Convert videos to quality GIFs" }
+  - { purchase: true, id: 6450279539, name: "Second Clock: on the menu bar" }
+  - { purchase: true, id: 1604176982, name: "One Thing" }
+  - { purchase: true, id: 1355679052, name: "Dropover: Easier Drag & Drop" }
+  - { purchase: true, id: 1522267256, name: "Shareful" }
+  - { purchase: true, id: 6475134617, name: "Unsqueeze" }
+  - { purchase: true, id: 1099568401, name: "Home Assistant" }
+
+remove_quarantine:
+  - /Applications/Maccy.app
+  - /Applications/MiddleClick.app
+  - /Applications/BetterDisplay.app
+  - /Applications/Tabby.app
+  - /Applications/Battery Toolkit.app
+  - /Applications/AltTab.app
+  - /Applications/Rectangle.app
+  - /Applications/Ice.app
+  - /Applications/Stats.app
+  - /Applications/boringNotch.app
+  - /Applications/Input Source Pro.app
+
+configure_autostart:
+  - /Applications/Maccy.app
+  - /Applications/MiddleClick.app
+  - /Applications/BetterDisplay.app
+  - /Applications/Tabby.app
+  - /Applications/Bitwarden.app
+  - /Applications/AltTab.app
+  - /Applications/Rectangle.app
+  - /Applications/Ice.app
+  - /Applications/Stats.app
+  - /Applications/boringNotch.app
+  - /Applications/Input Source Pro.app
+  # - /Applications/Logi Options+.app # It will set its own autostart scripts
+
+configure_autostart_avoid:
+  - Spotify
+  - NordVPN
+
+configure_dock: true # configure the Dock via dockutil.
+dockitems_remove:
+  # - Launchpad
+  # - Apps
+  - Safari
+  - Messages
+  - Mail
+  - Maps
+  - Photos
+  - FaceTime
+  - Calendar
+  - Contacts
+  # - Reminders
+  - Notes
+  - Freeform
+  - TV
+  - Music
+  - Keynote
+  - Numbers
+  - Pages
+  - 'App Store'
+  - Podcasts
+  - Phone
+  - Games
+
+dockitems_persist: [] # keep the empty array here to override the default.config.yml
+dockitems_persist_apps:
+  # - { name: "Launchpad",          path: "/System/Applications/Launchpad.app" }
+  - { name: "Apps",               path: "/System/Applications/Apps.app" }
+  - { style: 'small-spacer',      path: '' }
+  - { name: "Firefox",            path: "/Applications/Firefox.app" }
+  - { name: "Visual Studio Code", path: "/Applications/Visual Studio Code.app" }
+  - { name: "Tabby",              path: "/Applications/Tabby.app" }
+  - { name: "Sublime Text",       path: "/Applications/Sublime Text.app" }
+  - { name: "System Settings",    path: "/System/Applications/System Settings.app" }
+  - { name: "Bitwarden",          path: "/Applications/Bitwarden.app" }
+  - { name: "Reminders",          path: "/System/Applications/Reminders.app" }
+  - { name: "Home Assistant",     path: "/Applications/Home Assistant.app" }
+  - { style: 'small-spacer',      path: '' }
+  - { name: "Spotify",            path: "/Applications/Spotify.app" }
+
+dockitems_persist_others:
+  - { name: "Inbox",              path: "~/Inbox",       view: "fan",  display: "folder", sort: "dateadded" }
+  - { name: "Downloads",          path: "~/Downloads",   view: "grid", display: "folder", sort: "dateadded" }
+  - { style: 'small-spacer',      path: '' }
+  - { name: "Screenshots",        path: "~/Screenshots", view: "grid", display: "folder", sort: "dateadded" }
+  - { style: 'small-spacer',      path: '' }
+
+configure_share_services: true
+share_services_enabled:
+  - com.sindresorhus.Shareful.Open-In
+  - com.sindresorhus.Shareful.Copy
+  - com.apple.share.AirDrop.send
+  - com.sindresorhus.One-Thing.Share-Extension
+  - com.apple.CloudSharingUI.CopyLink
+  - com.sindresorhus.Shareful.Save-As
+  - com.sindresorhus.Shareful.Save-to-Downloads
+  - com.apple.CloudSharingUI.invite
+  - me.damir.dropover-mac.DropoverShareExtension
+  - com.sindresorhus.Gifski.ShareExtension
+  - com.pixelmatorteam.pixelmator.touch.x.photo.add-to-photomator
+share_services_disabled:
+  - com.apple.freeform.sharingextension
+  - com.apple.iBooksX.SharingExtension
+  - com.apple.MailShareExtension
+  - com.apple.messages.ReplyExtension
+  - com.apple.messages.ShareExtension
+  - com.apple.Notes.SharingExtension
+  - com.apple.reminders.sharingextension
+  - com.apple.share.Mail.compose
+  - com.apple.share.Mail.compose-back-to-sender
+  - com.apple.share.Messages.window
+  - com.apple.share.System.add-to-iphoto
+  - com.apple.share.System.add-to-safari-reading-list
+  - com.apple.share.System.set-account-picture
+  - com.apple.share.System.set-desktop-image
+  - com.apple.shortcuts.Run-Workflow
+  # - com.pixelmatorteam.pixelmator.touch.x.photo.add-to-photomator
+
+# Install packages from other package managers.
+# Note: You are responsible for making sure the required package managers are
+# installed, eg. through homebrew.
+composer_packages: []
+# - name: drush
+#   state: present # present/absent, default: present
+#   version: "^8.1" # default: N/A
+gem_packages: []
+# - name: bundler
+#   state: present # present/absent/latest, default: present
+#   version: "~> 1.15.1" # default: N/A
+npm_packages: []
+# - name: webpack
+#   state: present # present/absent/latest, default: present
+#   version: "^2.6" # default: N/A
+pip_packages: []
+# - name: mkdocs
+#   state: present # present/absent/latest, default: present
+#   version: "0.16.3" # default: N/A
+
+# Set to 'true' to configure Sublime Text.
+configure_sublime: false
+sublime_base_path: "~/Library/Application Support/Sublime Text"
+sublime_config_path: "Packages/User"
+# sublime_package_control:
+  # - "DocBlockr"
+  # - "Dockerfile Syntax Highlighting"
+  # - "FileDiffs"
+  # - "GitHub Flavored Markdown Preview"
+  # - "Jinja2"
+  # - "Package Control"
+  # - "Pretty JSON"
+  # - "SublimeLinter"
+  # - "SublimeLinter-contrib-yamllint"
+  # - "Theme - Cobalt2"
+  # - "TrailingSpaces"
+  # - "WordingStatus"
+
+# Glob pattern to ansible task files to run after all other tasks are finished.
+post_provision_tasks:
+  - "{{ playbook_dir }}/tasks/setup-tabby.yml"
+  - "{{ playbook_dir }}/tasks/setup-amethyst.yml"
