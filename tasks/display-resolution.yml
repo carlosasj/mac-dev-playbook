@@ -13,6 +13,15 @@
   changed_when: false
   when: betterdisplay_is_open.rc != 0
 
+- name: Wait for BetterDisplay to start
+  when: betterdisplay_is_open.rc != 0
+  shell: |
+    timeout=10  # timeout after 10s  
+    while ((timeout > 0)) && ! pgrep -x "BetterDisplay" > /dev/null; do
+      sleep 1
+      ((timeout -= 1))
+    done
+
 - when: betterdisplay_is_open.rc != 0
   pause:
     seconds: 2

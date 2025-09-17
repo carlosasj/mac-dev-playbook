@@ -85,6 +85,7 @@
   command: defaults read com.apple.universalaccess com.apple.custommenu.apps
   register: custommenu_apps
   changed_when: false
+  ignore_errors: true
 
 - name: Ensure {{ item }} is marked as having custom hotkeys
   when: item not in apple_languages.stdout
