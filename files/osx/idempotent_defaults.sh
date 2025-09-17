@@ -14,6 +14,7 @@ defaults() {
 	# Only handle write commands; pass everything else through
 	if [[ "${args[0]}" != "write" ]]; then
 		command defaults "$@"
+		sleep 0.016
 		return
 	fi
 
@@ -26,6 +27,7 @@ defaults() {
 	if [[ "${type}" == "-array" || "${type}" == "-array-add" || "${type}" == "-dict" || "${type}" == "-dict-add" ]]; then
 		echo "- We can't handle ${type} types. ${args[@]}"
 		command defaults "$@"
+		sleep 0.016
 		return
 	fi
 
@@ -70,6 +72,7 @@ defaults() {
 
 	# Execute
 	"${cmd[@]}"
+	sleep 0.016
 
 	echo "+ Changed ${domain} ${key}   '$current' => '$new_value'"
 }

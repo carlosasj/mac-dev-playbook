@@ -793,18 +793,18 @@ fi
 if [[ -f '/Applications/Ice.app' || -d '/Applications/Ice.app' ]]; then
   defaults write com.jordanbaird.Ice UseIceBar -bool false # false = inline, true = separate bar
   defaults write com.jordanbaird.Ice IceBarLocation -int 2
-  defaults write com.jordanbaird.Ice ItemSpacingOffset -float -8.0
+  defaults write com.jordanbaird.Ice ItemSpacingOffset -float -8
   defaults write com.jordanbaird.Ice EnableAlwaysHiddenSection -int 1
   defaults write com.jordanbaird.Ice CanToggleAlwaysHiddenSection -int 1
   defaults write com.jordanbaird.Ice ShowOnClick -int 1
   defaults write com.jordanbaird.Ice ShowOnScroll -int 1
   defaults write com.jordanbaird.Ice ShowOnHover -int 0
   defaults write com.jordanbaird.Ice ShowOnHoverDelay -float 0
-  defaults write com.jordanbaird.Ice TempShowInterval -float 15.0
+  defaults write com.jordanbaird.Ice TempShowInterval -float 15
   defaults write com.jordanbaird.Ice ShowSectionDividers -bool false
   defaults write com.jordanbaird.Ice AutoRehide -bool true
   defaults write com.jordanbaird.Ice RehideStrategy -int 0
-  defaults write com.jordanbaird.Ice RehideInterval -float 15.0
+  defaults write com.jordanbaird.Ice RehideInterval -float 15
   defaults write com.jordanbaird.Ice SUAutomaticallyUpdate -bool true
   defaults write com.jordanbaird.Ice SUSendProfileInfo -bool false
   defaults write com.jordanbaird.Ice ShowAllSectionsOnUserDrag -bool true
