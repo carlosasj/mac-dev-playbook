@@ -188,7 +188,15 @@ mas_installed_apps:
   - { purchase: true, id: 1099568401, name: "Home Assistant" }
 
 remove_quarantine:
+  - /Applications/Maccy.app
+  - /Applications/MiddleClick.app
+  - /Applications/BetterDisplay.app
+  - /Applications/Tabby.app
   - /Applications/Battery Toolkit.app
+  - /Applications/AltTab.app
+  - /Applications/Rectangle.app
+  - /Applications/Ice.app
+  - /Applications/Stats.app
   - /Applications/boringNotch.app
   - /Applications/Input Source Pro.app
 
