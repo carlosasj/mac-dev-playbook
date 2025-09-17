@@ -136,6 +136,12 @@ defaults write com.apple.Displays-Settings.extension showListByDefault -int 1
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
+# Disable Fast User Switch via TouchID
+defaults write com.apple.preference.touchid DisableTouchIDFUS -bool false
+
+# Set another sound on the system
+[[ -f "/System/Library/Sounds/Morse.aiff" ]] && defaults write NSGlobalDomain com.apple.sound.beep.sound -string "/System/Library/Sounds/Morse.aiff"
+
 # Trackpad: speed (default: 0.6875; fast: 0.875; faster: 1)
 defaults write NSGlobalDomain com.apple.trackpad.scaling -float 1
 
