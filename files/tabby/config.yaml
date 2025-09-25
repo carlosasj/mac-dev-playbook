@@ -238,6 +238,7 @@ ssh:
     - host: l1.carlosasj.dev
       port: 22
       type: ecdsa-sha2-nistp256
+      digest: xULonGV9FvsZQRROqOVA/ex2b1zaBW30IBny9+mkQyM=
 clickableLinks:
   modifier: altKey
 accessibility:
