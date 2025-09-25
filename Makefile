@@ -21,3 +21,6 @@ delicate:
 
 destructive:
 	./files/osx/.osx_destructive $(ARGS)
+
+pre_tasks:
+	sh make/make_pre_tasks.sh $(ARGS)
