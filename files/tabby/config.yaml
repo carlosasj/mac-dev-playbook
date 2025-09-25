@@ -232,7 +232,12 @@ terminal:
   warnOnMultilinePaste: false
   minimumContrastRatio: 10
   ligatures: true
-ssh: {}
+  frontend: xterm
+ssh:
+  knownHosts:
+    - host: l1.carlosasj.dev
+      port: 22
+      type: ecdsa-sha2-nistp256
 clickableLinks:
   modifier: altKey
 accessibility:
@@ -254,3 +259,4 @@ profileDefaults:
     type: ssh
 profileBlacklist: []
 enableAnalytics: false
+language: en-GB

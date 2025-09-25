@@ -66,6 +66,9 @@
       when: configure_karabiner
       tags: ['karabiner']
 
+    - import_tasks: tasks/mise.yml
+      tags: ['mise']
+
     # - import_tasks: tasks/loosen-gatekeeper.yml
     #   when: configure_loosen_gatekeeper
     #   tags: ['loosen-gatekeeper', 'once-in-a-blue-moon']
