@@ -12,26 +12,15 @@
         - "{{ playbook_dir }}/config.yml"
       tags: ['always']
 
-    - command: xcodebuild -license accept
-      become: true
+    - name: Pre-purchase Mac Store Apps
+      import_tasks: tasks/pre-purchase-apps.yml
       tags: ['mas']
-
-    #  TODO: Put this after installing `mas` but before install any app
-    #- name: Pre-purchase Mac Store Apps
-    #  import_tasks: tasks/pre-purchase-apps.yml
-    #  tags: ['mas']
 
   roles:
     - role: elliotweiser.osx-command-line-tools
 
     - role: geerlingguy.mac.homebrew
       tags: ['homebrew']
-
-    - role: gantsign.oh-my-zsh
-      tags: ['dotfiles', 'once-in-a-blue-moon']
-      oh_my_zsh_write_zshrc: false
-      users:
-        - username: 'schneider'
 
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
@@ -46,22 +35,6 @@
       tags: ['dock']
 
   tasks:
-    - import_tasks: tasks/sudo-fingerprint.yml
-      when: configure_sudo_fingerprint
-      tags: ['sudo-fingerprint', 'once-in-a-blue-moon']
-
-    - import_tasks: tasks/sudoers.yml
-      when: configure_sudoers
-      tags: ['sudoers']
-
-    - import_tasks: tasks/terminal.yml
-      when: configure_terminal
-      tags: ['terminal', 'once-in-a-blue-moon']
-
-    - import_tasks: tasks/oh-my-zsh-theme.yml
-      when: configure_terminal
-      tags: ['terminal']
-
     - import_tasks: tasks/karabiner.yml
       when: configure_karabiner
       tags: ['karabiner']
@@ -99,9 +72,6 @@
 
     - import_tasks: tasks/extra-packages.yml
       tags: ['extra-packages']
-
-    - import_tasks: tasks/vundle.yml
-      tags: ['vundle', 'once-in-a-blue-moon']
 
     - import_tasks: tasks/sublime-text.yml
       when: configure_sublime

@@ -33,11 +33,3 @@
   changed_when: false
   become: true
   tags: ['once-in-a-blue-moon']
-
-# Ignore this by including the flag:
-# --skip-tags once-in-a-blue-moon
-- name: Run destructive commands
-  command: "bash files/osx/.osx_destructive"
-  changed_when: false
-  become: true
-  tags: ['once-in-a-blue-moon']

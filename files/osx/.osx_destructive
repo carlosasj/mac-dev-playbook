@@ -72,6 +72,17 @@ sudo defaults write com.apple.Safari ProxiesInBookmarksBar -array
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
+COUNT_PERSISTENT_OTHERS=$(defaults read com.apple.dock persistent-others | grep tile-type -c || echo 0);
+if [ $COUNT_PERSISTENT_OTHERS -lt 3 ]; then
+	# Wipe all app icons from the "persistent-others" section of the Dock
+	# This is only really useful when setting up a new Mac, that's why we count
+	# the number of items in the section and only run this if there are less
+	# than 3 (the default number of items in a fresh macOS install is 1 but we're
+	# gonna add much more, so we can future-proof this).
+
+	defaults write com.apple.dock persistent-others -array
+fi
+
 # Add iOS & Watch Simulator to Launchpad
 [[ -f "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" ]] && sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
 [[ -f "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" ]] && sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"

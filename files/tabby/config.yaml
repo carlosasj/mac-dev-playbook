@@ -184,7 +184,7 @@ terminal:
     name: Casalberto
     foreground: '#f8f8f8'
     background: ''
-    cursor: '#888888'
+    cursor: '#F1F1F1'
     colors:
       - '#2a2a2a'
       - '#ff0000'
