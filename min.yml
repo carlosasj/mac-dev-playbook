@@ -48,7 +48,9 @@
     # Ignore this by including the flag:
     # --skip-tags destructive
     - name: Run destructive commands
-      command: "WALLPAPER_DL_PATH=/Users/{{ ansible_user }}/git/wallpaper-dl bash files/osx/.osx_destructive"
+      command: "bash files/osx/.osx_destructive"
+      environment:
+        ANSIBLE_USER: "{{ lookup('env','USER') }}"
       changed_when: false
       become: true
       tags: ['destructive'] # Only harmful to Safari

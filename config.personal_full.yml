@@ -32,6 +32,7 @@ folder_icons: # requires brew package `fileicon`
   - { path: "~/Outbox", icon: "files/icons/folder/Outbox.png" }
   - { path: "~/Screenshots", icon: "files/icons/folder/Screenshots.png" }
 
+ansible_user: "{{ lookup('env','USER') | default('schneider') }}"
 sidebar_items_activated:
   - "AirDrop"
   - "Applications"
