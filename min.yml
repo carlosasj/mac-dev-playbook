@@ -15,7 +15,7 @@
       tags: ['dotfiles']
       oh_my_zsh_write_zshrc: false
       users:
-        - username: 'schneider'
+        - username: "{{ lookup('env','USER') }}"
 
     - role: geerlingguy.mac.mas
       when: mas_installed_apps
@@ -48,7 +48,7 @@
     # Ignore this by including the flag:
     # --skip-tags destructive
     - name: Run destructive commands
-      command: "bash files/osx/.osx_destructive"
+      command: "WALLPAPER_DL_PATH=/Users/{{ ansible_user }}/git/wallpaper-dl bash files/osx/.osx_destructive"
       changed_when: false
       become: true
       tags: ['destructive'] # Only harmful to Safari

@@ -38,7 +38,7 @@ sidebar_items_activated:
   - "Desktop"
   - "Documents"
   - "Downloads"
-  - "schneider"
+  - "{{ ansible_user }}"
   - "M1"
 
 sidebar_items_deactivated:

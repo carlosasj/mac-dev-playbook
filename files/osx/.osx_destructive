@@ -29,6 +29,8 @@ set -o pipefail
 # Put here other commands to help set up the system.
 # This file should not be run very often, as the idempotency is not guaranteed.
 
+WALLPAPER_DL_PATH=${WALLPAPER_DL_PATH:-"/Users/schneider/git/wallpaper-dl"}
+
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
@@ -54,7 +56,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -r -domain local -domain system -domain user
 
 # Set background/wallpaper to black color if wallpaper-dl is not cloned
-if [ ! -d "/Users/schneider/git/wallpaper-dl" ]; then
+if [ ! -d $WALLPAPER_DL_PATH ]; then
 	osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/System/Library/Desktop Pictures/Solid Colors/Black.png"'
 fi
 
