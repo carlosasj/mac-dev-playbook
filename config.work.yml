@@ -8,7 +8,7 @@ configure_sudo_fingerprint: true
 configure_loosen_gatekeeper: false
 configure_firefox_as_default: true
 configure_osx: true
-configure_ssh: false
+configure_ssh: true
 
 configure_sudoers: false
 sudoers_custom_config: ""
@@ -119,19 +119,24 @@ homebrew_cask_apps:
   - karabiner-elements
   - firefox
   - visual-studio-code
-  - rustdesk
-  - logi-options-plus
+  # - docker
+  - sequel-ace
+  #- rustdesk
+  - spotify
+  #- logi-options-plus
   - rectangle
+  - bruno
   - keka
   - betterdisplay
   - battery-toolkit
   - jordanbaird-ice
-  - sublime-text
-  - localsend
-  - amethyst
-  - stats
+  # - thunderbird
+  #- sublime-text
+  #- localsend
+  #- amethyst
+  #- stats
   # - TheBoredTeam/boring-notch/boring-notch
-  - input-source-pro
+  #- input-source-pro
   # - upscayl
   # - gimp
   # - discord
@@ -156,6 +161,8 @@ mas_signin_dialog: true
 mas_installed_apps:
   - { purchase: true, id:  497799835, name: "Xcode" }
   - { purchase: true, id: 1352778147, name: "Bitwarden" }
+  - { purchase: true, id: 1351639930, name: "Gifski: Convert videos to quality GIFs" }
+  - { purchase: true, id: 1355679052, name: "Dropover: Easier Drag & Drop" }
   - { purchase: true, id: 1522267256, name: "Shareful" }
 
 remove_quarantine:
@@ -167,9 +174,9 @@ remove_quarantine:
   - /Applications/AltTab.app
   - /Applications/Rectangle.app
   - /Applications/Ice.app
-  - /Applications/Stats.app
+  # - /Applications/Stats.app
   # - /Applications/boringNotch.app
-  - /Applications/Input Source Pro.app
+  # - /Applications/Input Source Pro.app
 
 configure_autostart:
   - /Applications/Maccy.app
@@ -180,9 +187,9 @@ configure_autostart:
   - /Applications/AltTab.app
   - /Applications/Rectangle.app
   - /Applications/Ice.app
-  - /Applications/Stats.app
+  # - /Applications/Stats.app
   # - /Applications/boringNotch.app
-  - /Applications/Input Source Pro.app
+  # - /Applications/Input Source Pro.app
   # - /Applications/Logi Options+.app # It will set its own autostart scripts
 
 configure_autostart_avoid:
@@ -216,16 +223,18 @@ dockitems_remove:
 
 dockitems_persist: [] # keep the empty array here to override the default.config.yml
 dockitems_persist_apps:
-  # - { name: "Launchpad",          path: "/System/Applications/Launchpad.app" }
-  - { name: "Apps",               path: "/System/Applications/Apps.app" }
+  - { name: "Launchpad",          path: "/System/Applications/Launchpad.app" }
+  # - { name: "Apps",               path: "/System/Applications/Apps.app" }
   - { style: 'small-spacer',      path: '' }
   - { name: "Firefox",            path: "/Applications/Firefox.app" }
   - { name: "Visual Studio Code", path: "/Applications/Visual Studio Code.app" }
   - { name: "Tabby",              path: "/Applications/Tabby.app" }
-  - { name: "Sublime Text",       path: "/Applications/Sublime Text.app" }
+  # - { name: "Sublime Text",       path: "/Applications/Sublime Text.app" }
   - { name: "System Settings",    path: "/System/Applications/System Settings.app" }
   - { name: "Bitwarden",          path: "/Applications/Bitwarden.app" }
   - { name: "Reminders",          path: "/System/Applications/Reminders.app" }
+  - { style: 'small-spacer',      path: '' }
+  - { name: "Spotify",            path: "/Applications/Spotify.app" }
 
 dockitems_persist_others:
   - { name: "Inbox",              path: "~/Inbox",       view: "fan",  display: "folder", sort: "dateadded" }
